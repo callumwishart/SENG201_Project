@@ -4,7 +4,14 @@ public class GameEnv {
     Player player;
     Difficulties difficulties;
     Shop shop;
-    GameEnv() {
 
+    int numRounds;
+    int difficultyMultiplier;
+    GameEnv(Player inputPlayer, Difficulties inputDifficulties, int inputNumRounds, int inputDifficultyMultiplier) {
+        player = inputPlayer;
+        difficulties = inputDifficulties;
+        numRounds = inputNumRounds;
+        difficultyMultiplier = inputDifficultyMultiplier;
     }
+
 }
