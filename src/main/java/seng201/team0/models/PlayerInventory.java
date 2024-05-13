@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PlayerInventory {
     int coins;
     int points;
-    ArrayList<Tower> activeTowers = new ArrayList<>();
+    static ArrayList<Tower> activeTowers = new ArrayList<>();
     ArrayList<Tower> stockpiledTowers = new ArrayList<>();
     ArrayList<Upgrade> upgrades = new ArrayList<>();
     ArrayList<Booster> boosters = new ArrayList<>();

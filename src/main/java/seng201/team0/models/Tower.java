@@ -31,4 +31,7 @@ public class Tower {
     public int getUpgradePointLimit () {
         return level * 100;
     }
+    public void setToBroken () {
+        isBroken = true;
+    }
 }
