@@ -1,11 +1,14 @@
 package seng201.team0.models;
 
+import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.Upgrade.Upgrade;
+
 import java.util.ArrayList;
 
 public class PlayerInventory {
     int coins;
     int points;
-    ArrayList<Tower> activeTowers = new ArrayList<>();
+    static ArrayList<Tower> activeTowers = new ArrayList<>();
     ArrayList<Tower> stockpiledTowers = new ArrayList<>();
     ArrayList<Upgrade> upgrades = new ArrayList<>();
     ArrayList<Booster> boosters = new ArrayList<>();
@@ -36,5 +39,9 @@ public class PlayerInventory {
     }
     public void repair (Tower tower) {
         // Need to implement
+    }
+
+    public static ArrayList<Tower> getActiveTowers() {
+        return activeTowers;
     }
 }

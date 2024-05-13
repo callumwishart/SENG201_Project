@@ -1,5 +1,8 @@
 package seng201.team0.models;
 
+import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.Upgrade.Upgrade;
+
 import java.util.ArrayList;
 
 public class Shop {
