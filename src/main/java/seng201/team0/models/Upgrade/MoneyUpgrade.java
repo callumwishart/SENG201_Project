@@ -1,6 +1,6 @@
 package seng201.team0.models.Upgrade;
 
-import seng201.team0.models.Tower;
+import seng201.team0.models.Towers.Tower;
 
 public class MoneyUpgrade extends Upgrade{
     public MoneyUpgrade(String inputName, String inputDescription, double inputCost) {

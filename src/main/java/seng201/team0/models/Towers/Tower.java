@@ -1,13 +1,12 @@
-package seng201.team0.models;
+package seng201.team0.models.Towers;
 
+import seng201.team0.models.Item;
 import seng201.team0.models.Resources.Resource;
 import seng201.team0.models.Upgrade.Upgrade;
 
 import java.util.ArrayList;
 
-public class Tower extends Item{
-    String inputDescription;
-    String inputName;
+public class Tower extends Item {
     double inputCost;
     int resourceAmount;
     int reloadSpeed;
@@ -16,13 +15,12 @@ public class Tower extends Item{
     int level;
     ArrayList<Upgrade> upgrades = new ArrayList<>();
 
-    public Tower (Resource inputResourceType, int inputReloadSpeed, int inputLevel, String inputName, String inputDescription, double inputCost) {
+    public Tower (Resource inputResourceType, int inputReloadSpeed, String inputName, String inputDescription, double inputCost) {
         super(inputName, inputDescription, inputCost);
         resourceAmount = 0;
         isBroken = false;
         resourceType = inputResourceType;
         reloadSpeed = inputReloadSpeed;
-        level = inputLevel;
     }
 
     public int getResourceAmount() {

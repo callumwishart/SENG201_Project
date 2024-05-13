@@ -1,6 +1,6 @@
 package seng201.team0.models.Random;
 
-import seng201.team0.models.Tower;
+import seng201.team0.models.Towers.Tower;
 
 import java.util.ArrayList;
 import java.util.Random;
