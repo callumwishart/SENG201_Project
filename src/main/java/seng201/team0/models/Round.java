@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Round {
     private Difficulties difficulty;
-    private int roundNum;
+    private static int roundNum;
     private ArrayList<Cart> carts = new ArrayList<>();
     private PlayerInventory inventory;
     private int difficultyMul;
