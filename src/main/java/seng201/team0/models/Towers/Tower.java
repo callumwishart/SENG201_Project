@@ -2,7 +2,7 @@ package seng201.team0.models.Towers;
 
 import seng201.team0.models.Item;
 import seng201.team0.models.Resources.Resource;
-import seng201.team0.models.Upgrade.Upgrade;
+import seng201.team0.models.Upgrades.Upgrade;
 
 import java.util.ArrayList;
 

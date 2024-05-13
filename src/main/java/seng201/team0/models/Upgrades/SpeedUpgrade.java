@@ -1,4 +1,4 @@
-package seng201.team0.models.Upgrade;
+package seng201.team0.models.Upgrades;
 
 import seng201.team0.models.Towers.Tower;
 
