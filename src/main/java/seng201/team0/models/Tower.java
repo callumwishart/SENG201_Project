@@ -2,7 +2,10 @@ package seng201.team0.models;
 
 import java.util.ArrayList;
 
-public class Tower {
+public class Tower extends Item{
+    String inputDescription;
+    String inputName;
+    double inputCost;
     int resourceAmount;
     int reloadSpeed;
     Resource resourceType;
@@ -10,7 +13,8 @@ public class Tower {
     int level;
     ArrayList<Upgrade> upgrades = new ArrayList<>();
 
-    public Tower (Resource inputResourceType, int inputReloadSpeed, int inputLevel) {
+    public Tower (Resource inputResourceType, int inputReloadSpeed, int inputLevel, String inputName, String inputDescription, double inputCost) {
+        super(inputName, inputDescription, inputCost);
         resourceAmount = 0;
         isBroken = false;
         resourceType = inputResourceType;
@@ -27,6 +31,9 @@ public class Tower {
     }
     public void levelUp (){
         level += 1;
+    }
+    public void increaseReloadSpeed(int amount) {
+        reloadSpeed += amount;
     }
     public int getUpgradePointLimit () {
         return level * 100;

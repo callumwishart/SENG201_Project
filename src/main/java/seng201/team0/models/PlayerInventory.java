@@ -37,4 +37,8 @@ public class PlayerInventory {
     public void repair (Tower tower) {
         // Need to implement
     }
+
+    public static ArrayList<Tower> getActiveTowers() {
+        return activeTowers;
+    }
 }
