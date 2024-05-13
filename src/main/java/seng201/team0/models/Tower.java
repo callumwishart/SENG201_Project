@@ -1,5 +1,7 @@
 package seng201.team0.models;
 
+import seng201.team0.models.Upgrade.Upgrade;
+
 import java.util.ArrayList;
 
 public class Tower extends Item{
@@ -32,6 +34,11 @@ public class Tower extends Item{
     public void levelUp (){
         level += 1;
     }
+
+    public ArrayList<Upgrade> getUpgrades() {
+        return upgrades;
+    }
+
     public void increaseReloadSpeed(int amount) {
         reloadSpeed += amount;
     }
