@@ -11,6 +11,10 @@ public class MoneyUpgrade extends Upgrade{
     public void applyUpgrade(Tower tower, int playerPoints) {
         // Needs to implemented
         // Don't forget to use UpgradeExists to check if it is already there!
+        if (upgradeExists(tower, MoneyUpgrade.class)) {
+            increaseCount();
+        }
+        tower.getResourceType().increaseCoinValue(1);
     }
 
 }

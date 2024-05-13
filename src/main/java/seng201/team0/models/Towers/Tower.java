@@ -13,6 +13,7 @@ public class Tower extends Item {
     Resource resourceType;
     Boolean isBroken;
     int level;
+
     ArrayList<Upgrade> upgrades = new ArrayList<>();
 
     public Tower (Resource inputResourceType, int inputReloadSpeed, String inputName, String inputDescription, double inputCost) {
@@ -25,6 +26,9 @@ public class Tower extends Item {
 
     public int getResourceAmount() {
         return resourceAmount;
+    }
+    public void increaseResourceAmount(int amount) {
+        resourceAmount += amount;
     }
 
     public Resource getResourceType() {

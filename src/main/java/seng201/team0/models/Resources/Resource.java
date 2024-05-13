@@ -15,4 +15,7 @@ public class Resource {
     public int getResourceCoinValue() {
         return resourceCoinValue;
     }
+    public void increaseCoinValue(int amount) {
+        resourceCoinValue += amount;
+    }
 }
