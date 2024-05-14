@@ -19,4 +19,7 @@ public class Cart {
     public int getSpeed() {
         return speed;
     }
+    public void changeSpeed(int amount) {
+        speed += amount;
+    }
 }

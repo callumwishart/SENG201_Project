@@ -9,6 +9,6 @@ public class WaterTower extends Tower{
     public static String towerImagePath = "resources/images/towers/water_tower.png";
     public static String brokenImagePath = "resources/images/towers/water_tower_broken.png";
     public WaterTower(int inputReloadSpeed, double inputCost) {
-        super(Water, inputReloadSpeed, Water.getResourceType(), "Resource: " + Water.getResourceType(), inputCost);
+        super(Water, inputReloadSpeed, Water.getResourceType(), "Resource: " + Water.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
 }

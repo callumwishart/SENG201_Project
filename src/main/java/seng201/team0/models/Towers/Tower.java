@@ -13,15 +13,19 @@ public class Tower extends Item {
     Resource resourceType;
     Boolean isBroken;
     int level;
-
+    String imagePath;
+    String brokenImagePath;
+    int used;
     ArrayList<Upgrade> upgrades = new ArrayList<>();
 
-    public Tower (Resource inputResourceType, int inputReloadSpeed, String inputName, String inputDescription, double inputCost) {
+    public Tower (Resource inputResourceType, int inputReloadSpeed, String inputName, String inputDescription, double inputCost, String initialImagePath, String brokenImage) {
         super(inputName, inputDescription, inputCost);
         resourceAmount = 0;
         isBroken = false;
         resourceType = inputResourceType;
         reloadSpeed = inputReloadSpeed;
+        imagePath = initialImagePath;
+        brokenImagePath = brokenImage;
     }
 
     public int getResourceAmount() {
@@ -50,5 +54,6 @@ public class Tower extends Item {
     }
     public void setToBroken () {
         isBroken = true;
+        imagePath = brokenImagePath;
     }
 }

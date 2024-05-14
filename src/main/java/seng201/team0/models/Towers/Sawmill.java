@@ -8,6 +8,6 @@ public class Sawmill extends Tower{
     public static String towerImagePath = "resources/images/towers/sawmill_tower.png";
     public static String brokenImagePath = "resources/images/towers/sawmill_tower_broken.png";
     public Sawmill(int inputReloadSpeed, double inputCost) {
-        super(Wood, inputReloadSpeed, Wood.getResourceType(), "Resource: " + Wood.getResourceType(), inputCost);
+        super(Wood, inputReloadSpeed, Wood.getResourceType(), "Resource: " + Wood.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
 }
