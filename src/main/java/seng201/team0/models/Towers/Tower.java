@@ -47,6 +47,7 @@ public class Tower extends Item implements Sellable{
         level += 1;
     }
 
+
     public ArrayList<Upgrade> getUpgrades() {
         return upgrades;
     }
@@ -64,6 +65,9 @@ public class Tower extends Item implements Sellable{
     public void setToFixed() {
         isBroken = false;
         imagePath = fixedImagePath;
+    }
+    public int getUsed() {
+        return used;
     }
     public int getRepairCost() {
         return (int) round(getCost() * 0.5 * getRoundNum());

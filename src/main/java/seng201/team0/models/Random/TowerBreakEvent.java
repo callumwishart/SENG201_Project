@@ -2,6 +2,9 @@ package seng201.team0.models.Random;
 
 import seng201.team0.models.Towers.Tower;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,8 +16,7 @@ public class TowerBreakEvent extends RandomEvent{
     }
     public void applyEvent() {
         ArrayList<Tower> activeTowers = getActiveTowers();
-        Random rand = new Random();
-        int rand_int = rand.nextInt(activeTowers.size());
-        activeTowers.get(rand_int).setToBroken();
+        activeTowers.sort(Comparator.comparingInt(Tower::getUsed));
+        activeTowers.get(-1).setToBroken();
     }
 }
