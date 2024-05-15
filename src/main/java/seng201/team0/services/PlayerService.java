@@ -9,7 +9,7 @@ public class PlayerService {
         Player player = new Player(inputName, inputInventory);
     }
     public void addCoins(int amount) {
-        player.getInventory().addCoints(amount);
+        player.getInventory().addCoins(amount);
     }
     public void addPoints(int amount) {
         player.increasePoints(amount);

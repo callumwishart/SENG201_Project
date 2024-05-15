@@ -38,10 +38,15 @@ public class PlayerInventory {
     public void addBooster (Booster booster) {
         boosters.add(booster);
     }
-    public void repair (Tower tower) {
-        // Need to implement
+    public void repair (Tower tower) throws Exception {
+        int amount = tower.getRepairCost();
+        if (getCoins() >= amount) {
+            tower.setToFixed();
+            useCoins(amount);
+        }
+
     }
-    public void addCoints(int amount) {coins += amount;}
+    public void addCoins(int amount) {coins += amount;}
     public void useCoins(int amount) throws Exception {
         if (coins >= amount) {
             coins -= amount;
@@ -56,4 +61,5 @@ public class PlayerInventory {
     public static ArrayList<Tower> getActiveTowers() {
         return activeTowers;
     }
+
 }
