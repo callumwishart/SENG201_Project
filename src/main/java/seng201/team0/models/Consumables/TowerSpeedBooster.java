@@ -6,7 +6,7 @@ import seng201.team0.models.Towers.Tower;
 import static seng201.team0.models.PlayerInventory.getActiveTowers;
 
 
-public class TowerSpeedBooster extends Consumable{
+public class TowerSpeedBooster extends Booster{
     // This booster makes the tower production faster by some factor (maybe tied to difficulty?)
 
     public TowerSpeedBooster(String inputName, String inputDescription, double inputCost) {

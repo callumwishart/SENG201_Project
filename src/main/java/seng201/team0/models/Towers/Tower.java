@@ -6,7 +6,7 @@ import seng201.team0.models.Upgrades.Upgrade;
 
 import java.util.ArrayList;
 
-public class Tower extends Item {
+public class Tower extends Item implements Sellable{
     double inputCost;
     int resourceAmount;
     int reloadSpeed;
@@ -55,5 +55,8 @@ public class Tower extends Item {
     public void setToBroken () {
         isBroken = true;
         imagePath = brokenImagePath;
+    }
+    public Boolean getStatus() {
+        return isBroken;
     }
 }

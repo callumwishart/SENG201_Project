@@ -1,5 +1,6 @@
 package seng201.team0.models;
 
+import seng201.team0.models.Consumables.Booster;
 import seng201.team0.models.Towers.Tower;
 import seng201.team0.models.Upgrades.Upgrade;
 
@@ -39,6 +40,17 @@ public class PlayerInventory {
     }
     public void repair (Tower tower) {
         // Need to implement
+    }
+    public void addCoints(int amount) {coins += amount;}
+    public void useCoins(int amount) throws Exception {
+        if (coins >= amount) {
+            coins -= amount;
+        } else {
+            throw new Exception("You do not have enough money");
+        }
+    }
+    public int getCoins () {
+        return coins;
     }
 
     public static ArrayList<Tower> getActiveTowers() {
