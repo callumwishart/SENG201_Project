@@ -9,7 +9,7 @@ import static seng201.team0.models.PlayerInventory.getActiveTowers;
 public class TowerSpeedBooster extends Booster{
     // This booster makes the tower production faster by some factor (maybe tied to difficulty?)
 
-    public TowerSpeedBooster(String inputName, String inputDescription, double inputCost) {
+    public TowerSpeedBooster() {
         super("Tower Speed Boost", "This booster makes the tower production faster.", 20);
     }
 
