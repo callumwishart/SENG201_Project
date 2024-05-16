@@ -1,11 +1,15 @@
 package seng201.team0.models;
 
+import seng201.team0.models.Consumables.Booster;
+import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.Upgrades.Upgrade;
+
 import java.util.ArrayList;
 
 public class PlayerInventory {
     int coins;
     int points;
-    ArrayList<Tower> activeTowers = new ArrayList<>();
+    static ArrayList<Tower> activeTowers = new ArrayList<>();
     ArrayList<Tower> stockpiledTowers = new ArrayList<>();
     ArrayList<Upgrade> upgrades = new ArrayList<>();
     ArrayList<Consumable> consumables = new ArrayList<>();
@@ -34,7 +38,28 @@ public class PlayerInventory {
     public void addConsumable (Consumable consumable) {
         consumables.add(consumable);
     }
-    public void repair (Tower tower) {
-        // Need to implement
+    public void repair (Tower tower) throws Exception {
+        int amount = tower.getRepairCost();
+        if (getCoins() >= amount) {
+            tower.setToFixed();
+            useCoins(amount);
+        }
+
     }
+    public void addCoins(int amount) {coins += amount;}
+    public void useCoins(int amount) throws Exception {
+        if (coins >= amount) {
+            coins -= amount;
+        } else {
+            throw new Exception("You do not have enough money");
+        }
+    }
+    public int getCoins () {
+        return coins;
+    }
+
+    public static ArrayList<Tower> getActiveTowers() {
+        return activeTowers;
+    }
+
 }

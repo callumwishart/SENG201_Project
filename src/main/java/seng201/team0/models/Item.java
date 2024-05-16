@@ -3,8 +3,8 @@ package seng201.team0.models;
 public class Item implements Purchasable {
     String name;
     String description;
-    double cost;
-    public Item (String inputName, String inputDescription, double inputCost) {
+    int cost;
+    public Item (String inputName, String inputDescription, int inputCost) {
         name = inputName;
         description = inputDescription;
         cost = inputCost;
@@ -15,12 +15,12 @@ public class Item implements Purchasable {
     public String getDescription() {
         return description;
     }
-    public void setCost (double inputCost) {
+    public void setCost (int inputCost) {
         cost = inputCost;
     }
 
     @Override
-    public double getCost() {
+    public int getCost() {
         return cost;
     }
 }
