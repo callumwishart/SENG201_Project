@@ -8,13 +8,13 @@ public class Round {
     private ArrayList<Cart> carts = new ArrayList<>();
     private PlayerInventory inventory;
     private int difficultyMul;
-    private ArrayList<Booster> boosts = new ArrayList<>();
+    private ArrayList<Consumable> consumables = new ArrayList<>();
     boolean play;
-    Round(ArrayList<Cart> inputCarts, PlayerInventory tempInventory, int inputDifficulty, ArrayList<Booster> inputBoosters, int inputRoundNum) {
+    Round(ArrayList<Cart> inputCarts, PlayerInventory tempInventory, int inputDifficulty, ArrayList<Consumable> inputConsumables, int inputRoundNum) {
         carts = inputCarts;
         inventory = tempInventory;
         difficultyMul = inputDifficulty;
-        boosts = inputBoosters;
+        consumables = inputConsumables;
         roundNum = inputRoundNum;
     }
 
@@ -37,7 +37,7 @@ public class Round {
         return difficultyMul;
     }
 
-    public ArrayList<Booster> getBoosts() {
-        return boosts;
+    public ArrayList<Consumable> getConsumables() {
+        return consumables;
     }
 }

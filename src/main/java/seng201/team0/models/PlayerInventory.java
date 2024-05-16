@@ -8,7 +8,7 @@ public class PlayerInventory {
     ArrayList<Tower> activeTowers = new ArrayList<>();
     ArrayList<Tower> stockpiledTowers = new ArrayList<>();
     ArrayList<Upgrade> upgrades = new ArrayList<>();
-    ArrayList<Booster> boosters = new ArrayList<>();
+    ArrayList<Consumable> consumables = new ArrayList<>();
 
     public PlayerInventory() {
         coins = 0;
@@ -31,8 +31,8 @@ public class PlayerInventory {
     public void addUpgrade(Upgrade upgrade) {
         upgrades.add(upgrade);
     }
-    public void addBooster (Booster booster) {
-        boosters.add(booster);
+    public void addConsumable (Consumable consumable) {
+        consumables.add(consumable);
     }
     public void repair (Tower tower) {
         // Need to implement
