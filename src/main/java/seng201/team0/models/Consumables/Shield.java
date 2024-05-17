@@ -1,7 +1,7 @@
 package seng201.team0.models.Consumables;
 
-public class Shield extends Booster{
-    public Shield(String inputName, String inputDescription, double inputCost) {
+public class Shield extends Consumable {
+    public Shield(String inputName, String inputDescription, int inputCost) {
         super(inputName, inputDescription, inputCost);
     }
 
