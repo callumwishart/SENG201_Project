@@ -7,6 +7,7 @@ import seng201.team0.models.Shop;
 import seng201.team0.models.Towers.Tower;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShopService {
     Player player;
@@ -22,7 +23,7 @@ public class ShopService {
             player.getInventory().addConsumable(consumable);
         }
     }
-    public ArrayList<Tower> getTowers() {
+    public List<Tower> getTowers() {
         return PlayerInventory.getActiveTowers();
     }
 

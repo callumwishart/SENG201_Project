@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.Towers.Tower;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -63,8 +64,18 @@ public class SetupController {
     }
     @FXML
     public void startGame() {
+        List<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
+        for (Tower tower: selectedTowers) {
+            try {
+                Tower newTower = tower.getClass().getDeclaredConstructor().newInstance();
+                finalTowers.add(newTower);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         this.gameEnv.getPlayer().setName(nameField.getText());
         this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
+        this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
     }
 
 }
