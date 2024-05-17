@@ -7,7 +7,7 @@ public class Factory extends Tower{
     private static final Resource Goods = new Goods();
     public static String towerImagePath = "resources/images/towers/factory_tower.png";
     public static String brokenImagePath = "resources/images/towers/factory_tower_broken.png";
-    public Factory(int inputReloadSpeed, double inputCost) {
+    public Factory(int inputReloadSpeed, int inputCost) {
         super(Goods, inputReloadSpeed, Goods.getResourceType(), "Resource: " + Goods.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
 }
