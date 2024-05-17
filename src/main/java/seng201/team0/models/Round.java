@@ -1,6 +1,6 @@
 package seng201.team0.models;
 
-import seng201.team0.models.Consumables.Booster;
+import seng201.team0.models.Consumables.Consumable;
 
 import java.util.ArrayList;
 

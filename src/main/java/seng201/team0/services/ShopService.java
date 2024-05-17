@@ -19,7 +19,7 @@ public class ShopService {
     }
     public void purchaseBooster(Consumable consumable) throws Exception {
         if (player.getInventory().getCoins() >= consumable.getCost()) {
-            player.getInventory().addBooster(consumable);
+            player.getInventory().addConsumable(consumable);
         }
     }
     public ArrayList<Tower> getTowers() {
