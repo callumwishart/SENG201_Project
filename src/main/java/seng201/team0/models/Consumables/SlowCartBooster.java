@@ -4,10 +4,10 @@ package seng201.team0.models.Consumables;
 import seng201.team0.models.Cart;
 import static seng201.team0.models.Round.getCarts;
 
-public class SlowCartBooster extends Booster{
+public class SlowCartBooster extends Consumable {
     int cost = 20;
 
-    public SlowCartBooster(String inputName, String inputDescription, double inputCost) {
+    public SlowCartBooster(String inputName, String inputDescription, int inputCost) {
         super(inputName, inputDescription, inputCost);
     }
 

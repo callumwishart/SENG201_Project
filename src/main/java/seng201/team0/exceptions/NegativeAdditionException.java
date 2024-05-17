@@ -1,10 +1,10 @@
 package seng201.team0.exceptions;
 
 public class NegativeAdditionException extends Exception{
-    NegativeAdditionException(){
+    public NegativeAdditionException(){
         super();
     }
-    NegativeAdditionException(String message){
+    public NegativeAdditionException(String message){
         super(message);
     }
 }

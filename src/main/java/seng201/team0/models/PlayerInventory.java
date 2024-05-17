@@ -1,15 +1,18 @@
 package seng201.team0.models;
 
-import seng201.team0.models.Consumables.Booster;
+import seng201.team0.exceptions.NegativeAdditionException;
+import seng201.team0.exceptions.TowerInventoryFullException;
+import seng201.team0.models.Consumables.Consumable;
 import seng201.team0.models.Towers.Tower;
 import seng201.team0.models.Upgrades.Upgrade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerInventory {
     int coins;
     int points;
-    static ArrayList<Tower> activeTowers = new ArrayList<>();
+    static List<Tower> activeTowers;
     ArrayList<Tower> stockpiledTowers = new ArrayList<>();
     ArrayList<Upgrade> upgrades = new ArrayList<>();
     ArrayList<Consumable> consumables = new ArrayList<>();
@@ -21,7 +24,7 @@ public class PlayerInventory {
         if ((activeTowers.size()) < 5) {
             activeTowers.add(tower);
         } else {
-            throw new Exception("Error: Already 5 towers are active");
+            throw new TowerInventoryFullException("Error: Already 5 towers are active");
         }
     }
     public void stockPileTower (Tower tower) throws Exception {
@@ -46,7 +49,20 @@ public class PlayerInventory {
         }
 
     }
-    public void addCoins(int amount) {coins += amount;}
+    public void addCoins(int amount) throws NegativeAdditionException {
+        if (amount > 0) {
+            coins += amount;
+        } else {
+            throw new NegativeAdditionException();
+        }
+    }
+    public void addPoints(int amount) throws NegativeAdditionException {
+        if (amount > 0) {
+            points += amount;
+        } else {
+            throw new NegativeAdditionException("The amount you are tyring to add is negative");
+        }
+    }
     public void useCoins(int amount) throws Exception {
         if (coins >= amount) {
             coins -= amount;
@@ -58,8 +74,11 @@ public class PlayerInventory {
         return coins;
     }
 
-    public static ArrayList<Tower> getActiveTowers() {
+    public static List<Tower> getActiveTowers() {
         return activeTowers;
+    }
+    public void setActiveTowers(List<Tower> towers) {
+        activeTowers = towers;
     }
 
 }

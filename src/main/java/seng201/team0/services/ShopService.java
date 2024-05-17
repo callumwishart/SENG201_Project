@@ -1,12 +1,13 @@
 package seng201.team0.services;
 
-import seng201.team0.models.Consumables.Booster;
+import seng201.team0.models.Consumables.Consumable;
 import seng201.team0.models.Player;
 import seng201.team0.models.PlayerInventory;
 import seng201.team0.models.Shop;
 import seng201.team0.models.Towers.Tower;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShopService {
     Player player;
@@ -17,12 +18,12 @@ public class ShopService {
     public void purchaseTower(Tower tower) throws Exception {
         player.getInventory().addActiveTower(tower);
     }
-    public void purchaseBooster(Booster booster) throws Exception {
-        if (player.getInventory().getCoins() >= booster.getCost()) {
-            player.getInventory().addBooster(booster);
+    public void purchaseBooster(Consumable consumable) throws Exception {
+        if (player.getInventory().getCoins() >= consumable.getCost()) {
+            player.getInventory().addConsumable(consumable);
         }
     }
-    public ArrayList<Tower> getTowers() {
+    public List<Tower> getTowers() {
         return PlayerInventory.getActiveTowers();
     }
 
