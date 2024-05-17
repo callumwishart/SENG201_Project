@@ -8,6 +8,6 @@ public class Farm extends Tower{
     public static String towerImagePath = "resources/images/towers/farm_tower.png";
     public static String brokenImagePath = "resources/images/towers/farm_tower_broken.png";
     public Farm(int inputReloadSpeed, int inputCost) {
-        super(Food, inputReloadSpeed, Food.getResourceType(), "Resource: " + Food.getResourceType(), inputCost, towerImagePath, brokenImagePath);
+        super(Food, inputReloadSpeed, "Farm", "Resource: " + Food.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
 }

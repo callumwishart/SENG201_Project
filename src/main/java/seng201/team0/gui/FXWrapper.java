@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import seng201.team0.GameManager;
 import seng201.team0.models.GameEnv;
 
 
@@ -20,17 +19,17 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new GameManager(this::launchStartScreen, this::launchSetupScreen, this::clearPane);
+        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane);
     }
 
-    public void launchSetupScreen(GameManager gameManager) {
+    public void launchSetupScreen(GameEnv gameEnv) {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/setup_screen.fxml"));
             // provide a custom Controller with parameters
-            setupLoader.setControllerFactory(param -> new SetupController());
+            setupLoader.setControllerFactory(param -> new SetupController(gameEnv));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Tower Setup");
+            stage.setTitle("Game Setup | NBTD");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,10 +39,10 @@ public class FXWrapper {
         pane.getChildren().removeAll(pane.getChildren());
     }
 
-    public void launchStartScreen(GameManager gameManager) {
+    public void launchStartScreen(GameEnv gameEnv) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/start_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new StartController(gameManager));
+            mainScreenLoader.setControllerFactory(param -> new StartController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Welcome to NBTD");

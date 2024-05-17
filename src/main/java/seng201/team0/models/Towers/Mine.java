@@ -8,6 +8,6 @@ public class Mine extends Tower {
     public static String towerImagePath = "resources/images/towers/mine_tower.png";
     public static String brokenImagePath = "resources/images/towers/mine_tower_broken.png";
     public Mine(int inputReloadSpeed, int inputCost) {
-        super(Metal, inputReloadSpeed, Metal.getResourceType(), "Resource: " + Metal.getResourceType(), inputCost, towerImagePath, brokenImagePath);
+        super(Metal, inputReloadSpeed, "Mine", "Resource: " + Metal.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
 }

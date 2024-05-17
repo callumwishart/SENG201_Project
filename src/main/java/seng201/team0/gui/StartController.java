@@ -3,7 +3,6 @@ package seng201.team0.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import seng201.team0.GameManager;
 import seng201.team0.models.GameEnv;
 
 import javafx.application.Application;
@@ -15,11 +14,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StartController extends Application{
-    private GameManager gameManager;
+    private GameEnv gameEnv;
     @FXML
     private Button startBtn;
-    public StartController(GameManager gameManager) {
-        this.gameManager = gameManager;
+    public StartController(GameEnv gameEnv) {
+        this.gameEnv = gameEnv;
     }
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -30,6 +29,6 @@ public class StartController extends Application{
     }
     @FXML
     private void startGame() {
-        gameManager.closeStartScreen();
+        gameEnv.closeStartScreen();
     }
 }

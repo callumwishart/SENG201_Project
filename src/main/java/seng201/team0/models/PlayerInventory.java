@@ -1,5 +1,7 @@
 package seng201.team0.models;
 
+import seng201.team0.exceptions.NegativeAdditionException;
+import seng201.team0.exceptions.TowerInventoryFullException;
 import seng201.team0.models.Consumables.Consumable;
 import seng201.team0.models.Towers.Tower;
 import seng201.team0.models.Upgrades.Upgrade;
@@ -21,7 +23,7 @@ public class PlayerInventory {
         if ((activeTowers.size()) < 5) {
             activeTowers.add(tower);
         } else {
-            throw new Exception("Error: Already 5 towers are active");
+            throw new TowerInventoryFullException("Error: Already 5 towers are active");
         }
     }
     public void stockPileTower (Tower tower) throws Exception {
@@ -46,7 +48,20 @@ public class PlayerInventory {
         }
 
     }
-    public void addCoins(int amount) {coins += amount;}
+    public void addCoins(int amount) throws NegativeAdditionException {
+        if (amount > 0) {
+            coins += amount;
+        } else {
+            throw new NegativeAdditionException();
+        }
+    }
+    public void addPoints(int amount) throws NegativeAdditionException {
+        if (amount > 0) {
+            points += amount;
+        } else {
+            throw new NegativeAdditionException("The amount you are tyring to add is negative");
+        }
+    }
     public void useCoins(int amount) throws Exception {
         if (coins >= amount) {
             coins -= amount;
