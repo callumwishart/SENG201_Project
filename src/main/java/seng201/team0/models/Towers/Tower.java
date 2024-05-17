@@ -13,6 +13,8 @@ public class Tower extends Item implements Sellable{
     double inputCost;
     int resourceAmount;
     int reloadSpeed;
+    boolean isReloading;
+    int reloadTimeElapsed;
     Resource resourceType;
     Boolean isBroken;
     int level;
@@ -55,6 +57,26 @@ public class Tower extends Item implements Sellable{
     public void increaseReloadSpeed(int amount) {
         reloadSpeed += amount;
     }
+
+    public boolean isReloading() {
+        return isReloading;
+    }
+
+    public void setReloading(boolean bool){
+        this.isReloading = bool;
+        if (!bool){
+            reloadTimeElapsed = 0; // reset reload time
+        }
+    }
+
+    public int getReloadTimeElapsed() {
+        return reloadTimeElapsed;
+    }
+
+    public void incrementReloadTimeElapsed(){
+        reloadTimeElapsed += 1;
+    }
+
     public int getUpgradePointLimit () {
         return level * 100;
     }
