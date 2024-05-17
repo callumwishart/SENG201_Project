@@ -101,4 +101,8 @@ public class Tower extends Item implements Sellable{
     public int getReloadSpeed() {
         return reloadSpeed;
     }
+
+    public String getImagePath() {
+        return imagePath;
+    }
 }
