@@ -24,9 +24,6 @@ public class MainWindow extends Application {
         FXMLLoader baseLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         Parent root = baseLoader.load();
 
-        MainController baseController = baseLoader.getController();
-        baseController.init(primaryStage);
-
         primaryStage.setTitle("SENG201 Example App");
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
