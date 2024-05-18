@@ -1,12 +1,11 @@
 package seng201.team0.services;
 
-import seng201.team0.models.Consumables.Consumable;
+import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.Player;
 import seng201.team0.models.PlayerInventory;
 import seng201.team0.models.Shop;
-import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.towers.Tower;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShopService {

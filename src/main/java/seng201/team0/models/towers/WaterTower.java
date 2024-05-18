@@ -1,8 +1,8 @@
-package seng201.team0.models.Towers;
+package seng201.team0.models.towers;
 
 
-import seng201.team0.models.Resources.Resource;
-import seng201.team0.models.Resources.Water;
+import seng201.team0.models.resources.Resource;
+import seng201.team0.models.resources.Water;
 
 public class WaterTower extends Tower{
     private static final Resource Water = new Water();

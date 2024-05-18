@@ -1,7 +1,7 @@
-package seng201.team0.models.Consumables;
+package seng201.team0.models.consumables;
 
 
-import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.towers.Tower;
 
 import static seng201.team0.models.PlayerInventory.getActiveTowers;
 

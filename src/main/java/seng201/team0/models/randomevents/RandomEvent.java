@@ -1,4 +1,4 @@
-package seng201.team0.models.Random;
+package seng201.team0.models.randomevents;
 
 public class RandomEvent {
     private String name;

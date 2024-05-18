@@ -1,4 +1,4 @@
-package seng201.team0.models.Resources;
+package seng201.team0.models.resources;
 
 public class Water extends Resource{
     public Water() {

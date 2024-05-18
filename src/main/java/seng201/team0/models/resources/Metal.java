@@ -1,4 +1,4 @@
-package seng201.team0.models.Resources;
+package seng201.team0.models.resources;
 
 public class Metal extends Resource{
     public Metal() {

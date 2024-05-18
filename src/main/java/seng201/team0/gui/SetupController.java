@@ -9,13 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team0.models.GameEnv;
-import seng201.team0.models.Towers.Tower;
-import javafx.scene.layout.StackPane;
-import java.io.File;
+import seng201.team0.models.towers.Tower;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 

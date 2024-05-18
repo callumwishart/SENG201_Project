@@ -1,7 +1,7 @@
-package seng201.team0.models.Towers;
+package seng201.team0.models.towers;
 
-import seng201.team0.models.Resources.Resource;
-import seng201.team0.models.Resources.Wood;
+import seng201.team0.models.resources.Resource;
+import seng201.team0.models.resources.Wood;
 
 public class Sawmill extends Tower{
     private static final Resource Wood = new Wood();

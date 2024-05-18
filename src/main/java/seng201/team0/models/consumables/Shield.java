@@ -1,4 +1,4 @@
-package seng201.team0.models.Consumables;
+package seng201.team0.models.consumables;
 
 public class Shield extends Consumable {
     public Shield(String inputName, String inputDescription, int inputCost) {

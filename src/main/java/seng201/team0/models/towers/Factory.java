@@ -1,7 +1,7 @@
-package seng201.team0.models.Towers;
+package seng201.team0.models.towers;
 
-import seng201.team0.models.Resources.Goods;
-import seng201.team0.models.Resources.Resource;
+import seng201.team0.models.resources.Goods;
+import seng201.team0.models.resources.Resource;
 
 public class Factory extends Tower{
     private static final Resource Goods = new Goods();

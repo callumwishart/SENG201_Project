@@ -1,4 +1,4 @@
-package seng201.team0.models.Consumables;
+package seng201.team0.models.consumables;
 
 import seng201.team0.models.Item;
 

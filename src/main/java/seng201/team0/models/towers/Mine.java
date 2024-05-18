@@ -1,7 +1,7 @@
-package seng201.team0.models.Towers;
+package seng201.team0.models.towers;
 
-import seng201.team0.models.Resources.Resource;
-import seng201.team0.models.Resources.Metal;
+import seng201.team0.models.resources.Resource;
+import seng201.team0.models.resources.Metal;
 
 public class Mine extends Tower {
     private static final Resource Metal = new Metal();

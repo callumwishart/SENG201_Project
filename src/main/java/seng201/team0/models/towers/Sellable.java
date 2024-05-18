@@ -1,4 +1,4 @@
-package seng201.team0.models.Towers;
+package seng201.team0.models.towers;
 
 public interface Sellable {
     public default double getSellCost(Tower tower) {

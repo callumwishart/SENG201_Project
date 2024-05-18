@@ -1,6 +1,6 @@
-package seng201.team0.models.Upgrades;
+package seng201.team0.models.upgrades;
 
-import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.towers.Tower;
 
 public class SpeedUpgrade extends Upgrade{
     public SpeedUpgrade(String inputName, String inputDescription, double inputCost) {

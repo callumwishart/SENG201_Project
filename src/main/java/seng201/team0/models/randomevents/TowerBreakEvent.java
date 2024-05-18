@@ -1,6 +1,6 @@
-package seng201.team0.models.Random;
+package seng201.team0.models.randomevents;
 
-import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.towers.Tower;
 
 import java.util.*;
 

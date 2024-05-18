@@ -1,6 +1,6 @@
 package seng201.team0.models.gameplay;
 
-import seng201.team0.models.Resources.Resource;
+import seng201.team0.models.resources.Resource;
 
 import java.util.List;
 

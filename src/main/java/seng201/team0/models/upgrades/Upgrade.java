@@ -1,7 +1,7 @@
-package seng201.team0.models.Upgrades;
+package seng201.team0.models.upgrades;
 
 import seng201.team0.models.Item;
-import seng201.team0.models.Towers.Tower;
+import seng201.team0.models.towers.Tower;
 
 public abstract class Upgrade extends Item {
     int upgradeCount;

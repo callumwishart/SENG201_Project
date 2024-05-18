@@ -1,7 +1,7 @@
-package seng201.team0.models.Towers;
+package seng201.team0.models.towers;
 
-import seng201.team0.models.Resources.Food;
-import seng201.team0.models.Resources.Resource;
+import seng201.team0.models.resources.Food;
+import seng201.team0.models.resources.Resource;
 
 public class Farm extends Tower{
     private static final Resource Food = new Food();
