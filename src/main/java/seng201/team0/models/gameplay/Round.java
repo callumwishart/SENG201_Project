@@ -1,19 +1,22 @@
 package seng201.team0.models.gameplay;
 
+import seng201.team0.models.Difficulty;
 import seng201.team0.models.consumables.Consumable;
-import seng201.team0.models.Difficulties;
 import seng201.team0.models.PlayerInventory;
+import seng201.team0.models.towers.Tower;
 
 import java.util.ArrayList;
 
 public class Round {
-    private Difficulties difficulty;
-    private static int roundNum;
-    private static ArrayList<Cart> carts = new ArrayList<>();
+    public int trackDistance;
+    public ArrayList<Tower> towers;
+    private Difficulty difficulty;
+    private int roundNum;
+    private ArrayList<Cart> carts = new ArrayList<>();
     private PlayerInventory inventory;
     private int difficultyMul;
     private ArrayList<Consumable> consumables = new ArrayList<>();
-    boolean play;
+
     Round(ArrayList<Cart> inputCarts, PlayerInventory tempInventory, int inputDifficulty, ArrayList<Consumable> inputConsumables, int inputRoundNum) {
         carts = inputCarts;
         inventory = tempInventory;
@@ -22,26 +25,26 @@ public class Round {
         roundNum = inputRoundNum;
     }
 
-    public Difficulties getDifficulty() {
-        return difficulty;
+    public Difficulty getDifficulty() {
+        return this.difficulty;
     }
-    public static int getRoundNum() {
-        return roundNum;
+    public int getRoundNum() {
+        return this.roundNum;
     }
 
-    public static ArrayList<Cart> getCarts() {
-        return carts;
+    public ArrayList<Cart> getCarts() {
+        return this.carts;
     }
 
     public PlayerInventory getInventory() {
-        return inventory;
+        return this.inventory;
     }
 
     public int getDifficultyMul() {
-        return difficultyMul;
+        return this.difficultyMul;
     }
 
     public ArrayList<Consumable> getConsumables() {
-        return consumables;
+        return this.consumables;
     }
 }
