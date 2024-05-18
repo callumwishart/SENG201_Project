@@ -3,9 +3,18 @@ package seng201.team0.models.resources;
 public class Resource {
     private String resourceType;
     private int resourceCoinValue;
+
     public Resource(String inputResourceType, int inputResourceValue) {
         resourceType = inputResourceType;
         resourceCoinValue = inputResourceValue;
+    }
+
+    /**
+     * A copy constructor to make copies of a Resource
+     */
+    public Resource(Resource other){
+        this.resourceType = other.resourceType;
+        this.resourceCoinValue = other.resourceCoinValue;
     }
 
     public String getResourceType() {
