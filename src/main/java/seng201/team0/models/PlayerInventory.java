@@ -2,9 +2,9 @@ package seng201.team0.models;
 
 import seng201.team0.exceptions.NegativeAdditionException;
 import seng201.team0.exceptions.TowerInventoryFullException;
-import seng201.team0.models.Consumables.Consumable;
-import seng201.team0.models.Towers.Tower;
-import seng201.team0.models.Upgrades.Upgrade;
+import seng201.team0.models.consumables.Consumable;
+import seng201.team0.models.towers.Tower;
+import seng201.team0.models.upgrades.Upgrade;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,10 @@
 package seng201.team0.models;
 
-import seng201.team0.models.Towers.*;
+import seng201.team0.models.towers.*;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
 import seng201.team0.services.ShopService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
