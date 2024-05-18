@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public class roundSummaryController {
+public class RoundSummaryController {
     @FXML
     private Label playerLabel, winLabel, coinsLabel, pointsLabel, roundLabel;
     @FXML
