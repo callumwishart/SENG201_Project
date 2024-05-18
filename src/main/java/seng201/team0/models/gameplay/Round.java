@@ -11,8 +11,8 @@ public class Round {
     public int trackDistance;
     public ArrayList<Tower> towers;
     private Difficulty difficulty;
-    private int roundNum;
-    private ArrayList<Cart> carts = new ArrayList<>();
+    private static int roundNum;
+    private static ArrayList<Cart> carts = new ArrayList<>();
     private PlayerInventory inventory;
     private int difficultyMul;
     private ArrayList<Consumable> consumables = new ArrayList<>();
@@ -28,12 +28,12 @@ public class Round {
     public Difficulty getDifficulty() {
         return this.difficulty;
     }
-    public int getRoundNum() {
-        return this.roundNum;
+    public static int getRoundNum() {
+        return roundNum;
     }
 
-    public ArrayList<Cart> getCarts() {
-        return this.carts;
+    public static ArrayList<Cart> getCarts() {
+        return carts;
     }
 
     public PlayerInventory getInventory() {

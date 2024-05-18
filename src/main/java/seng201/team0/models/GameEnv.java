@@ -1,5 +1,6 @@
 package seng201.team0.models;
 
+import seng201.team0.models.gameplay.GameRunner;
 import seng201.team0.models.towers.*;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
@@ -11,6 +12,7 @@ import java.util.function.Consumer;
 public class GameEnv {
     private Player player;
     private Shop shop;
+    private Difficulty difficulty;
     private int numRounds;
     private int currentRoundNum = 0;
     private Difficulties difficulties;
@@ -39,6 +41,10 @@ public class GameEnv {
         clearScreen.run();
         launchSetupScreen();
     }
+    public void closeSetupScreen() throws InterruptedException {
+        clearScreen.run();
+        GameRunner.run();
+    }
     public void launchStartScreen() {startLauncher.accept(this);}
     public void launchSetupScreen() {setupLauncher.accept(this);}
     public Player getPlayer() {
@@ -50,5 +56,13 @@ public class GameEnv {
 
     public List<Tower> getPossibleTowers() {
         return possibleTowers;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 }

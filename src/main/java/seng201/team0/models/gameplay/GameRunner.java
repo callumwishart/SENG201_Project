@@ -13,12 +13,13 @@ public class GameRunner{
     Round round;
 
     GameRunner(Round round, GameObserver observer){
-        this.observer = observer;
+        this.observer =  observer;
         this.carts = round.getCarts();
         this.round = round;
     }
 
-    public boolean run() throws InterruptedException {
+
+    public static boolean run() throws InterruptedException {
         boolean finished = false;
         int roundTimeElapsed = 0;
 

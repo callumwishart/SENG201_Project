@@ -10,4 +10,7 @@ public class Mine extends Tower {
     public Mine(int inputReloadSpeed, int inputCost) {
         super(Metal, inputReloadSpeed, "Mine", "Resource: " + Metal.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
+    public Mine() {
+        super(Metal, 5, "Mine", "Resource: " + Metal.getResourceType(), 1, towerImagePath, brokenImagePath);
+    }
 }
