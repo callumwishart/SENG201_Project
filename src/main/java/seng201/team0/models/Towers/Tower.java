@@ -7,7 +7,7 @@ import seng201.team0.models.Upgrades.Upgrade;
 import java.util.ArrayList;
 
 import static java.lang.Math.round;
-import static seng201.team0.models.Round.getRoundNum;
+import static seng201.team0.models.gameplay.Round.getRoundNum;
 
 public class Tower extends Item implements Sellable{
     double inputCost;

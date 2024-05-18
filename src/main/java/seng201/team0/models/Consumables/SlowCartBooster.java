@@ -1,8 +1,8 @@
 package seng201.team0.models.Consumables;
 
 
-import seng201.team0.models.Cart;
-import static seng201.team0.models.Round.getCarts;
+import seng201.team0.models.gameplay.Cart;
+import static seng201.team0.models.gameplay.Round.getCarts;
 
 public class SlowCartBooster extends Consumable {
     int cost = 20;
