@@ -14,7 +14,7 @@ public class MoneyUpgrade extends Upgrade{
         if (upgradeExists(tower, MoneyUpgrade.class)) {
             increaseCount();
         }
-        tower.getResourceType().increaseCoinValue(1);
+        // tower.getResourceType().increaseCoinValue(1);
     }
 
 }

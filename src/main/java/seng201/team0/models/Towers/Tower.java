@@ -97,4 +97,12 @@ public class Tower extends Item implements Sellable{
     public Boolean getStatus() {
         return isBroken;
     }
+
+    public int getReloadSpeed() {
+        return reloadSpeed;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
 }

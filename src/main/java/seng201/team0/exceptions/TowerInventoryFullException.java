@@ -4,7 +4,7 @@ public class TowerInventoryFullException extends Exception{
     TowerInventoryFullException(){
         super();
     }
-    TowerInventoryFullException(String message){
+    public TowerInventoryFullException(String message){
         super(message);
     }
 }

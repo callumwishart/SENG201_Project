@@ -1,13 +1,12 @@
 package seng201.team0.models;
 
 public class Player {
-    PlayerInventory inventory;
-    String name;
+    private PlayerInventory inventory;
+    private String name;
     int points;
-    public Player(String inputName, PlayerInventory inputInventory) {
+    public Player() {
         points = 0;
-        name = inputName;
-        inventory = inputInventory;
+        this.inventory = new PlayerInventory();
     }
 
     public PlayerInventory getInventory() {
@@ -15,6 +14,9 @@ public class Player {
     }
     public void increasePoints(int amount) {
         points += amount;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

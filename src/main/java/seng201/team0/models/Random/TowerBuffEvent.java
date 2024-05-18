@@ -3,6 +3,7 @@ package seng201.team0.models.Random;
 import seng201.team0.models.Towers.Tower;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static seng201.team0.models.PlayerInventory.getActiveTowers;
@@ -12,7 +13,7 @@ public class TowerBuffEvent extends RandomEvent{
         super("Buff Tower", "Buffs Your Tower");
     }
     public void applyEvent() {
-        ArrayList<Tower> activeTowers = getActiveTowers();
+        List<Tower> activeTowers = getActiveTowers();
         Random rand = new Random();
         int randomTower = rand.nextInt(activeTowers.size());
         int randomAmount = rand.nextInt(10);
