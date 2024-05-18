@@ -11,4 +11,7 @@ public class WaterTower extends Tower{
     public WaterTower(int inputReloadSpeed, int inputCost) {
         super(Water, inputReloadSpeed, "Water Tower", "Resource: " + Water.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
+    public WaterTower() {
+        super(Water, 5, "Water Tower", "Resource: " + Water.getResourceType(), 1, towerImagePath, brokenImagePath);
+    }
 }

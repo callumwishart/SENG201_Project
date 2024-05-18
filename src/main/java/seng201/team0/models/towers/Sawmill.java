@@ -10,4 +10,7 @@ public class Sawmill extends Tower{
     public Sawmill(int inputReloadSpeed, int inputCost) {
         super(Wood, inputReloadSpeed, "Sawmill", "Resource: " + Wood.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
+    public Sawmill() {
+        super(Wood, 5, "Sawmill", "Resource: " + Wood.getResourceType(), 1, towerImagePath, brokenImagePath);
+    }
 }

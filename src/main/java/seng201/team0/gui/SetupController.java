@@ -1,18 +1,18 @@
 package seng201.team0.gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
+import seng201.team0.models.resources.Resource;
+import seng201.team0.models.towers.Farm;
 import seng201.team0.models.towers.Tower;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +30,13 @@ public class SetupController {
     private Label roundIndicatorLabel, selectedTowerLabel, towerResourceLabel, resourceAmountLabel, resourceValueLabel1, towerSpeedLabel;
     @FXML
     private ImageView selectedTowerImage;
-
+    @FXML
+    private ToggleGroup toggleGroup = new ToggleGroup();
     private GameEnv gameEnv;
     private int selectedTowerIndex = -1;
     private final Tower[] selectedTowers = new Tower[3];
+    private ArrayList<Tower> finalTowers = new ArrayList<>();
+    private String difficultyText;
     public SetupController(GameEnv gameEnv) {this.gameEnv = gameEnv;}
     private void updateStats(Tower tower) {
         selectedTowerLabel.setText("Selected Tower: " + tower.getName());
@@ -76,6 +79,7 @@ public class SetupController {
                 if (selectedTowerIndex != -1) {
                     selectedTowerButtons.get(finalI).setText(gameEnv.getPossibleTowers().get(selectedTowerIndex).getName());
                     selectedTowers[finalI] = gameEnv.getPossibleTowers().get(selectedTowerIndex);
+
                 }
             });
         }
@@ -83,9 +87,26 @@ public class SetupController {
             int value = newValue.intValue();
             roundIndicatorLabel.setText(String.valueOf(value) + " Rounds");
         });
+        normalRadioBtn.setToggleGroup(toggleGroup);
+        hardRadioBtn.setToggleGroup(toggleGroup);
+        toggleGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+            RadioButton selectedRadioButton = (RadioButton) newToggle;
+            if (selectedRadioButton.getText() == "Hard" ) {
+                difficultyText = "Hard";
+            } else {
+                difficultyText = "Normal";
+            }
+        });
+    }
+    public Difficulty createDifficulty(String input) {
+        if (input == "hard") {
+            return new Difficulty(1,2,3);
+        } else {
+            return new Difficulty(1,1,1);
+        }
     }
     @FXML
-    public void startGame() {
+    public void startGame() throws InterruptedException {
         List<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
         for (Tower tower: selectedTowers) {
             try {
@@ -98,6 +119,8 @@ public class SetupController {
         this.gameEnv.getPlayer().setName(nameField.getText());
         this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
         this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
+        this.gameEnv.setDifficulty(createDifficulty(difficultyText));
+        this.gameEnv.closeSetupScreen();
     }
 
 }

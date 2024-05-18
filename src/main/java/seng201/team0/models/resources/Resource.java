@@ -1,5 +1,7 @@
 package seng201.team0.models.resources;
 
+import java.io.Serializable;
+
 public class Resource {
     private String resourceType;
     private int resourceCoinValue;
