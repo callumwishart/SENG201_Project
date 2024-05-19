@@ -46,13 +46,15 @@ public class GameRunner{
                         break;
                     }
                     else{
-                        for (int i = 0; i < tower.getResourceAmount(); i++){
-                            try {
-                                cart.fillCart(new Resource(tower.getResource()));
-                            } catch (FullCartException e) {
-                                tower.setReloading(true);
-                                tower.incrementReloadTimeElapsed();
-                                break; // Cart has been filled
+                        if (cart.isUniversal() || tower.getResource().getResourceType().equals(cart.getResourceType())){
+                            for (int i = 0; i < tower.getResourceAmount(); i++){
+                                try {
+                                    cart.fillCart(new Resource(tower.getResource()));
+                                } catch (FullCartException e) {
+                                    tower.setReloading(true);
+                                    tower.incrementReloadTimeElapsed();
+                                    break; // Cart has been filled
+                                }
                             }
                         }
                     }
