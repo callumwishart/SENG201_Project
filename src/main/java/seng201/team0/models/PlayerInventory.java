@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayerInventory {
     int coins;
     int points;
-    static List<Tower> activeTowers;
+    List<Tower> activeTowers;
     ArrayList<Tower> stockpiledTowers = new ArrayList<>();
     ArrayList<Upgrade> upgrades = new ArrayList<>();
     ArrayList<Consumable> consumables = new ArrayList<>();
@@ -74,11 +74,14 @@ public class PlayerInventory {
         return coins;
     }
 
-    public static List<Tower> getActiveTowers() {
+    public List<Tower> getActiveTowers() {
         return activeTowers;
     }
     public void setActiveTowers(List<Tower> towers) {
         activeTowers = towers;
     }
 
+    public ArrayList<Consumable> getConsumables() {
+        return this.consumables;
+    }
 }
