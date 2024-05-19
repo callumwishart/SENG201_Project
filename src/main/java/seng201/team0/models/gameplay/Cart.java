@@ -14,7 +14,7 @@ public class Cart {
     private int distance;
     private boolean finished;
 
-    Cart(int size, Resource resource, int speed) {
+    Cart(int size, int speed, Resource resource) {
         this.size = size;
         this.cargo = new Resource[this.size];
         this.cargoSlotsFilled = 0;
@@ -63,13 +63,12 @@ public class Cart {
         return this.cargoSlotsFilled == this.size;
     }
 
-    public boolean fillCart(Resource resource) throws FullCartException {
+    public void fillCart(Resource resource) throws FullCartException {
         if (this.isFull()){
             throw new FullCartException(String.format("Cart %s is full", this.name));
         }
         else{
             this.cargo[cargoSlotsFilled++] = resource;
-            return true;
         }
     }
 

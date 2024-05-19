@@ -1,6 +1,7 @@
 package seng201.team0.models;
 
 import seng201.team0.models.gameplay.GameRunner;
+import seng201.team0.models.gameplay.Round;
 import seng201.team0.models.towers.*;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
@@ -43,7 +44,7 @@ public class GameEnv {
     }
     public void closeSetupScreen() throws InterruptedException {
         clearScreen.run();
-        GameRunner.run();
+        // Round round = new Round();
     }
     public void launchStartScreen() {startLauncher.accept(this);}
     public void launchSetupScreen() {setupLauncher.accept(this);}
