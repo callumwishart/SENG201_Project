@@ -19,7 +19,7 @@ public class GameRunner{
     }
 
 
-    public static boolean run() throws InterruptedException {
+    public boolean run() throws InterruptedException {
         boolean finished = false;
         int roundTimeElapsed = 0;
 
@@ -27,9 +27,9 @@ public class GameRunner{
             Thread.sleep(1000); // sleep 1 second
             roundTimeElapsed += 1;
             for (Cart cart : carts){
-                if(cart.getDistance() < round.trackDistance){
+                if(cart.getDistance() < round.getTrackLength()){
                     cart.incrementDistance();
-                    if (cart.getDistance() >= round.trackDistance){
+                    if (cart.getDistance() >= round.getTrackLength()){
                         cart.setFinished(true);
                     }
                 }
@@ -48,7 +48,7 @@ public class GameRunner{
                     else{
                         for (int i = 0; i < tower.getResourceAmount(); i++){
                             try {
-                                cart.fillCart(new Resource(tower.getResourceType()));
+                                cart.fillCart(new Resource(tower.getResource()));
                             } catch (FullCartException e) {
                                 tower.setReloading(true);
                                 tower.incrementReloadTimeElapsed();
