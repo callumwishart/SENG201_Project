@@ -27,7 +27,7 @@ public class Tower extends Item implements Sellable {
 
     public Tower (Resource inputResourceType, int inputReloadSpeed, String inputName, String inputDescription, int inputCost, String initialImagePath, String brokenImage) {
         super(inputName, inputDescription, inputCost);
-        resourceAmount = 0;
+        resourceAmount = 1;
         isBroken = false;
         resourceType = inputResourceType;
         reloadSpeed = inputReloadSpeed;
