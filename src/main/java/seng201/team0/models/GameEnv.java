@@ -26,9 +26,10 @@ public class GameEnv {
     private final Consumer<GameEnv> startLauncher;
     private final Consumer<GameEnv> setupLauncher;
     private final Consumer<GameEnv> playLauncher;
+    private final Consumer<GameEnv> inventoryLauncher;
     private final Runnable clearScreen;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -38,6 +39,7 @@ public class GameEnv {
         this.setupLauncher = setupLauncher;
         this.clearScreen = clearScreen;
         this.playLauncher = playLauncher;
+        this.inventoryLauncher = inventoryLauncher;
         launchStartScreen();
     }
 
@@ -60,6 +62,7 @@ public class GameEnv {
         setupLauncher.accept(this);
     }
     public void launchPlayScreen() {playLauncher.accept(this);}
+    public void launchInventoryScreen() {inventoryLauncher.accept(this);}
 
     public Player getPlayer() {
         return this.player;
@@ -81,7 +84,7 @@ public class GameEnv {
         this.difficulty = difficulty;
     }
     public void openInventory() {
-
+        launchInventoryScreen();
     }
 
 }

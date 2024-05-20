@@ -19,7 +19,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen);
+        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen);
     }
 
     public void launchSetupScreen(GameEnv gameEnv) {
@@ -57,6 +57,17 @@ public class FXWrapper {
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Play");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void launchInventoryScreen(GameEnv gameEnv) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/inventory.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new StartController(gameEnv));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Inventory");
         } catch (IOException e) {
             e.printStackTrace();
         }
