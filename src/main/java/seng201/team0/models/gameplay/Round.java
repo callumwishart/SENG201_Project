@@ -5,6 +5,7 @@ import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.PlayerInventory;
 import seng201.team0.models.resources.Resource;
 import seng201.team0.models.towers.Tower;
+import seng201.team0.services.InventoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,10 @@ import java.util.Random;
  * (triggered by {@link #cleanup() cleanup})
  */
 public class Round {
-    public ArrayList<Tower> towers;
+    private ArrayList<Tower> towers;
     private int roundNum;
     private ArrayList<Cart> carts = new ArrayList<>();
-    private PlayerInventory inventory;
+    private InventoryService inventoryService;
     private Difficulty difficulty;
     private ArrayList<Consumable> consumables = new ArrayList<>();
     private boolean hasShield;
@@ -28,18 +29,18 @@ public class Round {
     /**
      * Constructs a round based on difficulty, what round number, and what towers are equipped by player
      */
-    public Round(PlayerInventory inventory, Difficulty difficulty, int roundNum) {
-        this.inventory = inventory;
+    public Round(InventoryService inventoryService, Difficulty difficulty, int roundNum) {
+        this.inventoryService = inventoryService;
+        this.towers = (ArrayList<Tower>) this.inventoryService.getActiveTowers();
         this.difficulty = difficulty;
         this.roundNum = roundNum;
+        this.trackLength = this.calculateTrackLength();
         int cartNum = calculateCartNum();
         this.createCarts(cartNum);
-        this.applyConsumables();
-
     }
 
-    private void applyConsumables() {
-        for (Consumable consumable : this.inventory.getConsumables()){
+    public void applyConsumables() {
+        for (Consumable consumable : this.inventoryService.getConsumables()){
             consumable.apply(this);
         }
     }
@@ -47,13 +48,13 @@ public class Round {
 
     /**
      * Calculates the number of carts.
-     * based on the quadratic function: y = 0.4x^(1.43) + 1
+     * based on the quadratic function: y = 0.4*x^(1.43) + 1
      * y (number of carts) is then multiplied by the roundDifficultyMultiplier to increase/decrease based on difficulty.
      * type casting to (int) truncates the decimal to return a whole number.
      */
     public int calculateCartNum(){
         int roundNum = this.roundNum;
-        double function = Math.pow(0.4*roundNum, 1.43) + 1;
+        double function = 0.4 * Math.pow(roundNum, 1.43) + 1;
         return (int) (function * this.difficulty.roundDifficultyMultiplier());
     }
 
@@ -160,7 +161,14 @@ public class Round {
     }
 
     public void cleanup() {
-        // do stuff
+        this.removeConsumables();
+    }
+
+    private void removeConsumables() {
+        for (Consumable consumable : this.inventoryService.getConsumables()){
+            consumable.remove(this);
+        }
+        this.inventoryService.removeConsumables();
     }
 
     public Difficulty getDifficulty() {
@@ -179,10 +187,6 @@ public class Round {
         return this.carts;
     }
 
-    public PlayerInventory getInventory() {
-        return this.inventory;
-    }
-
     public ArrayList<Consumable> getConsumables() {
         return this.consumables;
     }
@@ -192,7 +196,7 @@ public class Round {
     }
 
     public List<Tower> getTowers() {
-        return this.inventory.getActiveTowers();
+        return this.inventoryService.getActiveTowers();
     }
 
     public int getTrackLength() {

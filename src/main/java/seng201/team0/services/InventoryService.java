@@ -138,4 +138,8 @@ public class InventoryService {
     public void addConsumable(Consumable consumable) {
         this.inventory.addConsumable(consumable);
     }
+
+    public void removeConsumables() {
+        this.inventory.removeConsumables();
+    }
 }
