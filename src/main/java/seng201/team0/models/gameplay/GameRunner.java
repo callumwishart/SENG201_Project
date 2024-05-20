@@ -34,7 +34,7 @@ public class GameRunner{
                     }
                 }
             }
-            for (Tower tower : round.towers){
+            for (Tower tower : round.getTowers()){
                 if (tower.getReloadTimeElapsed() % tower.getReloadSpeed() == 0){
                     tower.setReloading(false);
                 }
