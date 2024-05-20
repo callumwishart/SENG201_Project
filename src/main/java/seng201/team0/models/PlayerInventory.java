@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayerInventory {
     int coins;
     int points;
-    List<Tower> activeTowers;
+    ArrayList<Tower> activeTowers = new ArrayList<>();
     ArrayList<Tower> stockpiledTowers = new ArrayList<>();
     ArrayList<Upgrade> upgrades = new ArrayList<>();
     ArrayList<Consumable> consumables = new ArrayList<>();
@@ -23,8 +23,8 @@ public class PlayerInventory {
     }
 
     public void addActiveTower(Tower tower) throws TowerInventoryFullException {
-        if ((activeTowers.size()) < 5) {
-            activeTowers.add(tower);
+        if ((this.activeTowers.size()) < 5) {
+            this.activeTowers.add(tower);
         } else {
             throw new TowerInventoryFullException("Error: Already 5 towers are active");
         }
@@ -32,8 +32,8 @@ public class PlayerInventory {
 
     public void addStockpiledTower(Tower tower) throws TowerInventoryFullException {
         //Check if max num of stock piled towers is 5
-        if (stockpiledTowers.size() < 5) {
-            stockpiledTowers.add(tower);
+        if (this.stockpiledTowers.size() < 5) {
+            this.stockpiledTowers.add(tower);
         } else {
             throw new TowerInventoryFullException("Error: You already have 5 stock piled towers;");
         }
@@ -91,7 +91,7 @@ public class PlayerInventory {
         return this.stockpiledTowers;
     }
 
-    public void setActiveTowers(List<Tower> towers) {
+    public void setActiveTowers(ArrayList<Tower> towers) {
         activeTowers = towers;
     }
 
@@ -117,5 +117,9 @@ public class PlayerInventory {
 
     public void removeCoins(int amount) {
         this.coins -= amount;
+    }
+
+    public void removeConsumables() {
+        this.consumables = new ArrayList<>();
     }
 }

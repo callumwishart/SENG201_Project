@@ -105,7 +105,7 @@ public class SetupController {
     }
     @FXML
     public void startGame() throws InterruptedException, NameCharException {
-        List<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
+        ArrayList<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
         for (Tower tower: selectedTowers) {
             try {
                 Tower newTower = tower.getClass().getDeclaredConstructor().newInstance();
