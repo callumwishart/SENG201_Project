@@ -27,9 +27,10 @@ public class GameEnv {
     private final Consumer<GameEnv> setupLauncher;
     private final Consumer<GameEnv> playLauncher;
     private final Consumer<GameEnv> inventoryLauncher;
+    private final Consumer<GameEnv> shopLauncher;
     private final Runnable clearScreen;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -40,6 +41,7 @@ public class GameEnv {
         this.clearScreen = clearScreen;
         this.playLauncher = playLauncher;
         this.inventoryLauncher = inventoryLauncher;
+        this.shopLauncher = shopLauncher;
         launchStartScreen();
     }
 
@@ -57,6 +59,10 @@ public class GameEnv {
         clearScreen.run();
         launchInventoryScreen();
     }
+    public void openShop() {
+        clearScreen.run();
+        launchShopScreen();
+    }
     public void backToMain() {
         clearScreen.run();
         launchPlayScreen();
@@ -65,7 +71,7 @@ public class GameEnv {
     public void launchStartScreen() {
         startLauncher.accept(this);
     }
-
+    public void launchShopScreen() {shopLauncher.accept(this);}
     public void launchSetupScreen() {
         setupLauncher.accept(this);
     }

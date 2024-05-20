@@ -5,7 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import seng201.team0.exceptions.NegativeAdditionException;
 import seng201.team0.exceptions.TowerInventoryFullException;
+import seng201.team0.exceptions.TowerNotFoundException;
 import seng201.team0.exceptions.UpgradeException;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.towers.Tower;
@@ -32,6 +34,7 @@ public class InventoryController {
     private GameEnv gameEnv;
     private Tower currentActiveTower = null;
     private Tower currentReserveTower = null;
+    private Tower currentTower = null;
     private Upgrade currentUpgrade = null;
     public InventoryController(GameEnv gameEnv) {this.gameEnv = gameEnv;}
     public void initialize() {
@@ -40,6 +43,21 @@ public class InventoryController {
         List<Button> consumableButtons = List.of(c1Btn, c2Btn, c3Btn);
         List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
 
+        for (int i=0; i < upgradeButtons.size(); i++) {
+            int finalI = i;
+            upgradeButtons.get(i).setDisable(true);
+            upgradeButtons.get(i).setOnAction(event -> {
+                updateUpgradeStats(gameEnv.getInventoryService().getUpgrades().get(finalI));
+                upgradeButtons.forEach(button -> {
+                    if (button == upgradeButtons.get(finalI)) {
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-backround-radius: 5;");
+                        currentUpgrade = gameEnv.getInventoryService().getUpgrades().get(finalI);
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+        }
 
         // This for loop initialises the buttons to be disabled and also sets the action event for them;
         for (int i=0; i < activeTowerButtons.size(); i++) {
@@ -52,6 +70,7 @@ public class InventoryController {
                     if (button == activeTowerButtons.get(finalI)) {
                         button.setStyle("-fx-background-color: #b3b3b3; -fx-backround-radius: 5;");
                         currentActiveTower = gameEnv.getInventoryService().getActiveTowers().get(finalI);
+                        currentTower = currentActiveTower;
                         String imagePath = gameEnv.getInventoryService().getActiveTowers().get(finalI).getImagePath();
                         FileInputStream inputStream;
                         try {
@@ -72,6 +91,7 @@ public class InventoryController {
                 reservedTowerButtons.forEach(button -> {
                     if (button == reservedTowerButtons.get(finalI)) {
                         currentReserveTower = gameEnv.getInventoryService().getStockpiledTowers().get(finalI);
+                        currentTower = currentReserveTower;
                         String imagePath = gameEnv.getInventoryService().getStockpiledTowers().get(finalI).getImagePath();
                         FileInputStream inputStream;
                         try {
@@ -100,7 +120,16 @@ public class InventoryController {
             reservedTowerButtons.get(finalI).setText(this.gameEnv.getInventoryService().getStockpiledTowers().get(finalI).getName());
             reservedTowerButtons.get(finalI).setDisable(false);
         }
-
+        // Set the text of the upgrades
+        for (int i = 0; i < this.gameEnv.getInventoryService().getUpgrades().size(); i++) {
+            upgradeButtons.get(i).setText(this.gameEnv.getInventoryService().getUpgrades().get(i).getName());
+            upgradeButtons.get(i).setDisable(false);
+        }
+        // Set the text of the consumables
+        for (int i = 0; i < this.gameEnv.getInventoryService().getConsumables().size(); i++) {
+            consumableButtons.get(i).setText(this.gameEnv.getInventoryService().getConsumables().get(i).getName());
+            upgradeButtons.get(i).setDisable(false);
+        }
     }
 
     private void updateUpgradeStats(Upgrade upgrade) {
@@ -121,7 +150,9 @@ public class InventoryController {
         towerLevelLabel.setText("Level: " + String.valueOf(tower.getLevel()));
         pointsNeededLabel.setText("Points needed to upgrade: YET TO IMPLEMENT");
         sellCostLabel.setText("Sell cost: " + String.valueOf(tower.getSellCost()));
+        repairCostLabel.setText("Repair Cost: " + String.valueOf(tower.getRepairCost()));
     }
+
     @FXML
     public void swapTowers() throws TowerInventoryFullException {
         if (currentActiveTower != null && currentReserveTower != null) {
@@ -163,17 +194,55 @@ public class InventoryController {
     }
 
     @FXML
-    public void repairTower() {
-
+    public void repairTower() throws Exception {
+        this.gameEnv.getInventoryService().repairTower(currentTower);
+        updateStats(currentTower);
     }
     @FXML
-    public void sellTower() {
+    public void sellTower() throws TowerNotFoundException, NegativeAdditionException {
+        this.gameEnv.getInventoryService().sellTower(currentTower);
+        List<Button> activeTowerButtons = List.of(t1Btn, t2Btn, t3Btn, t4Btn, t5Btn);
+        List<Button> reservedTowerButtons = List.of(reservedT1Btn, reservedT2Btn, reservedT3Btn, reservedT4Btn, reservedT5Btn);
 
+        for (int i =0; i < activeTowerButtons.size(); i++) {
+            activeTowerButtons.get(i).setDisable(true);
+            activeTowerButtons.get(i).setText("None");
+            activeTowerButtons.get(i).setStyle("");
+            reservedTowerButtons.get(i).setDisable(true);
+            reservedTowerButtons.get(i).setText("None");
+            reservedTowerButtons.get(i).setStyle("");
+        }
+
+        for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
+            int finalI = i;
+            activeTowerButtons.get(finalI).setText(this.gameEnv.getInventoryService().getActiveTowers().get(finalI).getName());
+            activeTowerButtons.get(finalI).setDisable(false);
+        }
+        // Set the text of the reserve towers to be correct
+        for (int i = 0; i < this.gameEnv.getInventoryService().getStockpiledTowers().size(); i++) {
+            int finalI = i;
+            reservedTowerButtons.get(finalI).setText(this.gameEnv.getInventoryService().getStockpiledTowers().get(finalI).getName());
+            reservedTowerButtons.get(finalI).setDisable(false);
+        }
     }
     @FXML
-    public void applyUpgrade() {
-
+    public void applyUpgrade() throws UpgradeException {
+        List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
+        // Needs to handle exception
+        this.gameEnv.getInventoryService().applyUpgrade(currentActiveTower, currentUpgrade);
+        for (int i = 0; i < upgradeButtons.size(); i++) {
+            upgradeButtons.get(i).setDisable(true);
+            upgradeButtons.get(i).setText("None");
+            upgradeButtons.get(i).setStyle("");
+        }
+        for (int i = 0; i < this.gameEnv.getInventoryService().getUpgrades().size(); i++) {
+            upgradeButtons.get(i).setText(this.gameEnv.getInventoryService().getUpgrades().get(i).getName());
+            upgradeButtons.get(i).setDisable(false);
+        }
+        currentActiveTower = null;
+        currentUpgrade = null;
     }
+
 
     @FXML
     public void backBtn() {

@@ -14,6 +14,6 @@ public class PlayController {
 
     @FXML
     public void openShop() {
-
+        this.gameEnv.openShop();
     }
 }

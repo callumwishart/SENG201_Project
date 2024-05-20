@@ -240,7 +240,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="upgrade1Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="Button" textOverrun="CLIP">
+                  <Button fx:id="upgrade1Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="None" textOverrun="CLIP">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -248,7 +248,7 @@
                         <Font size="11.0" />
                      </font>
                   </Button>
-                  <Button fx:id="upgrade2Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="Button" textOverrun="CLIP">
+                  <Button fx:id="upgrade2Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="None" textOverrun="CLIP">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -256,7 +256,7 @@
                         <Font size="11.0" />
                      </font>
                   </Button>
-                  <Button fx:id="upgrade3Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="Button" textOverrun="CLIP">
+                  <Button fx:id="upgrade3Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="None" textOverrun="CLIP">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -295,17 +295,17 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="2">
          <children>
-            <Button fx:id="c1Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button">
+            <Button fx:id="c1Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="None">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="c2Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button">
+            <Button fx:id="c2Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="None">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="c3Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button">
+            <Button fx:id="c3Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="None">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
