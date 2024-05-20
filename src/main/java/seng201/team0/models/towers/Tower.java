@@ -107,6 +107,9 @@ public class Tower extends Item implements Sellable {
     public String getImagePath() {
         return imagePath;
     }
+    public int getLevel() {
+        return level;
+    }
 
     public int getSellCost() {
         if (!this.isBroken()) {

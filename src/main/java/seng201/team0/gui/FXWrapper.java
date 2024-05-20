@@ -19,7 +19,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen);
+        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen, this::launchShopScreen);
     }
 
     public void launchSetupScreen(GameEnv gameEnv) {
@@ -53,7 +53,7 @@ public class FXWrapper {
     public void launchPlayScreen(GameEnv gameEnv) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/play.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new StartController(gameEnv));
+            mainScreenLoader.setControllerFactory(param -> new PlayController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Play");
@@ -64,11 +64,22 @@ public class FXWrapper {
     public void launchInventoryScreen(GameEnv gameEnv) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/inventory.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new StartController(gameEnv));
+            mainScreenLoader.setControllerFactory(param -> new InventoryController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Inventory");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void launchShopScreen(GameEnv gameEnv) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new ShopController(gameEnv));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Inventory");
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

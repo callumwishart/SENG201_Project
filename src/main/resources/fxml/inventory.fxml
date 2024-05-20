@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="seng201.team0.gui.InventoryController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="28.0" prefWidth="100.0" />
@@ -79,34 +79,34 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="480.0">
                <children>
-                  <Button fx:id="t1Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button">
+                  <Button fx:id="t1Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="None">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="t2Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button">
+                  <Button fx:id="t2Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="None">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="t3Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button">
+                  <Button fx:id="t3Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="None">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="t4Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button">
+                  <Button fx:id="t4Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="None">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="t5Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button">
+                  <Button fx:id="t5Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="None">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="switchBtn" mnemonicParsing="false" text="&lt;-&gt;" />
+            <Button mnemonicParsing="false" onAction="#swapTowers" text="&lt;-&gt;" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="480.0">
                <children>
                   <Button fx:id="reservedT1Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button">
@@ -210,16 +210,24 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
+                  <Label fx:id="repairCostLabel" text="Repair Cost:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="repairBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Repair">
+                  <Button mnemonicParsing="false" onAction="#repairTower" prefHeight="40.0" prefWidth="150.0" text="Repair">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="sellBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Sell">
+                  <Button mnemonicParsing="false" onAction="#sellTower" prefHeight="40.0" prefWidth="150.0" text="Sell">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
@@ -232,7 +240,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="upgrade1Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="Button" textOverrun="CLIP">
+                  <Button fx:id="upgrade1Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="None" textOverrun="CLIP">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -240,7 +248,7 @@
                         <Font size="11.0" />
                      </font>
                   </Button>
-                  <Button fx:id="upgrade2Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="Button" textOverrun="CLIP">
+                  <Button fx:id="upgrade2Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="None" textOverrun="CLIP">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -248,7 +256,7 @@
                         <Font size="11.0" />
                      </font>
                   </Button>
-                  <Button fx:id="upgrade3Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="Button" textOverrun="CLIP">
+                  <Button fx:id="upgrade3Btn" mnemonicParsing="false" prefHeight="55.0" prefWidth="55.0" text="None" textOverrun="CLIP">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -278,7 +286,7 @@
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="applyUpgradeBtn" maxWidth="155.0" mnemonicParsing="false" prefHeight="50.0" text="Apply To Selected Tower">
+            <Button maxWidth="155.0" mnemonicParsing="false" onAction="#applyUpgrade" prefHeight="50.0" text="Apply To Selected Tower">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -287,17 +295,17 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="2">
          <children>
-            <Button fx:id="c1Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button">
+            <Button fx:id="c1Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="None">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="c2Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button">
+            <Button fx:id="c2Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="None">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="c3Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Button">
+            <Button fx:id="c3Btn" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="None">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
