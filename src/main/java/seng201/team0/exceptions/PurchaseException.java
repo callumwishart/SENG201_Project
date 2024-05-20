@@ -1,10 +1,10 @@
 package seng201.team0.exceptions;
 
 public class PurchaseException extends Exception{
-    PurchaseException(){
+    public PurchaseException(){
         super();
     }
-    PurchaseException(String message){
+    public PurchaseException(String message){
         super(message);
     }
 }
