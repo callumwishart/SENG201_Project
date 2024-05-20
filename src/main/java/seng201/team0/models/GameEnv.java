@@ -4,6 +4,7 @@ import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
 import seng201.team0.models.consumables.SlowCartBooster;
 import seng201.team0.models.consumables.TowerSpeedBooster;
+import seng201.team0.models.gameplay.GameObserver;
 import seng201.team0.models.gameplay.GameRunner;
 import seng201.team0.models.gameplay.Round;
 import seng201.team0.models.towers.*;

@@ -28,7 +28,7 @@ public class Round {
     /**
      * Constructs a round based on difficulty, what round number, and what towers are equipped by player
      */
-    Round(PlayerInventory inventory, Difficulty difficulty, int roundNum) {
+    public Round(PlayerInventory inventory, Difficulty difficulty, int roundNum) {
         this.inventory = inventory;
         this.difficulty = difficulty;
         this.roundNum = roundNum;
