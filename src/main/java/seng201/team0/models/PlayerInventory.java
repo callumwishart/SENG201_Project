@@ -18,37 +18,43 @@ public class PlayerInventory {
     ArrayList<Consumable> consumables = new ArrayList<>();
 
     public PlayerInventory() {
-        coins = 0;
+        this.coins = 0;
+        this.points = 0;
     }
-    public void addActiveTower(Tower tower) throws Exception {
+
+    public void addActiveTower(Tower tower) throws TowerInventoryFullException {
         if ((activeTowers.size()) < 5) {
             activeTowers.add(tower);
         } else {
             throw new TowerInventoryFullException("Error: Already 5 towers are active");
         }
     }
-    public void stockPileTower (Tower tower) throws Exception {
+
+    public void addStockpiledTower(Tower tower) throws TowerInventoryFullException {
         //Check if max num of stock piled towers is 5
         if (stockpiledTowers.size() < 5) {
             stockpiledTowers.add(tower);
         } else {
-            throw new Exception("Error: You already have 5 stock piled towers;");
+            throw new TowerInventoryFullException("Error: You already have 5 stock piled towers;");
         }
     }
+
     public void addUpgrade(Upgrade upgrade) {
         upgrades.add(upgrade);
     }
+
     public void addConsumable (Consumable consumable) {
         consumables.add(consumable);
     }
-    public void repair (Tower tower) throws Exception {
+
+    public void repair(Tower tower) throws Exception {
         int amount = tower.getRepairCost();
         if (getCoins() >= amount) {
             tower.setToFixed();
             useCoins(amount);
         }
-
     }
+
     public void addCoins(int amount) throws NegativeAdditionException {
         if (amount > 0) {
             coins += amount;
@@ -56,6 +62,7 @@ public class PlayerInventory {
             throw new NegativeAdditionException();
         }
     }
+
     public void addPoints(int amount) throws NegativeAdditionException {
         if (amount > 0) {
             points += amount;
@@ -63,6 +70,7 @@ public class PlayerInventory {
             throw new NegativeAdditionException("The amount you are tyring to add is negative");
         }
     }
+
     public void useCoins(int amount) throws Exception {
         if (coins >= amount) {
             coins -= amount;
@@ -70,6 +78,7 @@ public class PlayerInventory {
             throw new Exception("You do not have enough money");
         }
     }
+
     public int getCoins () {
         return coins;
     }
@@ -77,11 +86,36 @@ public class PlayerInventory {
     public List<Tower> getActiveTowers() {
         return activeTowers;
     }
+
+    public List<Tower> getStockpiledTowers(){
+        return this.stockpiledTowers;
+    }
+
     public void setActiveTowers(List<Tower> towers) {
         activeTowers = towers;
     }
 
     public ArrayList<Consumable> getConsumables() {
         return this.consumables;
+    }
+
+    public int getPoints() {
+        return this.points;
+    }
+
+    public ArrayList<Upgrade> getUpgrades() {
+        return this.upgrades;
+    }
+
+    public void removeActiveTower(Tower tower) {
+        this.activeTowers.remove(tower);
+    }
+
+    public void removeStockpiledTower(Tower tower) {
+        this.stockpiledTowers.remove(tower);
+    }
+
+    public void removeCoins(int amount) {
+        this.coins -= amount;
     }
 }
