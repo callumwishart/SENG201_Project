@@ -11,11 +11,13 @@ public class GameRunner{
     GameObserver observer;
     ArrayList<Cart> carts;
     Round round;
+    ArrayList<Tower> towers;
 
-    GameRunner(Round round, GameObserver observer){
+    public GameRunner(Round round, GameObserver observer){
         this.observer = observer;
         this.carts = round.getCarts();
         this.round = round;
+        this.towers = this.round.getTowers();
     }
 
 
@@ -56,6 +58,8 @@ public class GameRunner{
                                     break; // Cart has been filled
                                 }
                             }
+                            tower.setReloading(true);
+                            tower.incrementReloadTimeElapsed(); // tower has unloaded, start reload
                         }
                     }
                 }
@@ -95,4 +99,15 @@ public class GameRunner{
         return cartsFull;
     }
 
+    public ArrayList<Cart> getCarts() {
+        return this.carts;
+    }
+
+    public ArrayList<Tower> getTowers() {
+        return this.towers;
+    }
+
+    public int getTrackDistance() {
+        return round.getTrackLength();
+    }
 }
