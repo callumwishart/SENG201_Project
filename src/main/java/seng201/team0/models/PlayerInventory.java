@@ -83,7 +83,7 @@ public class PlayerInventory {
         return coins;
     }
 
-    public List<Tower> getActiveTowers() {
+    public ArrayList<Tower> getActiveTowers() {
         return activeTowers;
     }
 
