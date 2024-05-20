@@ -94,7 +94,7 @@ public class Tower extends Item implements Sellable {
     public int getRepairCost() {
         return (int) (this.getCost() / 2);
     }
-    public Boolean getStatus() {
+    public Boolean isBroken() {
         return isBroken;
     }
 
@@ -104,5 +104,13 @@ public class Tower extends Item implements Sellable {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public int getSellCost() {
+        if (!this.isBroken()) {
+            return (int) (this.getCost() / 2);
+        } else {
+            return 0;
+        }
     }
 }
