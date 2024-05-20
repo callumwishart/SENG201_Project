@@ -1,29 +1,55 @@
 package seng201.team0.services;
 
-import seng201.team0.models.consumables.Consumable;
-import seng201.team0.models.Player;
-import seng201.team0.models.PlayerInventory;
+import seng201.team0.exceptions.ActiveConsumableException;
+import seng201.team0.exceptions.PurchaseException;
+import seng201.team0.exceptions.TowerInventoryFullException;
 import seng201.team0.models.Shop;
+import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.towers.Tower;
-
-import java.util.List;
+import seng201.team0.models.upgrades.Upgrade;
 
 public class ShopService {
-    Player player;
+
+    InventoryService inventoryService;
     Shop shop;
-    public ShopService (Shop inputShop) {
-        shop = inputShop;
+
+    public ShopService (Shop shop, InventoryService inventoryService) {
+        this.shop = shop;
+        this.inventoryService = inventoryService;
     }
-    public void purchaseTower(Tower tower) throws Exception {
-        player.getInventory().addActiveTower(tower);
-    }
-    public void purchaseBooster(Consumable consumable) throws Exception {
-        if (player.getInventory().getCoins() >= consumable.getCost()) {
-            player.getInventory().addConsumable(consumable);
+
+    /**
+     * Purchases tower and places in the first available slot,
+     * checks in activeTowers, then in stockpiledTowers, if all are full then
+     * throws TowerInventoryFullException. Throws PurchaseException if player
+     * doesn't have enough coins.
+     */
+    public void purchaseTower(Tower tower) throws TowerInventoryFullException, PurchaseException {
+        try {
+            TransactionService.purchase(tower, inventoryService);
+            inventoryService.addActiveTower(tower);
+        } catch (TowerInventoryFullException e1) {
+            try {
+                TransactionService.purchase(tower, inventoryService);
+                inventoryService.addStockpiledTower(tower);
+            } catch (TowerInventoryFullException e2) {
+                throw new TowerInventoryFullException("You have no more available tower slots");
+            }
         }
     }
-    public List<Tower> getTowers() {
-        return PlayerInventory.getActiveTowers();
+
+    public void purchaseUpgrade(Upgrade upgrade) throws PurchaseException {
+        TransactionService.purchase(upgrade.getCost(), inventoryService);
+        inventoryService.addUpgrade(upgrade);
+    }
+
+    public void purchaseConsumable(Consumable consumable) throws ActiveConsumableException {
+        if (this.inventoryService.getConsumables().contains(consumable)){
+            throw new ActiveConsumableException("There is already an active consumable of this type in your inventory!");
+        }
+        else {
+            this.inventoryService.addConsumable(consumable);
+        }
     }
 
 }

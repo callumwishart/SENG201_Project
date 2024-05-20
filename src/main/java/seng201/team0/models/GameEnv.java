@@ -1,6 +1,7 @@
 package seng201.team0.models;
 
 import seng201.team0.models.gameplay.GameRunner;
+import seng201.team0.models.gameplay.Round;
 import seng201.team0.models.towers.*;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
@@ -15,7 +16,6 @@ public class GameEnv {
     private Difficulty difficulty;
     private int numRounds;
     private int currentRoundNum = 0;
-    private Difficulties difficulties;
     private int difficultyMultiplier;
     private PlayerService playerService;
     private InventoryService inventoryService;
@@ -26,30 +26,41 @@ public class GameEnv {
     private final Consumer<GameEnv> startLauncher;
     private final Consumer<GameEnv> setupLauncher;
     private final Runnable clearScreen;
+
     public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
-        this.inventoryService = new InventoryService();
-        this.shopService = new ShopService(shop);
+        this.inventoryService = new InventoryService(player.getInventory());
+        this.shopService = new ShopService(shop, this.inventoryService);
         this.startLauncher = startLauncher;
         this.setupLauncher = setupLauncher;
         this.clearScreen = clearScreen;
         launchStartScreen();
     }
+
     public void closeStartScreen() {
         clearScreen.run();
         launchSetupScreen();
     }
+
     public void closeSetupScreen() throws InterruptedException {
         clearScreen.run();
-        GameRunner.run();
+        // Round round = new Round();
     }
-    public void launchStartScreen() {startLauncher.accept(this);}
-    public void launchSetupScreen() {setupLauncher.accept(this);}
+
+    public void launchStartScreen() {
+        startLauncher.accept(this);
+    }
+
+    public void launchSetupScreen() {
+        setupLauncher.accept(this);
+    }
+
     public Player getPlayer() {
         return this.player;
     }
+
     public void setNumRounds(int value) {
         numRounds = value;
     }
@@ -65,4 +76,5 @@ public class GameEnv {
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
+
 }

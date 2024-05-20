@@ -4,15 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import seng201.team0.exceptions.NameCharException;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
-import seng201.team0.models.resources.Resource;
-import seng201.team0.models.towers.Farm;
 import seng201.team0.models.towers.Tower;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +38,9 @@ public class SetupController {
     public SetupController(GameEnv gameEnv) {this.gameEnv = gameEnv;}
     private void updateStats(Tower tower) {
         selectedTowerLabel.setText("Selected Tower: " + tower.getName());
-        towerResourceLabel.setText("Resource: " + tower.getResourceType().getResourceType());
+        towerResourceLabel.setText("Resource: " + tower.getResource().getResourceType());
         resourceAmountLabel.setText("Resource loading capacity: " + Integer.toString(tower.getResourceAmount()));
-        resourceValueLabel1.setText("Resource Value (per unit): " + Integer.toString(tower.getResourceType().getResourceCoinValue()));
+        resourceValueLabel1.setText("Resource Value (per unit): " + Integer.toString(tower.getResource().getResourceCoinValue()));
         towerSpeedLabel.setText("Loading Speed: " + Integer.toString(tower.getReloadSpeed()));
     }
     public void initialize() {
@@ -106,7 +104,7 @@ public class SetupController {
         }
     }
     @FXML
-    public void startGame() throws InterruptedException {
+    public void startGame() throws InterruptedException, NameCharException {
         List<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
         for (Tower tower: selectedTowers) {
             try {

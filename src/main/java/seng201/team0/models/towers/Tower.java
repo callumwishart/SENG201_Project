@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import static java.lang.Math.round;
-import static seng201.team0.models.gameplay.Round.getRoundNum;
 
 public class Tower extends Item implements Sellable {
     double inputCost;
@@ -44,13 +43,13 @@ public class Tower extends Item implements Sellable {
         resourceAmount += amount;
     }
 
-    public Resource getResourceType() {
+    public Resource getResource() {
         return resourceType;
     }
+
     public void levelUp (){
         level += 1;
     }
-
 
     public ArrayList<Upgrade> getUpgrades() {
         return upgrades;
@@ -82,6 +81,7 @@ public class Tower extends Item implements Sellable {
     public int getUpgradePointLimit() {
         return level * 100;
     }
+
     public void setToBroken () {
         isBroken = true;
         imagePath = brokenImagePath;
@@ -94,9 +94,9 @@ public class Tower extends Item implements Sellable {
         return used;
     }
     public int getRepairCost() {
-        return (int) round(getCost() * 0.5 * getRoundNum());
+        return (int) (this.getCost() / 2);
     }
-    public Boolean getStatus() {
+    public Boolean isBroken() {
         return isBroken;
     }
 
@@ -106,5 +106,13 @@ public class Tower extends Item implements Sellable {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public int getSellCost() {
+        if (!this.isBroken()) {
+            return (int) (this.getCost() / 2);
+        } else {
+            return 0;
+        }
     }
 }

@@ -13,23 +13,23 @@ public class GameRunner{
     Round round;
 
     GameRunner(Round round, GameObserver observer){
-        this.observer =  observer;
+        this.observer = observer;
         this.carts = round.getCarts();
         this.round = round;
     }
 
 
-    public static boolean run() throws InterruptedException {
+    public boolean run() throws InterruptedException {
         boolean finished = false;
-        int roundTimeElapsed = 0;
+        int roundTimeElapsed = 0; // may be useful for testing?
 
         while (!finished){
             Thread.sleep(1000); // sleep 1 second
             roundTimeElapsed += 1;
             for (Cart cart : carts){
-                if(cart.getDistance() < round.trackDistance){
+                if(cart.getDistance() < round.getTrackLength()){
                     cart.incrementDistance();
-                    if (cart.getDistance() >= round.trackDistance){
+                    if (cart.getDistance() >= round.getTrackLength()){
                         cart.setFinished(true);
                     }
                 }
@@ -46,41 +46,53 @@ public class GameRunner{
                         break;
                     }
                     else{
-                        for (int i = 0; i < tower.getResourceAmount(); i++){
-                            try {
-                                cart.fillCart(new Resource(tower.getResourceType()));
-                            } catch (FullCartException e) {
-                                tower.setReloading(true);
-                                tower.incrementReloadTimeElapsed();
-                                break; // Cart has been filled
+                        if (cart.isUniversal() || tower.getResource().getResourceType().equals(cart.getResourceType())){
+                            for (int i = 0; i < tower.getResourceAmount(); i++){
+                                try {
+                                    cart.fillCart(new Resource(tower.getResource()));
+                                } catch (FullCartException e) {
+                                    tower.setReloading(true);
+                                    tower.incrementReloadTimeElapsed();
+                                    break; // Cart has been filled
+                                }
                             }
                         }
                     }
                 }
             }
-            // check if all carts have finished
-            finished = true;
-            for (Cart cart : carts){
-                if (!cart.isFinished()){
-                    finished = false; // at least one cart isn't finished
-                    break; // continue with gameplay
-                }
-            }
+            // check if all carts have finished or if they are all filled
+            finished = (this.cartsFinished() || this.cartsFull());
+
             this.observer.observe(this); // passes the observer the GameRunner instance for inspection
         }
 
-        boolean gameSuccess = true;
         // Determine win or loss
-        for (Cart cart : carts){
-            if (!cart.isFull()){
-                gameSuccess = false;
-                break;
-            }
-        }
+        boolean gameSuccess = this.cartsFull();
 
         return gameSuccess;
 
     }
 
+    public boolean cartsFinished() {
+        boolean finished = true;
+        for (Cart cart : this.carts) {
+            if (!cart.isFinished()) {
+                finished = false; // at least one cart isn't finished
+                break;
+            }
+        }
+        return finished;
+    }
+
+    public boolean cartsFull(){
+        boolean cartsFull = true;
+        for (Cart cart : this.carts) {
+            if (!cart.isFull()) {
+                cartsFull = false; // at least one cart isn't full
+                break;
+            }
+        }
+        return cartsFull;
+    }
 
 }
