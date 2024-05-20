@@ -69,6 +69,7 @@ public class PlayController implements GameObserver {
         for (int i = 0; i < round.getCarts().size(); i++) {
             cartButtons.get(i).setText(round.getCarts().get(i).getName());
             cartButtons.get(i).setDisable(false);
+            cartButtons.get(i).setStyle("-fx-background-color: #ffcccc;");
         }
     }
     @FXML
@@ -87,6 +88,6 @@ public class PlayController implements GameObserver {
 
     @Override
     public void observe(GameRunner gameRunner) {
-        
+
     }
 }
