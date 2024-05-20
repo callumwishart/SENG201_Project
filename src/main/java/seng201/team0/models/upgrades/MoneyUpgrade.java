@@ -3,7 +3,7 @@ package seng201.team0.models.upgrades;
 import seng201.team0.models.towers.Tower;
 
 public class MoneyUpgrade extends Upgrade{
-    public MoneyUpgrade(String inputName, String inputDescription, double inputCost) {
+    public MoneyUpgrade() {
         super("Money Upgrade", "Increases the value of your resource.", 50);
     }
 

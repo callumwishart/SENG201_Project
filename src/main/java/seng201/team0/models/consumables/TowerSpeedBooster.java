@@ -8,7 +8,7 @@ public class TowerSpeedBooster extends Consumable {
     // This booster makes the tower production faster by some factor (maybe tied to difficulty?)
 
     public TowerSpeedBooster() {
-        super("Tower Speed Boost", "This booster makes the tower production faster.", 20);
+        super("Tower Speed Boost", "This booster makes the tower production faster.", 100);
     }
 
     public void apply(Round round) {

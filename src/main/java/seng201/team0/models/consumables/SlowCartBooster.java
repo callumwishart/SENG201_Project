@@ -7,8 +7,8 @@ import seng201.team0.models.gameplay.Round;
 public class SlowCartBooster extends Consumable {
     int cost = 20;
 
-    public SlowCartBooster(String inputName, String inputDescription, int inputCost) {
-        super(inputName, inputDescription, inputCost);
+    public SlowCartBooster() {
+        super("Slow Carts", "Slows all carts for 1 round", 100);
     }
 
     public void apply(Round round) {

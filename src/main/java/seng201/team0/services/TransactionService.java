@@ -8,12 +8,11 @@ import seng201.team0.models.towers.Tower;
 
 public class TransactionService {
 
-    public static void purchase(Purchasable purchasable, InventoryService inventoryService) throws Exception {
+    public static void purchase(Purchasable purchasable, InventoryService inventoryService) throws PurchaseException {
         int cost = purchasable.getCost();
-        if (cost <= inventoryService.getCoins()){
+        try{
             inventoryService.removeCoins(cost);
-        }
-        else {
+        } catch (Exception e){
             throw new PurchaseException("Cannot purchase");
         }
     }
@@ -21,11 +20,10 @@ public class TransactionService {
     /**
      *
      */
-    public static void purchase(int cost, InventoryService inventoryService) throws Exception {
-        if (cost <= inventoryService.getCoins()){
+    public static void purchase(int cost, InventoryService inventoryService) throws PurchaseException {
+        try{
             inventoryService.removeCoins(cost);
-        }
-        else {
+        } catch (Exception e){
             throw new PurchaseException("Cannot purchase");
         }
     }

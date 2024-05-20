@@ -3,7 +3,7 @@ package seng201.team0.models.upgrades;
 import seng201.team0.models.towers.Tower;
 
 public class SpeedUpgrade extends Upgrade{
-    public SpeedUpgrade(String inputName, String inputDescription, double inputCost) {
+    public SpeedUpgrade() {
         super("Speed Upgrade", "Increases the speed of your towers", 30);
     }
 
