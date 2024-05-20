@@ -12,7 +12,7 @@ public class GameRunner{
     ArrayList<Cart> carts;
     Round round;
 
-    GameRunner(Round round, GameObserver observer){
+    public GameRunner(Round round, GameObserver observer){
         this.observer = observer;
         this.carts = round.getCarts();
         this.round = round;

@@ -63,6 +63,7 @@ public class GameEnv {
 
     public void closeSetupScreen() throws InterruptedException {
         clearScreen.run();
+
         launchPlayScreen();
         // Round round = new Round();
     }
@@ -105,6 +106,9 @@ public class GameEnv {
 
     public Difficulty getDifficulty() {
         return difficulty;
+    }
+    public int getRoundNum() {
+        return currentRoundNum;
     }
 
     public void setDifficulty(Difficulty difficulty) {
