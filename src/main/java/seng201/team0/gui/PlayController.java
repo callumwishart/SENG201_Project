@@ -11,4 +11,9 @@ public class PlayController {
     public void openInventoryButton() {
         this.gameEnv.openInventory();
     }
+
+    @FXML
+    public void openShop() {
+
+    }
 }

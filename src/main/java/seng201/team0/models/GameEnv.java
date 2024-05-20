@@ -53,6 +53,14 @@ public class GameEnv {
         launchPlayScreen();
         // Round round = new Round();
     }
+    public void openInventory() {
+        clearScreen.run();
+        launchInventoryScreen();
+    }
+    public void backToMain() {
+        clearScreen.run();
+        launchPlayScreen();
+    }
 
     public void launchStartScreen() {
         startLauncher.accept(this);
@@ -83,8 +91,8 @@ public class GameEnv {
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
-    public void openInventory() {
-        launchInventoryScreen();
+    public InventoryService getInventoryService() {
+        return inventoryService;
     }
 
 }
