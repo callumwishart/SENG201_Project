@@ -1,10 +1,10 @@
 package seng201.team0.exceptions;
 
 public class ActiveConsumableException extends Exception{
-    ActiveConsumableException(){
+    public ActiveConsumableException(){
         super();
     }
-    ActiveConsumableException(String message){
+    public ActiveConsumableException(String message){
         super(message);
     }
 }
