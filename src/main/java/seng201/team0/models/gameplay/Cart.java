@@ -88,4 +88,11 @@ public class Cart {
         finished = state;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getCargoSlotsFilled() {
+        return cargoSlotsFilled;
+    }
 }

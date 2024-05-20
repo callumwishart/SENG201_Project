@@ -38,7 +38,7 @@ public class InventoryService {
         return this.inventory.getCoins();
     }
 
-    public List<Tower> getActiveTowers(){
+    public ArrayList<Tower> getActiveTowers(){
         return this.inventory.getActiveTowers();
     }
 
