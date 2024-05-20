@@ -25,9 +25,10 @@ public class GameEnv {
     private List<Tower> possibleTowers = List.of(new Factory(defaultTowerReload,defaultTowerCost), new Farm(defaultTowerReload,defaultTowerCost), new Mine(defaultTowerReload,defaultTowerCost), new Sawmill(defaultTowerReload,defaultTowerCost), new WaterTower(defaultTowerReload,defaultTowerCost));
     private final Consumer<GameEnv> startLauncher;
     private final Consumer<GameEnv> setupLauncher;
+    private final Consumer<GameEnv> playLauncher;
     private final Runnable clearScreen;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -36,6 +37,7 @@ public class GameEnv {
         this.startLauncher = startLauncher;
         this.setupLauncher = setupLauncher;
         this.clearScreen = clearScreen;
+        this.playLauncher = playLauncher;
         launchStartScreen();
     }
 
@@ -46,6 +48,7 @@ public class GameEnv {
 
     public void closeSetupScreen() throws InterruptedException {
         clearScreen.run();
+        launchPlayScreen();
         // Round round = new Round();
     }
 
@@ -56,6 +59,7 @@ public class GameEnv {
     public void launchSetupScreen() {
         setupLauncher.accept(this);
     }
+    public void launchPlayScreen() {playLauncher.accept(this);}
 
     public Player getPlayer() {
         return this.player;
@@ -75,6 +79,9 @@ public class GameEnv {
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
+    }
+    public void openInventory() {
+
     }
 
 }
