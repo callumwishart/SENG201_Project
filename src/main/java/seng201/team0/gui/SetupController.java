@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import seng201.team0.exceptions.NameCharException;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.towers.Tower;
@@ -103,7 +104,7 @@ public class SetupController {
         }
     }
     @FXML
-    public void startGame() throws InterruptedException {
+    public void startGame() throws InterruptedException, NameCharException {
         List<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
         for (Tower tower: selectedTowers) {
             try {
