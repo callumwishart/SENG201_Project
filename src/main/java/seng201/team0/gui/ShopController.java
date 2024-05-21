@@ -152,19 +152,37 @@ public class ShopController {
     @FXML
     public void buyTower() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException, TowerInventoryFullException {
         Tower newTower = selectedTower.getClass().getDeclaredConstructor().newInstance();
-        this.gameEnv.getShopService().purchaseTower(newTower);
+        try {
+            this.gameEnv.getShopService().purchaseTower(newTower);
+        } catch (TowerInventoryFullException e) {
+            this.gameEnv.showAlert("Tower Inventory Full", "Your tower inventory is full, please sell a tower before trying again");
+            return;
+        } catch (PurchaseException e) {
+            this.gameEnv.showAlert("Not enough money!", "You don't have enough money to buy this, please try again in the next round");
+            return;
+        }
         updatePointsAndCoins();
     }
     @FXML
     public void buyUpgrade() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException {
         Upgrade newUpgrade = selectedUpgrade.getClass().getDeclaredConstructor().newInstance();
-        this.gameEnv.getShopService().purchaseUpgrade(newUpgrade);
+        try {
+            this.gameEnv.getShopService().purchaseUpgrade(newUpgrade);
+        } catch (PurchaseException e) {
+            this.gameEnv.showAlert("Not enough money", "You don't have enough money to buy this, please try again in the next round");
+            return;
+        }
         updatePointsAndCoins();
     }
     @FXML
     public void buyConsumable() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ActiveConsumableException {
         Consumable newConsumable = selectedConsumable.getClass().getDeclaredConstructor().newInstance();
-        this.gameEnv.getShopService().purchaseConsumable(newConsumable);
+        try {
+            this.gameEnv.getShopService().purchaseConsumable(newConsumable);
+        } catch (ActiveConsumableException e) {
+            this.gameEnv.showAlert("Consumable already Active!", "You already have this consumable so you don't need another!");
+            return;
+        }
         updatePointsAndCoins();
     }
 
