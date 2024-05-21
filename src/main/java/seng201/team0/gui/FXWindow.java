@@ -4,9 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import seng201.team0.gui.FXWrapper;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -25,6 +28,15 @@ public class FXWindow extends Application {
         Parent root = baseLoader.load();
         FXWrapper fxWrapper = baseLoader.getController();
         Scene scene = new Scene(root, 1000, 700);
+
+        String imagePath = "src/main/resources/images/logo.png";
+        FileInputStream inputStream;
+        try {
+            inputStream = new FileInputStream(imagePath);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        primaryStage.getIcons().add(new Image(inputStream));
         primaryStage.setTitle("FX Wrapper");
         primaryStage.setScene(scene);
         primaryStage.show();

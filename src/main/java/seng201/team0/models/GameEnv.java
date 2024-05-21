@@ -2,6 +2,7 @@ package seng201.team0.models;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import seng201.team0.exceptions.TowerNotFoundException;
 import seng201.team0.gui.FXWrapper;
@@ -39,7 +40,7 @@ public class GameEnv {
     private PlayerService playerService;
     private InventoryService inventoryService;
     private ShopService shopService;
-    private final int defaultTowerCost = 5;
+    private final int defaultTowerCost = 30;
     private final int defaultTowerReload = 5;
     private List<Tower> possibleTowers = List.of(new Factory(defaultTowerReload,defaultTowerCost), new Farm(defaultTowerReload,defaultTowerCost), new Mine(defaultTowerReload,defaultTowerCost), new Sawmill(defaultTowerReload,defaultTowerCost), new WaterTower(defaultTowerReload,defaultTowerCost));
     private List<Upgrade> possibleUpgrades = List.of(new CapacityUpgrade(), new MoneyUpgrade(), new SpeedUpgrade());
@@ -53,13 +54,12 @@ public class GameEnv {
     private final Consumer<GameEnv> roundStyleScreenLauncher;
     private final Consumer<GameEnv> gameOverLauncher;
     private final Consumer<GameEnv> randomEventLauncher;
-    private final Consumer<GameEnv> errorLauncher;
     public final Runnable clearScreen;
     private Exception currException;
     private boolean result;
     private RandomEvent currRandomEvent;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher, Consumer<GameEnv> errorLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher) {
 
         this.player = new Player();
         this.shop = new Shop();
@@ -76,7 +76,6 @@ public class GameEnv {
         this.roundStyleScreenLauncher = roundStyleScreenLauncher;
         this.gameOverLauncher = gameOverLauncher;
         this.randomEventLauncher = randomEventLauncher;
-        this.errorLauncher = errorLauncher;
         launchStartScreen();
     }
 
@@ -140,10 +139,6 @@ public class GameEnv {
 
         }
     }
-    public void openError(Exception exception) {
-        currException = exception;
-        launchError();
-    }
     public void openRandomEvent() {
         randomEventLauncher.accept(this);
     }
@@ -158,7 +153,6 @@ public class GameEnv {
     public void launchPlayScreen() {playLauncher.accept(this);}
     public void launchInventoryScreen() {inventoryLauncher.accept(this);}
     public void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
-    private void launchError() {errorLauncher.accept(this);}
     private void launchRoundStyleScreen() {
         roundStyleScreenLauncher.accept(this);
     }
@@ -209,5 +203,12 @@ public class GameEnv {
     }
     public Exception getCurrException() {
         return currException;
+    }
+    public void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

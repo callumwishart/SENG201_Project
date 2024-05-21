@@ -5,10 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import seng201.team0.exceptions.NegativeAdditionException;
-import seng201.team0.exceptions.TowerInventoryFullException;
-import seng201.team0.exceptions.TowerNotFoundException;
-import seng201.team0.exceptions.UpgradeException;
+import seng201.team0.exceptions.*;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.towers.Tower;
 import seng201.team0.models.upgrades.Upgrade;
@@ -157,16 +154,22 @@ public class InventoryController {
 
     @FXML
     public void swapTowers() throws TowerInventoryFullException {
-        if (currentActiveTower != null && currentReserveTower != null) {
-            this.gameEnv.getInventoryService().swapTowers(currentActiveTower, currentReserveTower);
-            currentActiveTower = null;
-            currentReserveTower = null;
-        } else if (currentActiveTower != null) {
-            this.gameEnv.getInventoryService().swapTowers(currentActiveTower, true);
-            currentActiveTower = null;
-        } else if (currentReserveTower != null) {
-            this.gameEnv.getInventoryService().swapTowers(currentReserveTower, false);
-            currentReserveTower = null;
+        try {
+            if (currentActiveTower != null && currentReserveTower != null) {
+                this.gameEnv.getInventoryService().swapTowers(currentActiveTower, currentReserveTower);
+                currentActiveTower = null;
+                currentReserveTower = null;
+            } else if (currentActiveTower != null) {
+                this.gameEnv.getInventoryService().swapTowers(currentActiveTower, true);
+                currentActiveTower = null;
+            } else if (currentReserveTower != null) {
+                this.gameEnv.getInventoryService().swapTowers(currentReserveTower, false);
+                currentReserveTower = null;
+            } else if (currentActiveTower == null && currentReserveTower == null) {
+                throw new NoTowerSelectedException();
+            }
+        } catch (NoTowerSelectedException e) {
+            this.gameEnv.showAlert("No Tower Selected", "Selected a tower to continue");
         }
 
         // Set the text of the activeTower Buttons to be correct
@@ -197,12 +200,35 @@ public class InventoryController {
 
     @FXML
     public void repairTower() throws Exception {
-        this.gameEnv.getInventoryService().repairTower(currentTower);
+        try {
+            if (currentTower == null) {
+                throw new NoTowerSelectedException();
+            }
+            this.gameEnv.getInventoryService().repairTower(currentTower);
+        } catch (NoTowerSelectedException e) {
+            this.gameEnv.showAlert("No tower selected", "Select a tower and try again");
+            return;
+        } catch (Exception e) {
+            this.gameEnv.showAlert("Not enough money!", "You don't have enough money to buy this!");
+            return;
+        }
         updateStats(currentTower);
+
     }
     @FXML
-    public void sellTower() throws TowerNotFoundException, NegativeAdditionException {
-        this.gameEnv.getInventoryService().sellTower(currentTower);
+    public void sellTower() throws NegativeAdditionException {
+        try {
+            if (currentTower == null) {
+                throw new NoTowerSelectedException();
+            }
+            this.gameEnv.getInventoryService().sellTower(currentTower);
+        } catch (TowerNotFoundException e) {
+            this.gameEnv.showAlert("Error", "Something went wrong here, let us try again");
+            return;
+        } catch (NoTowerSelectedException e) {
+            this.gameEnv.showAlert("No tower Selected", "Please select a tower and try again");
+            return;
+        }
         List<Button> activeTowerButtons = List.of(t1Btn, t2Btn, t3Btn, t4Btn, t5Btn);
         List<Button> reservedTowerButtons = List.of(reservedT1Btn, reservedT2Btn, reservedT3Btn, reservedT4Btn, reservedT5Btn);
 
@@ -228,10 +254,25 @@ public class InventoryController {
         }
     }
     @FXML
-    public void applyUpgrade() throws UpgradeException {
+    public void applyUpgrade() {
         List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
-        // Needs to handle exception
-        this.gameEnv.getInventoryService().applyUpgrade(currentActiveTower, currentUpgrade);
+
+        try {
+            if (currentTower == null) {
+                throw new NoTowerSelectedException();
+            }
+            if (currentUpgrade == null) {
+                throw new NoUpgradeSelectedException();
+            }
+            this.gameEnv.getInventoryService().applyUpgrade(currentActiveTower, currentUpgrade);
+        } catch (NoTowerSelectedException e) {
+            this.gameEnv.showAlert("No tower selected", "Please select a tower and try again");
+            return;
+        } catch (NoUpgradeSelectedException e) {
+            this.gameEnv.showAlert("No Upgrade Selected", "Please select an upgrade and try again");
+            return;
+        }
+
         for (int i = 0; i < upgradeButtons.size(); i++) {
             upgradeButtons.get(i).setDisable(true);
             upgradeButtons.get(i).setText("None");
