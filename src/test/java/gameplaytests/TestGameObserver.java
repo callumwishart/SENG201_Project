@@ -1,4 +1,4 @@
-package gameplay;
+package gameplaytests;
 
 import seng201.team0.models.gameplay.Cart;
 import seng201.team0.models.gameplay.GameObserver;
