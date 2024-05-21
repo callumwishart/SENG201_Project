@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.randomevents.RandomEvent;
 import seng201.team0.models.randomevents.TowerBreakEvent;
+import seng201.team0.models.randomevents.TowerBuffEvent;
+import seng201.team0.models.randomevents.TowerDebuffEvent;
+import seng201.team0.utils.Utilities;
 
 
 import java.io.IOException;
@@ -122,31 +125,24 @@ public class FXWrapper {
         }
     }
     public void openRandomEvent(GameEnv gameEnv) {
-        RandomEvent randomEvent = new TowerBreakEvent();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/random_event.fxml"));
-            Parent root = loader.load();
-            RandomEventController controller = loader.getController();
-            controller.setRandomEvent(randomEvent);
-
-            Stage stage = new Stage();
-            stage.setTitle(randomEvent.getName());
-            stage.setScene(new Scene(root));
-            stage.show();
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/random_event.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new RandomEventController(gameEnv));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Error!");
         } catch (IOException e){
             e.printStackTrace();
         }
     }
     public void openErrorMessage(GameEnv gameEnv) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/error.fxml"));
-            loader.setControllerFactory(param -> new ErrorController(gameEnv));
-            Parent root = loader.load();
-
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/error.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new ErrorController(gameEnv));
+            Parent setupParent  = mainScreenLoader.load();
             Stage stage = new Stage();
-            stage.setTitle("Error");
-            stage.setScene(new Scene(root));
-            stage.show();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Oh no!");
         } catch (IOException e){
             e.printStackTrace();
         }

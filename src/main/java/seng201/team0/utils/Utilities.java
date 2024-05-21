@@ -1,5 +1,6 @@
 package seng201.team0.utils;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Utilities {
 
@@ -16,6 +17,11 @@ public class Utilities {
             throw new IllegalArgumentException("Probability must be between 0.0 and 1.0");
         }
         return random.nextDouble() < probability;
+    }
+    public static int randomEventSelector() {
+        Random random = new Random();
+        int randomNumber = ThreadLocalRandom.current().nextInt(1,4);
+        return randomNumber;
     }
 
 }

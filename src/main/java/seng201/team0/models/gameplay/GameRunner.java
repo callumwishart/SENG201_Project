@@ -3,6 +3,7 @@ package seng201.team0.models.gameplay;
 import javafx.application.Platform;
 import seng201.team0.exceptions.FullCartException;
 import seng201.team0.exceptions.NegativeAdditionException;
+import seng201.team0.exceptions.TowerNotFoundException;
 import seng201.team0.models.resources.Resource;
 import seng201.team0.models.towers.Tower;
 
@@ -95,11 +96,19 @@ public class GameRunner implements Runnable{
                     this.observer.win(coins, points);
                 } catch (NegativeAdditionException e) {
                     throw new RuntimeException(e);
+                } catch (TowerNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
             });
         }
         else {
-            Platform.runLater(() -> this.observer.lose());
+            Platform.runLater(() -> {
+                try {
+                    this.observer.lose();
+                } catch (TowerNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
 
     }

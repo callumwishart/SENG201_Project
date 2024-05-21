@@ -3,12 +3,17 @@ package seng201.team0.models;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import seng201.team0.exceptions.TowerNotFoundException;
+import seng201.team0.gui.FXWrapper;
 import seng201.team0.gui.RandomEventController;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
 import seng201.team0.models.consumables.SlowCartBooster;
 import seng201.team0.models.consumables.TowerSpeedBooster;
 import seng201.team0.models.randomevents.RandomEvent;
+import seng201.team0.models.randomevents.TowerBreakEvent;
+import seng201.team0.models.randomevents.TowerBuffEvent;
+import seng201.team0.models.randomevents.TowerDebuffEvent;
 import seng201.team0.models.towers.*;
 import seng201.team0.models.upgrades.CapacityUpgrade;
 import seng201.team0.models.upgrades.MoneyUpgrade;
@@ -49,9 +54,10 @@ public class GameEnv {
     private final Consumer<GameEnv> gameOverLauncher;
     private final Consumer<GameEnv> randomEventLauncher;
     private final Consumer<GameEnv> errorLauncher;
-    private final Runnable clearScreen;
+    public final Runnable clearScreen;
     private Exception currException;
     private boolean result;
+    private RandomEvent currRandomEvent;
 
     public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher, Consumer<GameEnv> errorLauncher) {
 
@@ -108,14 +114,23 @@ public class GameEnv {
         launchGameOverScreen();
     }
 
-    public void setHasWon(Boolean value) {
+    public void setHasWon(Boolean value) throws TowerNotFoundException {
         this.result = value;
         clearScreen.run();
         if (value) {
             currentRoundNum += 1;
             // random event logic
             if (Utilities.weightedCoinToss(0.33)){
-                // open the random event
+                int eventNumber = Utilities.randomEventSelector();
+                if (eventNumber == 1) {
+                    currRandomEvent = new TowerBreakEvent();
+                } else if (eventNumber == 2) {
+                    currRandomEvent = new TowerBuffEvent();
+                } else {
+                    currRandomEvent = new TowerDebuffEvent();
+                }
+                currRandomEvent.apply(inventoryService);
+                openRandomEvent();
             }
             else {
                 launchRoundSummaryScreen();
@@ -125,14 +140,13 @@ public class GameEnv {
 
         }
     }
-    public void setCurrException(Exception exception) {
-        currException = exception;
-    }
     public void openError(Exception exception) {
-        setCurrException(exception);
+        currException = exception;
         launchError();
     }
-
+    public void openRandomEvent() {
+        randomEventLauncher.accept(this);
+    }
 
     public void launchStartScreen() {
         startLauncher.accept(this);
@@ -143,8 +157,7 @@ public class GameEnv {
     }
     public void launchPlayScreen() {playLauncher.accept(this);}
     public void launchInventoryScreen() {inventoryLauncher.accept(this);}
-    private void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
-    private void launchRandomEvent() {randomEventLauncher.accept(this);}
+    public void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
     private void launchError() {errorLauncher.accept(this);}
     private void launchRoundStyleScreen() {
         roundStyleScreenLauncher.accept(this);
@@ -170,6 +183,9 @@ public class GameEnv {
     }
     public List<Upgrade> getPossibleUpgrades() {return possibleUpgrades;}
     public List<Consumable> getPossibleConsumables() {return possibleConsumables;}
+    public RandomEvent getCurrRandomEvent() {
+        return currRandomEvent;
+    }
 
     public Difficulty getDifficulty() {
         return difficulty;
