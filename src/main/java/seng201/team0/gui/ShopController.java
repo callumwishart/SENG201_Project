@@ -4,9 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import seng201.team0.exceptions.ActiveConsumableException;
-import seng201.team0.exceptions.PurchaseException;
-import seng201.team0.exceptions.TowerInventoryFullException;
+import seng201.team0.exceptions.*;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.towers.Tower;
@@ -130,6 +128,11 @@ public class ShopController {
         upgradeDescLabel.setText("Description: " + upgrade.getDescription());
         upgradeCostLabel.setText("Cost: " + upgrade.getCost());
     }
+    private void updateUpgradeStats() {
+        upgradeNameLabel.setText("Selected Upgrade: ");
+        upgradeDescLabel.setText("Description: ");
+        upgradeCostLabel.setText("Cost: ");
+    }
 
     private void updatePointsAndCoins() {
         coinsLabel.setText("Coins: " + String.valueOf(this.gameEnv.getInventoryService().getCoins()));
@@ -151,8 +154,11 @@ public class ShopController {
     }
     @FXML
     public void buyTower() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException, TowerInventoryFullException {
-        Tower newTower = selectedTower.getClass().getDeclaredConstructor().newInstance();
         try {
+            if (selectedTower == null) {
+                throw new NoTowerSelectedException();
+            }
+            Tower newTower = selectedTower.getClass().getDeclaredConstructor().newInstance();
             this.gameEnv.getShopService().purchaseTower(newTower);
         } catch (TowerInventoryFullException e) {
             this.gameEnv.showAlert("Tower Inventory Full", "Your tower inventory is full, please sell a tower before trying again");
@@ -160,27 +166,48 @@ public class ShopController {
         } catch (PurchaseException e) {
             this.gameEnv.showAlert("Not enough money!", "You don't have enough money to buy this, please try again in the next round");
             return;
-        }
-        updatePointsAndCoins();
-    }
-    @FXML
-    public void buyUpgrade() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException {
-        Upgrade newUpgrade = selectedUpgrade.getClass().getDeclaredConstructor().newInstance();
-        try {
-            this.gameEnv.getShopService().purchaseUpgrade(newUpgrade);
-        } catch (PurchaseException e) {
-            this.gameEnv.showAlert("Not enough money", "You don't have enough money to buy this, please try again in the next round");
+        } catch (NoTowerSelectedException e) {
+            this.gameEnv.showAlert("No Tower Selected", "Please select your tower and try again");
             return;
         }
         updatePointsAndCoins();
     }
     @FXML
-    public void buyConsumable() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ActiveConsumableException {
-        Consumable newConsumable = selectedConsumable.getClass().getDeclaredConstructor().newInstance();
+    public void buyUpgrade() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException {
         try {
+            if (selectedTower == null) {
+                throw new NoTowerSelectedException();
+            }
+            if (selectedUpgrade == null) {
+                throw new NoUpgradeSelectedException();
+            }
+            Upgrade newUpgrade = selectedUpgrade.getClass().getDeclaredConstructor().newInstance();
+            this.gameEnv.getShopService().purchaseUpgrade(newUpgrade);
+        } catch (PurchaseException e) {
+            this.gameEnv.showAlert("Not enough money", "You don't have enough money to buy this, please try again in the next round");
+            return;
+        } catch (NoTowerSelectedException e) {
+            this.gameEnv.showAlert("No tower selected", "Please select a tower");
+            return;
+        } catch (NoUpgradeSelectedException e) {
+            this.gameEnv.showAlert("No upgrade selected", "Please select an upgrade");
+        }
+        updateUpgradeStats();
+        updatePointsAndCoins();
+    }
+    @FXML
+    public void buyConsumable() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ActiveConsumableException {
+        try {
+            if (selectedConsumable == null) {
+                throw new NoConsumableSelectedException();
+            }
+            Consumable newConsumable = selectedConsumable.getClass().getDeclaredConstructor().newInstance();
             this.gameEnv.getShopService().purchaseConsumable(newConsumable);
         } catch (ActiveConsumableException e) {
             this.gameEnv.showAlert("Consumable already Active!", "You already have this consumable so you don't need another!");
+            return;
+        } catch (NoConsumableSelectedException e) {
+            this.gameEnv.showAlert("No Consumable Selected", "Please select a consumable");
             return;
         }
         updatePointsAndCoins();

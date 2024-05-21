@@ -1,7 +1,7 @@
 package seng201.team0.exceptions;
 
 public class UpgradeException extends Exception{
-    UpgradeException(){
+    public UpgradeException(){
         super();
     }
     UpgradeException(String message){
