@@ -3,9 +3,12 @@ package servicetests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seng201.team0.exceptions.NegativeAdditionException;
+import seng201.team0.exceptions.PurchaseException;
 import seng201.team0.exceptions.TowerInventoryFullException;
 import seng201.team0.exceptions.TowerNotFoundException;
 import seng201.team0.models.PlayerInventory;
+import seng201.team0.models.towers.Factory;
+import seng201.team0.models.towers.Farm;
 import seng201.team0.models.towers.Tower;
 import seng201.team0.models.towers.WaterTower;
 import seng201.team0.services.InventoryService;
@@ -73,17 +76,27 @@ public class InventoryServiceTest {
         List<Tower> stockpiledTowers = new ArrayList<>();
         assertEquals(stockpiledTowers, inventoryService.getStockpiledTowers());
     }
-    /*
+
     @Test
-    public void testAddActiveTower() throws TowerInventoryFullException, TowerInventoryFullException {
-        Tower tower = new Tower();
+    public void testAddActiveTower() throws TowerInventoryFullException {
+        Tower tower = new Farm();
         inventoryService.addActiveTower(tower);
         assertTrue(inventoryService.getActiveTowers().contains(tower));
     }
 
     @Test
+    public void testAddTooManyActiveTower() {
+        Tower tower = new Farm();
+        assertThrows(TowerInventoryFullException.class, () -> {
+           for (int i = 0; i < 6; i++){
+               inventoryService.addActiveTower(tower);
+           }
+        });
+    }
+
+    @Test
     public void testRemoveActiveTower() throws TowerInventoryFullException {
-        Tower tower = new Tower();
+        Tower tower = new Farm();
         inventoryService.addActiveTower(tower);
         inventoryService.removeActiveTower(tower);
         assertFalse(inventoryService.getActiveTowers().contains(tower));
@@ -91,8 +104,8 @@ public class InventoryServiceTest {
 
     @Test
     public void testSwapTowers() throws TowerInventoryFullException {
-        Tower activeTower = new Tower();
-        Tower stockpiledTower = new Tower();
+        Tower activeTower = new Farm();
+        Tower stockpiledTower = new Factory();
         inventoryService.addActiveTower(activeTower);
         inventoryService.addStockpiledTower(stockpiledTower);
         inventoryService.swapTowers(activeTower, stockpiledTower);
@@ -101,19 +114,32 @@ public class InventoryServiceTest {
     }
 
     @Test
-    public void testSellTower() throws NegativeAdditionException, TowerNotFoundException, TowerInventoryFullException, TowerNotFoundException {
-        Tower tower = new Tower();
+    public void testSellTower() throws NegativeAdditionException, TowerNotFoundException, TowerInventoryFullException {
+        Tower tower = new Farm();
         inventoryService.addActiveTower(tower);
         inventoryService.sellTower(tower);
         assertFalse(inventoryService.getActiveTowers().contains(tower));
+        assertEquals(tower.getSellCost(), inventoryService.getCoins()); // check balance against sell cost
     }
 
     @Test
     public void testRepairTower() throws Exception {
-        Tower tower = new Tower();
-        inventoryService.addCoins(100);
+        Tower tower = new Farm();
+        tower.setToBroken();
+        assertTrue(tower.isBroken());
+        inventoryService.addCoins(1000);
         inventoryService.repairTower(tower);
         assertFalse(tower.isBroken());
     }
-    */
+
+    @Test
+    public void testRepairTowerWithoutCoins(){
+        Tower tower = new Farm();
+        tower.setToBroken();
+        assertTrue(tower.isBroken());
+        assertEquals(0, inventoryService.getCoins());
+        assertThrows(PurchaseException.class, () -> inventoryService.repairTower(tower));
+        assertTrue(tower.isBroken());
+    }
+
 }
