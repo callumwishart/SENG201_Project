@@ -39,9 +39,11 @@ public class GameEnv {
     private final Consumer<GameEnv> playLauncher;
     private final Consumer<GameEnv> inventoryLauncher;
     private final Consumer<GameEnv> shopLauncher;
+    private final Consumer<GameEnv> roundSummaryScreenLauncher;
     private final Runnable clearScreen;
+    private boolean result;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -53,6 +55,7 @@ public class GameEnv {
         this.playLauncher = playLauncher;
         this.inventoryLauncher = inventoryLauncher;
         this.shopLauncher = shopLauncher;
+        this.roundSummaryScreenLauncher = roundSummaryLauncher;
         launchStartScreen();
     }
 
@@ -63,6 +66,7 @@ public class GameEnv {
 
     public void closeSetupScreen() throws InterruptedException {
         clearScreen.run();
+
         launchPlayScreen();
         // Round round = new Round();
     }
@@ -88,10 +92,23 @@ public class GameEnv {
     }
     public void launchPlayScreen() {playLauncher.accept(this);}
     public void launchInventoryScreen() {inventoryLauncher.accept(this);}
+    private void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
 
     public Player getPlayer() {
         return this.player;
     }
+    public void setHasWon(Boolean value) {
+        result = value;
+        clearScreen.run();
+        if (value) {
+            currentRoundNum += 1;
+            launchRoundSummaryScreen();
+        } else {
+            launchRoundSummaryScreen();
+        }
+    }
+
+
 
     public void setNumRounds(int value) {
         numRounds = value;
@@ -105,6 +122,9 @@ public class GameEnv {
 
     public Difficulty getDifficulty() {
         return difficulty;
+    }
+    public int getRoundNum() {
+        return currentRoundNum;
     }
 
     public void setDifficulty(Difficulty difficulty) {
