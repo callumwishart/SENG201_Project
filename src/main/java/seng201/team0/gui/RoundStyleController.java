@@ -26,7 +26,16 @@ public class RoundStyleController {
     }
 
     public void startRound() {
-        this.gameEnv.getDifficulty().updateDifficulty(difficultyText);
+        try {
+            if (difficultyText == null) {
+                throw new RuntimeException("You have not selected a round style");
+            }
+            this.gameEnv.getDifficulty().updateDifficulty(difficultyText);
+        } catch (Exception e) {
+            this.gameEnv.showAlert(e.getMessage(), "Please select a round difficulty!");
+            return;
+        }
+
         this.gameEnv.startRound();
     }
 }

@@ -88,8 +88,8 @@ public class PlayController implements GameObserver {
             cartButtons.get(i).setStyle("-fx-background-color: #ffcccc;");
             speedLabels.get(i).setText("Speed: " + round.getCarts().get(i).getSpeed());
         }
-        nameLabel.setText(this.gameEnv.getPlayer().getName());
-        pointsLabel.setText(String.valueOf(inventoryService.getPoints()));
+        nameLabel.setText("Name: " + this.gameEnv.getPlayer().getName());
+        pointsLabel.setText("Points: " + inventoryService.getPoints());
     }
     @FXML
     public void startGame() throws InterruptedException {

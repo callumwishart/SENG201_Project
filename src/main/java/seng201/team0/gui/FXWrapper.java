@@ -53,7 +53,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new StartController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Welcome to NBTD");
+            stage.setTitle("Welcome to Resource Rush");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,7 +64,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new PlayController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Play");
+            stage.setTitle("Resource Rush");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,7 +75,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new InventoryController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Inventory");
+            stage.setTitle("Resource Rush - Inventory");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,7 +86,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new ShopController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Inventory");
+            stage.setTitle("Resource Rush - Inventory");
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -97,7 +97,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new RoundSummaryController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Round Summary");
+            stage.setTitle("Resource Rush - Round Summary");
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -108,7 +108,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new RoundStyleController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Choose your round style!");
+            stage.setTitle("Resource Rush - Choose your round style!");
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -119,7 +119,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new GameOverController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Game Finished!");
+            stage.setTitle("Resource Rush - Game Finished!");
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -130,7 +130,7 @@ public class FXWrapper {
             mainScreenLoader.setControllerFactory(param -> new RandomEventController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Error!");
+            stage.setTitle("Resource Rush - Random Event!");
         } catch (IOException e){
             e.printStackTrace();
         }
