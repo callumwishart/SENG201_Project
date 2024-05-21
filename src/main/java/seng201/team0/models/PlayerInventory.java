@@ -6,6 +6,7 @@ import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.towers.Tower;
 import seng201.team0.models.upgrades.Upgrade;
 
+import java.awt.color.ICC_ColorSpace;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,6 +106,10 @@ public class PlayerInventory {
 
     public ArrayList<Upgrade> getUpgrades() {
         return this.upgrades;
+    }
+
+    public void removeUpgrade(Upgrade upgrade){
+        this.upgrades.remove(upgrade);
     }
 
     public void removeActiveTower(Tower tower) {

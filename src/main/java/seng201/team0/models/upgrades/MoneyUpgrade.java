@@ -8,7 +8,7 @@ public class MoneyUpgrade extends Upgrade{
     }
 
     @Override
-    public void applyUpgrade(Tower tower, int playerPoints) {
+    public void apply(Tower tower, int playerPoints) {
         // Needs to implemented
         // Don't forget to use UpgradeExists to check if it is already there!
         if (upgradeExists(tower, MoneyUpgrade.class)) {

@@ -8,4 +8,8 @@ public interface GameObserver {
      * testing purposes.
      */
     public void observe(GameRunner gameRunner);
+
+    void win();
+
+    void lose();
 }

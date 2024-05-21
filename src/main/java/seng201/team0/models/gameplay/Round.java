@@ -7,9 +7,7 @@ import seng201.team0.models.resources.Resource;
 import seng201.team0.models.towers.Tower;
 import seng201.team0.services.InventoryService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * The Round class calculates the number of carts, the length of the track, applies the consumables that the
@@ -37,6 +35,8 @@ public class Round {
         this.trackLength = this.calculateTrackLength();
         int cartNum = calculateCartNum();
         this.createCarts(cartNum);
+        this.carts.sort(Comparator.comparingInt(Cart::getSpeed));
+        Collections.reverse(this.carts); // sort descending so towers select the fastest to fill first
     }
 
     public void applyConsumables() {
@@ -195,7 +195,7 @@ public class Round {
         this.hasShield = b;
     }
 
-    public List<Tower> getTowers() {
+    public ArrayList<Tower> getTowers() {
         return this.inventoryService.getActiveTowers();
     }
 
