@@ -1,13 +1,15 @@
 package seng201.team0.models.gameplay;
 
+import javafx.application.Platform;
 import seng201.team0.exceptions.FullCartException;
 import seng201.team0.models.resources.Resource;
 import seng201.team0.models.towers.Tower;
 
 import java.util.ArrayList;
 
-public class GameRunner{
+public class GameRunner implements Runnable{
 
+    private boolean gameSuccess;
     GameObserver observer;
     ArrayList<Cart> carts;
     Round round;
@@ -18,15 +20,20 @@ public class GameRunner{
         this.carts = round.getCarts();
         this.round = round;
         this.towers = (ArrayList<Tower>) this.round.getTowers();
+        this.gameSuccess = false;
     }
 
-
-    public boolean run() throws InterruptedException {
+    @Override
+    public void run() {
         boolean finished = false;
         int roundTimeElapsed = 0; // may be useful for testing?
 
         while (!finished){
-            Thread.sleep(1000); // sleep 1 second
+            try {
+                Thread.sleep(1000); // sleep 1 second
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             roundTimeElapsed += 1;
             for (Cart cart : carts){
                 if(cart.getDistance() < round.getTrackLength()){
@@ -67,13 +74,21 @@ public class GameRunner{
             // check if all carts have finished or if they are all filled
             finished = (this.cartsFinished() || this.cartsFull());
 
-            this.observer.observe(this); // passes the observer the GameRunner instance for inspection
+            // Ensure observer updates are run on the JavaFX Application Thread
+            Platform.runLater(() -> this.observer.observe(this)); // passes the observer the GameRunner instance for inspection
         }
 
         // Determine win or loss
         boolean gameSuccess = this.cartsFull();
 
-        return gameSuccess;
+        this.gameSuccess = gameSuccess;
+
+        if (gameSuccess) {
+            Platform.runLater(() -> this.observer.win());
+        }
+        else {
+            Platform.runLater(() -> this.observer.lose());
+        }
 
     }
 
@@ -110,4 +125,9 @@ public class GameRunner{
     public int getTrackDistance() {
         return round.getTrackLength();
     }
+
+    public boolean getGameSuccess() {
+        return this.gameSuccess;
+    }
+
 }

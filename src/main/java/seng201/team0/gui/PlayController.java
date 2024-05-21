@@ -92,8 +92,20 @@ public class PlayController implements GameObserver {
     }
     @FXML
     public void startGame() throws InterruptedException {
-        isSuccess = this.gameRunner.run();
-        gameEnv.setHasWon(isSuccess);
+        Thread gameThread = new Thread(gameRunner);
+        gameThread.start();
+    }
+
+    @FXML
+    public void win() {
+        gameEnv.setHasWon(true);
+        System.out.println("WE WON BOYS");
+    }
+
+    @FXML
+    public void lose() {
+        gameEnv.setHasWon(false);
+        System.out.println("SCREW THIS");
     }
 
     public void updateCartStats() {
