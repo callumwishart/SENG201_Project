@@ -17,7 +17,7 @@ public class GameRunner{
         this.observer = observer;
         this.carts = round.getCarts();
         this.round = round;
-        this.towers = this.round.getTowers();
+        this.towers = (ArrayList<Tower>) this.round.getTowers();
     }
 
 

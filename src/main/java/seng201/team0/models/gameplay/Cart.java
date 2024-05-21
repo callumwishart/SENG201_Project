@@ -38,7 +38,6 @@ public class Cart {
     public int getSize() {
         return size;
     }
-    public String getName() {return name;}
 
     public String getResourceType() {
         return resourceType;
