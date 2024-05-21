@@ -94,6 +94,18 @@ public class GameEnv {
         clearScreen.run();
         launchRoundSummaryScreen();
     }
+
+    public void setHasWon(Boolean value) {
+        result = value;
+        clearScreen.run();
+        if (value) {
+            currentRoundNum += 1;
+            launchRoundSummaryScreen();
+        } else {
+            launchRoundSummaryScreen();
+        }
+    }
+
     public void openRandomEvent(RandomEvent randomEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/random_event.fxml"));
@@ -126,16 +138,6 @@ public class GameEnv {
 
     public Player getPlayer() {
         return this.player;
-    }
-    public void setHasWon(Boolean value) {
-        result = value;
-        clearScreen.run();
-        if (value) {
-            currentRoundNum += 1;
-            launchRoundSummaryScreen();
-        } else {
-            launchRoundSummaryScreen();
-        }
     }
 
     public boolean getResult() {
