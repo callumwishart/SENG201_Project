@@ -55,10 +55,23 @@ public class GameEnv {
     private final Consumer<GameEnv> gameOverLauncher;
     private final Consumer<GameEnv> randomEventLauncher;
     public final Runnable clearScreen;
-    private Exception currException;
     private boolean result;
     private RandomEvent currRandomEvent;
 
+    /**
+     * Constructor of GameEnv which links functions and creates new instances of player, shop, player service,
+     * inventory service and shop service and then finally launches the start screen
+     * @param startLauncher takes the function start launcher from FXWrapper and assigns it to this.startLauncher.
+     * @param setupLauncher takes the function setupLauncher from FXWrapper and assigns it to this.setupLauncher.
+     * @param clearScreen takes the function clearScreen from FXWrapper and assigns it to this.clearScreen.
+     * @param playLauncher takes the function playLauncher from FXWrapper and assigns it to this.playLauncher
+     * @param inventoryLauncher takes the function inventoryLauncher from FXWrapper and assigns it to this.inventoryLauncher
+     * @param shopLauncher shopLauncher function to launch the shop screen.
+     * @param roundSummaryLauncher roundSummaryLauncher function to launch the round summary screen.
+     * @param roundStyleScreenLauncher roundStyleScreen Launcher function to launch the round style screen.
+     * @param gameOverLauncher gameOverLauncher function to launch the gameOver screen.
+     * @param randomEventLauncher randomEventLauncher function to launch the random event screen.
+     */
     public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher) {
 
         this.player = new Player();
@@ -113,6 +126,14 @@ public class GameEnv {
         launchGameOverScreen();
     }
 
+    /**
+     * Sets the result variable to whether the player won or lost and clears the screen
+     * Uses weightedCoinToss to decide if a random event will be called, if so the randomEventSelector
+     * is used to decide what random event will occur and will open call openRandomEvent(). If no random event then
+     * the round summary screen is launched.
+     * @param value boolean value which is true if the user won that round and false if the user lost the round
+     * @throws TowerNotFoundException exception thrown if the random event annot be applied to the tower
+     */
     public void setHasWon(Boolean value) throws TowerNotFoundException {
         this.result = value;
         clearScreen.run();
@@ -139,6 +160,10 @@ public class GameEnv {
 
         }
     }
+
+    /**
+     * Calls randomEventLauncher to show the random_event.fxml
+     */
     public void openRandomEvent() {
         randomEventLauncher.accept(this);
     }
@@ -201,9 +226,12 @@ public class GameEnv {
     public ShopService getShopService() {
         return shopService;
     }
-    public Exception getCurrException() {
-        return currException;
-    }
+    /**
+    * Accepts a title and a message which can then create an alert on screen where the
+     * user can view and close the alert. This method will not return anything
+     * @param title a string which is the title of an alert
+     * @param content a string which is the content of the error
+     */
     public void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
