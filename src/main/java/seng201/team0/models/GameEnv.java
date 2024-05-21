@@ -80,6 +80,9 @@ public class GameEnv {
         launchRoundStyleScreen();
 
     }
+    public void setResult(Boolean value) {
+        result = value;
+    }
     public void startRound() {
         clearScreen.run();
         launchPlayScreen();

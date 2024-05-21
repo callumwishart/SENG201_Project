@@ -63,6 +63,9 @@ public class RoundSummaryController {
     }
     @FXML
     public void finishGame() {
+        if (this.gameEnv.getRoundNum() != this.gameEnv.getNumRounds()) {
+            this.gameEnv.setResult(false);
+        }
         this.gameEnv.showFinishedGame();
     }
 }
