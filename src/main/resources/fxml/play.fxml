@@ -1,11 +1,336 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.PlayController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.PlayController">
    <children>
-      <Button layoutX="266.0" layoutY="65.0" mnemonicParsing="false" onAction="#openInventoryButton" text="Inventory" />
-      <Button layoutX="277.0" layoutY="200.0" mnemonicParsing="false" onAction="#openShop" text="Shop" />
+      <Button layoutX="24.0" layoutY="29.0" mnemonicParsing="false" onAction="#openInventoryButton" text="Inventory" />
+      <Button layoutX="527.0" layoutY="29.0" mnemonicParsing="false" onAction="#openShop" text="Shop" />
+      <HBox layoutX="9.0" layoutY="69.0" prefHeight="33.0" prefWidth="583.0">
+         <children>
+            <Button fx:id="c1Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c2Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c3Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c4Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c5Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c6Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c7Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c8Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c9Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c10Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="9.0" layoutY="130.0" prefHeight="33.0" prefWidth="583.0">
+         <children>
+            <Button fx:id="c11Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c12Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c13Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c14Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c15Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c16Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c17Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c18Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c19Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="c20Btn" disable="true" minHeight="20.0" minWidth="52.0" mnemonicParsing="false" text="Cart">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="47.0" layoutY="255.0" prefHeight="100.0" prefWidth="505.0">
+         <children>
+            <Button fx:id="t1Btn" disable="true" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" text="Tower">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fx:id="tower1Img" fitHeight="70.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="t2Btn" disable="true" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" text="Tower">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fx:id="tower2Img" fitHeight="70.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="t3Btn" disable="true" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" text="Tower">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fx:id="tower3Img" fitHeight="70.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="t4Btn" disable="true" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" text="Tower">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fx:id="tower4Img" fitHeight="70.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+            <Button fx:id="t5Btn" disable="true" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" text="Tower">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fx:id="tower5Img" fitHeight="70.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="47.0" layoutY="345.0" prefHeight="38.0" prefWidth="505.0">
+         <children>
+            <ProgressBar fx:id="t1Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="t2Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="t3Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="t4Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="t5Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ProgressBar>
+         </children>
+      </HBox>
+      <Label fx:id="pointsLabel" layoutX="276.0" layoutY="29.0" text="Points:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" layoutX="155.0" layoutY="29.0" text="Player Name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <HBox layoutX="9.0" layoutY="102.0" prefHeight="25.0" prefWidth="583.0">
+         <children>
+            <ProgressBar fx:id="c1Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c2Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c3Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c4Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c5Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c6Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c7Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c8Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c9Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c10Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+         </children>
+      </HBox>
+      <HBox layoutX="8.0" layoutY="163.0" prefHeight="25.0" prefWidth="583.0">
+         <children>
+            <ProgressBar fx:id="c11Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c12Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c13Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c14Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c15Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c16Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c17Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c18Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c19Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+            <ProgressBar fx:id="c20Progress" prefWidth="200.0" progress="0.0">
+               <HBox.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </HBox.margin>
+            </ProgressBar>
+         </children>
+      </HBox>
+      <Button layoutX="488.0" layoutY="429.0" mnemonicParsing="false" onAction="#startGame" prefHeight="117.0" prefWidth="362.0" text="START">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
