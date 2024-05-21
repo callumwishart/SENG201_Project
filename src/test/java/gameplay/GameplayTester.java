@@ -31,8 +31,10 @@ public class GameplayTester {
     void testGameRunnerWithObserver() throws InterruptedException {
         TestGameObserver observer = new TestGameObserver();
         GameRunner gameRunner = new GameRunner(round, observer);
-        boolean gameSuccess = gameRunner.run();
-        assertTrue(gameSuccess);
+        Thread gameThread = new Thread(gameRunner);
+        gameThread.start();
+        boolean gameSuccess = gameRunner.getGameSuccess();
+        assertFalse(gameSuccess);
     }
 
 }

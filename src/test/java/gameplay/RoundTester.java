@@ -39,6 +39,19 @@ public class RoundTester {
         assertEquals(1, round.getCarts().size());
     }
 
+    @Test
+    void testCartsSortedDescending(){
+        Round round = new Round(inventoryService, difficulty, 10);
+        ArrayList<Cart> carts = round.getCarts();
+        for (int i = 0; i < carts.size(); i++){
+            if (i > 0){
+                Cart previous = carts.get(i - 1);
+                Cart current = carts.get(i);
+                assertTrue(previous.getSpeed() >= current.getSpeed());
+            }
+        }
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15})
     void testAllConsumablesApply(int roundNum){

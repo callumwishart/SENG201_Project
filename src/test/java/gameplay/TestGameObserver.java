@@ -22,6 +22,16 @@ public class TestGameObserver implements GameObserver {
         printTowerInfo();
     }
 
+    @Override
+    public void win() {
+
+    }
+
+    @Override
+    public void lose() {
+
+    }
+
     public void printCartInfo(){
         for (Cart cart: this.carts){
             System.out.println(String.format("Cart Name: %s",cart.getName()));
