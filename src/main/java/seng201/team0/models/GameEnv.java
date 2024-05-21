@@ -1,5 +1,9 @@
 package seng201.team0.models;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import seng201.team0.gui.RandomEventController;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
 import seng201.team0.models.consumables.SlowCartBooster;
@@ -7,6 +11,7 @@ import seng201.team0.models.consumables.TowerSpeedBooster;
 import seng201.team0.models.gameplay.GameObserver;
 import seng201.team0.models.gameplay.GameRunner;
 import seng201.team0.models.gameplay.Round;
+import seng201.team0.models.randomevents.RandomEvent;
 import seng201.team0.models.towers.*;
 import seng201.team0.models.upgrades.CapacityUpgrade;
 import seng201.team0.models.upgrades.MoneyUpgrade;
@@ -15,7 +20,9 @@ import seng201.team0.models.upgrades.Upgrade;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
 import seng201.team0.services.ShopService;
+import javafx.scene.Parent;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -86,6 +93,21 @@ public class GameEnv {
     public void backToMain() {
         clearScreen.run();
         launchPlayScreen();
+    }
+    public void openRandomEvent(RandomEvent randomEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/random_event.fxml"));
+            Parent root = loader.load();
+            RandomEventController controller = loader.getController();
+            controller.setRandomEvent(randomEvent);
+
+            Stage stage = new Stage();
+            stage.setTitle(randomEvent.getName());
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void launchStartScreen() {
