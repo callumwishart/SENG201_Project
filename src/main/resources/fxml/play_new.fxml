@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="seng201.team0.gui.PlayController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.PlayController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -29,8 +29,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c1Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c1Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c1Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c1Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -38,28 +44,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c1Spped" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -70,8 +60,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c2Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c2Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c2Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c2Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -79,28 +75,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c2Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -108,8 +88,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c3Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c3Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c3Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c3Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -117,28 +103,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c3Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -146,8 +116,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c4Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c4Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c4Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c4Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -155,28 +131,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c4Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -184,8 +144,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c5Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c5Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c5Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c5Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -193,28 +159,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c5Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -222,8 +172,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c6Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c6Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c6Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c6Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -231,28 +187,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c6Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -260,8 +200,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c7Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c7Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c7Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c7Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -269,28 +215,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c7Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -298,8 +228,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c8Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c8Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c8Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c8Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -307,28 +243,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c8Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -336,8 +256,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c9Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c9Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c9Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c9Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -345,28 +271,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c9Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -374,8 +284,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c10Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c10Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c10Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c10Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -383,28 +299,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c10Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -530,8 +430,17 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c11Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c11Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <ProgressBar fx:id="c11Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c11Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -539,28 +448,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c11Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -571,8 +464,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c12Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c12Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c12Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c12Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -580,28 +479,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c12Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -609,8 +492,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c13Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c13Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c13Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c13Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -618,28 +507,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c13Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -647,8 +520,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c14Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c14Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c14Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c14Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -656,28 +535,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c14Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -685,8 +548,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c15Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c15Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c15Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c15Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -694,28 +563,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c15Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -723,8 +576,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c16Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c16Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c16Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c16Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -732,28 +591,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c16Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -761,8 +604,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c17Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c17Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c17Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c17Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -770,28 +619,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c17Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -799,8 +632,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c18Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c18Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c18Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c18Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -808,28 +647,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c18Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -837,8 +660,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c19Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c19Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c19Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c19Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -846,28 +675,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c19Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
@@ -875,8 +688,14 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Button fx:id="c20Btn" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cart Name" />
-                  <ProgressBar fx:id="c20Progress" prefWidth="200.0" progress="0.0" />
-                  <Label text="Speed:">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Distance" textAlignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="c20Progress" prefHeight="10.0" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="c20Capacity" prefWidth="200.0" progress="0.0" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Capacity" translateY="-23.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -884,28 +703,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Capacity:">
+                  <Label fx:id="c20Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Slots empty:">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Label">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
                </children>
