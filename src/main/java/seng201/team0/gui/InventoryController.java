@@ -209,9 +209,11 @@ public class InventoryController {
             this.gameEnv.showAlert("No tower selected", "Select a tower and try again");
             return;
         } catch (Exception e) {
-        this.gameEnv.showAlert("Not enough money!", "You don't have enough money to buy this!");
-        return;
+            this.gameEnv.showAlert("Not enough money!", "You don't have enough money to buy this!");
+            return;
+        }
         updateStats(currentTower);
+
     }
     @FXML
     public void sellTower() throws NegativeAdditionException {

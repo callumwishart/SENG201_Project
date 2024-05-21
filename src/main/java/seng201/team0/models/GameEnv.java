@@ -40,7 +40,7 @@ public class GameEnv {
     private PlayerService playerService;
     private InventoryService inventoryService;
     private ShopService shopService;
-    private final int defaultTowerCost = 5;
+    private final int defaultTowerCost = 30;
     private final int defaultTowerReload = 5;
     private List<Tower> possibleTowers = List.of(new Factory(defaultTowerReload,defaultTowerCost), new Farm(defaultTowerReload,defaultTowerCost), new Mine(defaultTowerReload,defaultTowerCost), new Sawmill(defaultTowerReload,defaultTowerCost), new WaterTower(defaultTowerReload,defaultTowerCost));
     private List<Upgrade> possibleUpgrades = List.of(new CapacityUpgrade(), new MoneyUpgrade(), new SpeedUpgrade());
