@@ -1,4 +1,4 @@
-package gameplay;
+package gameplaytests;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
