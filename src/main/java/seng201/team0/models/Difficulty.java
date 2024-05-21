@@ -37,6 +37,17 @@ public class Difficulty {
         this.roundDifficultyMultiplier = cartAndRoundDifficultyMultiplier;
         this.randomEventMultiplier = randomEventMultiplier;
     }
+    public void updateDifficulty(String value) {
+        if (value == "Risky") {
+            this.costMultiplier *= 1.2;
+            this.roundDifficultyMultiplier *= 1.2;
+            this.randomEventMultiplier *= 1.2;
+        } else if (value == "Safe") {
+            this.costMultiplier *= 0.8;
+            this.roundDifficultyMultiplier *= 0.8;
+            this.randomEventMultiplier *= 0.8;
+        }
+    }
 
     public double getCostMultiplier(){
         return this.costMultiplier;

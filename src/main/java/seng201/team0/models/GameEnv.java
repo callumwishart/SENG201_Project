@@ -1,5 +1,9 @@
 package seng201.team0.models;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import seng201.team0.gui.RandomEventController;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
 import seng201.team0.models.consumables.SlowCartBooster;
@@ -7,6 +11,7 @@ import seng201.team0.models.consumables.TowerSpeedBooster;
 import seng201.team0.models.gameplay.GameObserver;
 import seng201.team0.models.gameplay.GameRunner;
 import seng201.team0.models.gameplay.Round;
+import seng201.team0.models.randomevents.RandomEvent;
 import seng201.team0.models.towers.*;
 import seng201.team0.models.upgrades.CapacityUpgrade;
 import seng201.team0.models.upgrades.MoneyUpgrade;
@@ -15,7 +20,9 @@ import seng201.team0.models.upgrades.Upgrade;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
 import seng201.team0.services.ShopService;
+import javafx.scene.Parent;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -40,10 +47,11 @@ public class GameEnv {
     private final Consumer<GameEnv> inventoryLauncher;
     private final Consumer<GameEnv> shopLauncher;
     private final Consumer<GameEnv> roundSummaryScreenLauncher;
+    private final Consumer<GameEnv> roundStyleScreenLauncher;
     private final Runnable clearScreen;
     private boolean result;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -56,6 +64,7 @@ public class GameEnv {
         this.inventoryLauncher = inventoryLauncher;
         this.shopLauncher = shopLauncher;
         this.roundSummaryScreenLauncher = roundSummaryLauncher;
+        this.roundStyleScreenLauncher = roundStyleScreenLauncher;
         launchStartScreen();
     }
 
@@ -64,11 +73,14 @@ public class GameEnv {
         launchSetupScreen();
     }
 
-    public void closeSetupScreen() throws InterruptedException {
+    public void closeSetupScreen() {
         clearScreen.run();
+        launchRoundStyleScreen();
 
+    }
+    public void startRound() {
+        clearScreen.run();
         launchPlayScreen();
-        // Round round = new Round();
     }
     public void openInventory() {
         clearScreen.run();
@@ -82,6 +94,21 @@ public class GameEnv {
         clearScreen.run();
         launchPlayScreen();
     }
+    public void openRandomEvent(RandomEvent randomEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/random_event.fxml"));
+            Parent root = loader.load();
+            RandomEventController controller = loader.getController();
+            controller.setRandomEvent(randomEvent);
+
+            Stage stage = new Stage();
+            stage.setTitle(randomEvent.getName());
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public void launchStartScreen() {
         startLauncher.accept(this);
@@ -93,6 +120,9 @@ public class GameEnv {
     public void launchPlayScreen() {playLauncher.accept(this);}
     public void launchInventoryScreen() {inventoryLauncher.accept(this);}
     private void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
+    private void launchRoundStyleScreen() {
+        roundStyleScreenLauncher.accept(this);
+    }
 
     public Player getPlayer() {
         return this.player;

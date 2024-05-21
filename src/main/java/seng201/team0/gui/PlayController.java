@@ -122,6 +122,5 @@ public class PlayController implements GameObserver {
         this.trackDistance = gameRunner.getTrackDistance();
         this.updateCartStats();
         this.updateTowerStats();
-
     }
 }
