@@ -82,21 +82,9 @@ public class PlayController implements GameObserver {
         pointsLabel.setText(String.valueOf(inventoryService.getPoints()));
     }
     @FXML
-    public void openInventoryButton() {
-        this.gameEnv.openInventory();
-    }
-
-    @FXML
-    public void openShop() {
-        this.gameEnv.openShop();
-    }
-    @FXML
     public void startGame() throws InterruptedException {
         Thread gameThread = new Thread(gameRunner);
         gameThread.start();
-    }
-    public void gameStarter() throws InterruptedException {
-        startGame();
     }
 
     @FXML
