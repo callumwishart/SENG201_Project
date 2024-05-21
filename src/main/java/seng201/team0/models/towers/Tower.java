@@ -118,4 +118,8 @@ public class Tower extends Item implements Sellable {
             return 0;
         }
     }
+
+    public void incrementUsed() {
+        this.used += 1;
+    }
 }
