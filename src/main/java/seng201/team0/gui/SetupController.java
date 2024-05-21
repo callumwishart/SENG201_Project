@@ -120,5 +120,4 @@ public class SetupController {
         this.gameEnv.setDifficulty(createDifficulty(difficultyText));
         this.gameEnv.closeSetupScreen();
     }
-
 }

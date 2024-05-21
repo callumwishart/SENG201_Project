@@ -19,7 +19,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen, this::launchShopScreen, this::launchRoundSummaryScreen, this::launchRoundStyleScreen);
+        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen, this::launchShopScreen, this::launchRoundSummaryScreen, this::launchRoundStyleScreen, this::launchGameOverScreen);
     }
 
     public void launchSetupScreen(GameEnv gameEnv) {
@@ -52,7 +52,7 @@ public class FXWrapper {
     }
     public void launchPlayScreen(GameEnv gameEnv) {
         try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/play.fxml"));
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/play_new.fxml"));
             mainScreenLoader.setControllerFactory(param -> new PlayController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
@@ -101,6 +101,17 @@ public class FXWrapper {
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Choose your round style!");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    private void launchGameOverScreen(GameEnv gameEnv) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/game_over.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new GameOverController(gameEnv));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Game Finished!");
         } catch (IOException e){
             e.printStackTrace();
         }

@@ -44,7 +44,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="c1Spped" text="Speed:" translateY="-15.0">
+                  <Label fx:id="c1Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -324,7 +324,7 @@
                      </graphic>
                   </Button>
                   <Label text="Reload progress" />
-                  <ProgressBar fx:id="t1progress" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="t1Progress" prefWidth="200.0" progress="0.0" />
                </children>
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
@@ -341,7 +341,7 @@
                      </graphic>
                   </Button>
                   <Label text="Reload progress" />
-                  <ProgressBar fx:id="t2progress" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="t2Progress" prefWidth="200.0" progress="0.0" />
                </children>
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
@@ -358,7 +358,7 @@
                      </graphic>
                   </Button>
                   <Label text="Reload progress" />
-                  <ProgressBar fx:id="t3progress" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="t3Progress" prefWidth="200.0" progress="0.0" />
                </children>
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
@@ -375,7 +375,7 @@
                      </graphic>
                   </Button>
                   <Label text="Reload progress" />
-                  <ProgressBar fx:id="t4progress" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="t4Progress" prefWidth="200.0" progress="0.0" />
                </children>
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
@@ -392,7 +392,7 @@
                      </graphic>
                   </Button>
                   <Label text="Reload progress" />
-                  <ProgressBar fx:id="t5progress" prefWidth="200.0" progress="0.0" />
+                  <ProgressBar fx:id="t5Progress" prefWidth="200.0" progress="0.0" />
                </children>
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
