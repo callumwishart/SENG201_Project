@@ -8,7 +8,7 @@ import java.util.*;
 
 
 public class TowerBreakEvent extends RandomEvent{
-    public TowerBreakEvent(String inputName, String inputDescription) {
+    public TowerBreakEvent() {
         super("Random Tower Breakage", "Breaks a random Tower");
     }
     public void applyEvent() {

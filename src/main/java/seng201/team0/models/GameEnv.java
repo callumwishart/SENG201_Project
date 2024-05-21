@@ -49,10 +49,14 @@ public class GameEnv {
     private final Consumer<GameEnv> roundSummaryScreenLauncher;
     private final Consumer<GameEnv> roundStyleScreenLauncher;
     private final Consumer<GameEnv> gameOverLauncher;
+    private final Consumer<GameEnv> randomEventLauncher;
+    private final Consumer<GameEnv> errorLauncher;
     private final Runnable clearScreen;
+    private Exception currException;
     private boolean result;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher, Consumer<GameEnv> errorLauncher) {
+
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -67,6 +71,8 @@ public class GameEnv {
         this.roundSummaryScreenLauncher = roundSummaryLauncher;
         this.roundStyleScreenLauncher = roundStyleScreenLauncher;
         this.gameOverLauncher = gameOverLauncher;
+        this.randomEventLauncher = randomEventLauncher;
+        this.errorLauncher = errorLauncher;
         launchStartScreen();
     }
 
@@ -112,24 +118,17 @@ public class GameEnv {
             launchRoundSummaryScreen();
         } else {
             launchRoundSummaryScreen();
+
         }
     }
-
-    public void openRandomEvent(RandomEvent randomEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/fxml/random_event.fxml"));
-            Parent root = loader.load();
-            RandomEventController controller = loader.getController();
-            controller.setRandomEvent(randomEvent);
-
-            Stage stage = new Stage();
-            stage.setTitle(randomEvent.getName());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+    public void setCurrException(Exception exception) {
+        currException = exception;
     }
+    public void openError(Exception exception) {
+        setCurrException(exception);
+        launchError();
+    }
+
 
     public void launchStartScreen() {
         startLauncher.accept(this);
@@ -141,6 +140,8 @@ public class GameEnv {
     public void launchPlayScreen() {playLauncher.accept(this);}
     public void launchInventoryScreen() {inventoryLauncher.accept(this);}
     private void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
+    private void launchRandomEvent() {randomEventLauncher.accept(this);}
+    private void launchError() {errorLauncher.accept(this);}
     private void launchRoundStyleScreen() {
         roundStyleScreenLauncher.accept(this);
     }
@@ -185,5 +186,8 @@ public class GameEnv {
     }
     public ShopService getShopService() {
         return shopService;
+    }
+    public Exception getCurrException() {
+        return currException;
     }
 }
