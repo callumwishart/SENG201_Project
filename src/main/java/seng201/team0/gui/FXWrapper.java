@@ -52,7 +52,7 @@ public class FXWrapper {
     }
     public void launchPlayScreen(GameEnv gameEnv) {
         try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/play.fxml"));
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/play_new.fxml"));
             mainScreenLoader.setControllerFactory(param -> new PlayController(gameEnv));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
