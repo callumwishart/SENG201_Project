@@ -1,23 +1,29 @@
 package seng201.team0.models.randomevents;
 
 import seng201.team0.models.towers.Tower;
+import seng201.team0.services.InventoryService;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
-// import static seng201.team0.models.PlayerInventory.getActiveTowers;
-
 public class TowerBuffEvent extends RandomEvent{
-    public TowerBuffEvent(String inputName, String inputDescription) {
-        super("Buff Tower", "Buffs Your Tower");
-    }
-    public void applyEvent() {
-        /* List<Tower> activeTowers = getActiveTowers();
-        Random rand = new Random();
-        int randomTower = rand.nextInt(activeTowers.size());
-        int randomAmount = rand.nextInt(10);
-        activeTowers.get(randomTower).increaseReloadSpeed(randomAmount);
-        */
 
+    public TowerBuffEvent() {
+        super("Random Tower Buff!", "A random tower in your inventory has been buffed! Check out your Active towers to see what's happened!");
+    }
+
+    @Override
+    public void apply(InventoryService inventoryService) {
+        setTowerAffected(inventoryService);
+        Tower tower = getTowerAffected();
+        tower.increaseResourceAmount(1); // increases the number of resources the tower can unload at once, making it more effective for filling carts
+    }
+
+    public void setTowerAffected(InventoryService inventoryService) {
+        Random random = new Random();
+        ArrayList<Tower> towers = inventoryService.getActiveTowers();
+        int randomTowerIndex = random.nextInt(towers.size());
+        Tower tower = towers.get(randomTowerIndex);
+        this.towerAffected = tower;
     }
 }

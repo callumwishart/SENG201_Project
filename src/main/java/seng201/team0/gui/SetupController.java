@@ -98,7 +98,7 @@ public class SetupController {
     }
     public Difficulty createDifficulty(String input) {
         if (input == "hard") {
-            return new Difficulty(1,2,3);
+            return new Difficulty(1.2,1.2,1.2);
         } else {
             return new Difficulty(1,1,1);
         }
