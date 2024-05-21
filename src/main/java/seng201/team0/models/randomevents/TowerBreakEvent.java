@@ -14,14 +14,21 @@ public class TowerBreakEvent extends RandomEvent{
 
     @Override
     public void apply(InventoryService inventoryService) throws TowerNotFoundException {
+        setTowerAffected(inventoryService);
+        Tower tower = getTowerAffected();
+        tower.setToBroken();
+    }
+
+    public void setTowerAffected(InventoryService inventoryService) throws TowerNotFoundException {
         ArrayList<Tower> towers = inventoryService.getActiveTowers();
         Optional<Tower> maxTower = towers.stream().max(Comparator.comparingInt(Tower::getUsed));
-        if (maxTower.isPresent()){
-            Tower tower = maxTower.get();
-            tower.setToBroken(); // breaks tower
+        Tower tower = null;
+        if (maxTower.isPresent()) {
+            tower = maxTower.get();
         }
         else {
             throw new TowerNotFoundException();
         }
+        this.towerAffected = tower;
     }
 }

@@ -4,7 +4,6 @@ import seng201.team0.models.towers.Tower;
 import seng201.team0.services.InventoryService;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class TowerBuffEvent extends RandomEvent{
@@ -15,10 +14,16 @@ public class TowerBuffEvent extends RandomEvent{
 
     @Override
     public void apply(InventoryService inventoryService) {
+        setTowerAffected(inventoryService);
+        Tower tower = getTowerAffected();
+        tower.increaseResourceAmount(1); // increases the number of resources the tower can unload at once, making it more effective for filling carts
+    }
+
+    public void setTowerAffected(InventoryService inventoryService) {
         Random random = new Random();
         ArrayList<Tower> towers = inventoryService.getActiveTowers();
         int randomTowerIndex = random.nextInt(towers.size());
         Tower tower = towers.get(randomTowerIndex);
-        tower.increaseResourceAmount(1); // increases the number of resources the tower can unload at once, making it more effective for filling carts
+        this.towerAffected = tower;
     }
 }
