@@ -2,6 +2,7 @@ package seng201.team0.models.gameplay;
 
 import javafx.application.Platform;
 import seng201.team0.exceptions.FullCartException;
+import seng201.team0.exceptions.NegativeAdditionException;
 import seng201.team0.models.resources.Resource;
 import seng201.team0.models.towers.Tower;
 
@@ -84,12 +85,34 @@ public class GameRunner implements Runnable{
         this.gameSuccess = gameSuccess;
 
         if (gameSuccess) {
-            Platform.runLater(() -> this.observer.win());
+            int coins = earnCoins();
+            int points = earnPoints();
+            Platform.runLater(() -> {
+                try {
+                    this.observer.win(coins, points);
+                } catch (NegativeAdditionException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
         else {
             Platform.runLater(() -> this.observer.lose());
         }
 
+    }
+
+    private int earnCoins() {
+        int totalCoins = 0;
+        for (Cart cart : carts){
+            for (Resource resource : cart.getCargo()){
+                totalCoins += resource.getResourceCoinValue();
+            }
+        }
+        return totalCoins;
+    }
+
+    private int earnPoints() {
+        return 200;
     }
 
     public boolean cartsFinished() {

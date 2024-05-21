@@ -94,4 +94,8 @@ public class Cart {
     public int getCargoSlotsFilled() {
         return cargoSlotsFilled;
     }
+
+    public Resource[] getCargo() {
+        return this.cargo;
+    }
 }

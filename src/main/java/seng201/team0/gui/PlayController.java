@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import seng201.team0.exceptions.NegativeAdditionException;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.gameplay.Cart;
@@ -87,13 +88,15 @@ public class PlayController implements GameObserver {
         gameThread.start();
     }
 
-    @FXML
-    public void win() {
+    @Override
+    public void win(int coins, int points) throws NegativeAdditionException {
+        this.inventoryService.addCoins(coins);
+        this.inventoryService.addPoints(points);
         gameEnv.setHasWon(true);
         System.out.println("WE WON BOYS");
     }
 
-    @FXML
+    @Override
     public void lose() {
         gameEnv.setHasWon(false);
         System.out.println("SCREW THIS");

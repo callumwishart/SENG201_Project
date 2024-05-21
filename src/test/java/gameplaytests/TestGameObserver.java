@@ -23,7 +23,7 @@ public class TestGameObserver implements GameObserver {
     }
 
     @Override
-    public void win() {
+    public void win(int coins, int points) {
 
     }
 
