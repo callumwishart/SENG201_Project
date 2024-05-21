@@ -8,8 +8,6 @@ import java.util.Random;
 
 public class TowerDebuffEvent extends RandomEvent{
 
-    private Tower towerAffected;
-
     public TowerDebuffEvent() {
         super("Random Tower Debuff!", "A random tower in your inventory has been debuffed! Check out your Active towers to see what's happened!");
     }

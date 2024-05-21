@@ -7,6 +7,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team0.exceptions.NegativeAdditionException;
+import seng201.team0.exceptions.TowerNotFoundException;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.gameplay.Cart;
@@ -97,7 +98,7 @@ public class PlayController implements GameObserver {
     }
 
     @Override
-    public void win(int coins, int points) throws NegativeAdditionException {
+    public void win(int coins, int points) throws NegativeAdditionException, TowerNotFoundException {
         round.cleanup(); // gets rid of consumables used, resets difficulty multipliers for next round
         this.inventoryService.addCoins(coins);
         this.inventoryService.addPoints(points);
@@ -105,7 +106,7 @@ public class PlayController implements GameObserver {
     }
 
     @Override
-    public void lose() {
+    public void lose() throws TowerNotFoundException {
         round.cleanup();
         gameEnv.setHasWon(false);
     }

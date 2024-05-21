@@ -1,6 +1,7 @@
 package seng201.team0.models.gameplay;
 
 import seng201.team0.exceptions.NegativeAdditionException;
+import seng201.team0.exceptions.TowerNotFoundException;
 
 public interface GameObserver {
     /**
@@ -11,7 +12,7 @@ public interface GameObserver {
      */
     public void observe(GameRunner gameRunner);
 
-    void win(int coins, int points) throws NegativeAdditionException;
+    void win(int coins, int points) throws NegativeAdditionException, TowerNotFoundException;
 
-    void lose();
+    void lose() throws TowerNotFoundException;
 }

@@ -130,6 +130,8 @@ public class InventoryController {
             consumableButtons.get(i).setText(this.gameEnv.getInventoryService().getConsumables().get(i).getName());
             upgradeButtons.get(i).setDisable(false);
         }
+        coinsLabel.setText("Coins " + this.gameEnv.getInventoryService().getCoins());
+        pointsLabel.setText("Points: " + this.gameEnv.getInventoryService().getPoints());
     }
 
     private void updateUpgradeStats(Upgrade upgrade) {
@@ -148,7 +150,7 @@ public class InventoryController {
         towerNameLabel.setText("Tower Name: " + tower.getName());
         towerStatusLabel.setText("Status: " + getStatus(tower));
         towerLevelLabel.setText("Level: " + String.valueOf(tower.getLevel()));
-        pointsNeededLabel.setText("Points needed to upgrade: YET TO IMPLEMENT");
+        pointsNeededLabel.setText("Points needed to upgrade: " + tower.getRepairCost());
         sellCostLabel.setText("Sell cost: " + String.valueOf(tower.getSellCost()));
         repairCostLabel.setText("Repair Cost: " + String.valueOf(tower.getRepairCost()));
     }
