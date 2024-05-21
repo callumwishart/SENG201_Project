@@ -138,7 +138,9 @@ public class GameEnv {
         }
     }
 
-
+    public boolean getResult() {
+        return result;
+    }
 
     public void setNumRounds(int value) {
         numRounds = value;
@@ -155,6 +157,10 @@ public class GameEnv {
     }
     public int getRoundNum() {
         return currentRoundNum;
+    }
+
+    public int getNumRounds() {
+        return numRounds;
     }
 
     public void setDifficulty(Difficulty difficulty) {
