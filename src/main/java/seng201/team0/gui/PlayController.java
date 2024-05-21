@@ -94,7 +94,6 @@ public class PlayController implements GameObserver {
     public void startGame() throws InterruptedException {
         isSuccess = this.gameRunner.run();
         gameEnv.setHasWon(isSuccess);
-
     }
 
     public void updateCartStats() {
@@ -123,6 +122,5 @@ public class PlayController implements GameObserver {
         this.trackDistance = gameRunner.getTrackDistance();
         this.updateCartStats();
         this.updateTowerStats();
-
     }
 }
