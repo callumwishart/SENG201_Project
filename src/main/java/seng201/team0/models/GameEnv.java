@@ -40,10 +40,11 @@ public class GameEnv {
     private final Consumer<GameEnv> inventoryLauncher;
     private final Consumer<GameEnv> shopLauncher;
     private final Consumer<GameEnv> roundSummaryScreenLauncher;
+    private final Consumer<GameEnv> roundStyleScreenLauncher;
     private final Runnable clearScreen;
     private boolean result;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -56,6 +57,7 @@ public class GameEnv {
         this.inventoryLauncher = inventoryLauncher;
         this.shopLauncher = shopLauncher;
         this.roundSummaryScreenLauncher = roundSummaryLauncher;
+        this.roundStyleScreenLauncher = roundStyleScreenLauncher;
         launchStartScreen();
     }
 
@@ -64,11 +66,14 @@ public class GameEnv {
         launchSetupScreen();
     }
 
-    public void closeSetupScreen() throws InterruptedException {
+    public void closeSetupScreen() {
         clearScreen.run();
+        launchRoundStyleScreen();
 
+    }
+    public void startRound() {
+        clearScreen.run();
         launchPlayScreen();
-        // Round round = new Round();
     }
     public void openInventory() {
         clearScreen.run();
@@ -93,6 +98,9 @@ public class GameEnv {
     public void launchPlayScreen() {playLauncher.accept(this);}
     public void launchInventoryScreen() {inventoryLauncher.accept(this);}
     private void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
+    private void launchRoundStyleScreen() {
+        roundStyleScreenLauncher.accept(this);
+    }
 
     public Player getPlayer() {
         return this.player;
