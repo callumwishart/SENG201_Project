@@ -95,6 +95,9 @@ public class PlayController implements GameObserver {
         Thread gameThread = new Thread(gameRunner);
         gameThread.start();
     }
+    public void gameStarter() throws InterruptedException {
+        startGame();
+    }
 
     @FXML
     public void win() {
