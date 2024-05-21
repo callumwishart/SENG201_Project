@@ -48,10 +48,11 @@ public class GameEnv {
     private final Consumer<GameEnv> shopLauncher;
     private final Consumer<GameEnv> roundSummaryScreenLauncher;
     private final Consumer<GameEnv> roundStyleScreenLauncher;
+    private final Consumer<GameEnv> gameOverLauncher;
     private final Runnable clearScreen;
     private boolean result;
 
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher) {
         this.player = new Player();
         this.shop = new Shop();
         this.playerService = new PlayerService(player);
@@ -65,6 +66,7 @@ public class GameEnv {
         this.shopLauncher = shopLauncher;
         this.roundSummaryScreenLauncher = roundSummaryLauncher;
         this.roundStyleScreenLauncher = roundStyleScreenLauncher;
+        this.gameOverLauncher = gameOverLauncher;
         launchStartScreen();
     }
 
@@ -92,7 +94,11 @@ public class GameEnv {
     }
     public void backToMain() {
         clearScreen.run();
-        launchPlayScreen();
+        launchRoundSummaryScreen();
+    }
+    public void showFinishedGame() {
+        clearScreen.run();
+        launchGameOverScreen();
     }
 
     public void setHasWon(Boolean value) {
@@ -134,6 +140,9 @@ public class GameEnv {
     private void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
     private void launchRoundStyleScreen() {
         roundStyleScreenLauncher.accept(this);
+    }
+    private void launchGameOverScreen() {
+        gameOverLauncher.accept(this);
     }
 
     public Player getPlayer() {
