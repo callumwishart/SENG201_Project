@@ -148,6 +148,7 @@ public class Round {
 
     public void cleanup() {
         this.removeConsumables();
+        this.difficulty.reset();
     }
 
     private void removeConsumables() {
