@@ -98,6 +98,7 @@ public class PlayController implements GameObserver {
 
     @Override
     public void win(int coins, int points) throws NegativeAdditionException {
+        round.cleanup(); // gets rid of consumables used, resets difficulty multipliers for next round
         this.inventoryService.addCoins(coins);
         this.inventoryService.addPoints(points);
         gameEnv.setHasWon(true);
@@ -105,6 +106,7 @@ public class PlayController implements GameObserver {
 
     @Override
     public void lose() {
+        round.cleanup();
         gameEnv.setHasWon(false);
     }
 

@@ -8,9 +8,6 @@ import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
 import seng201.team0.models.consumables.SlowCartBooster;
 import seng201.team0.models.consumables.TowerSpeedBooster;
-import seng201.team0.models.gameplay.GameObserver;
-import seng201.team0.models.gameplay.GameRunner;
-import seng201.team0.models.gameplay.Round;
 import seng201.team0.models.randomevents.RandomEvent;
 import seng201.team0.models.towers.*;
 import seng201.team0.models.upgrades.CapacityUpgrade;
@@ -21,6 +18,7 @@ import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
 import seng201.team0.services.ShopService;
 import javafx.scene.Parent;
+import seng201.team0.utils.Utilities;
 
 import java.io.IOException;
 import java.util.List;
@@ -111,11 +109,17 @@ public class GameEnv {
     }
 
     public void setHasWon(Boolean value) {
-        result = value;
+        this.result = value;
         clearScreen.run();
         if (value) {
             currentRoundNum += 1;
-            launchRoundSummaryScreen();
+            // random event logic
+            if (Utilities.weightedCoinToss(0.33)){
+                // open the random event
+            }
+            else {
+                launchRoundSummaryScreen();
+            }
         } else {
             launchRoundSummaryScreen();
 

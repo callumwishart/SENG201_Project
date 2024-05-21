@@ -78,7 +78,10 @@ public class GameRunner implements Runnable{
             // Ensure observer updates are run on the JavaFX Application Thread
             Platform.runLater(() -> this.observer.observe(this)); // passes the observer the GameRunner instance for inspection
         }
-
+        // increment towers used variable by one, indicating it has been used for a round
+        for (Tower tower : towers){
+            tower.incrementUsed();
+        }
         // Determine win or loss
         boolean gameSuccess = this.cartsFull();
 
