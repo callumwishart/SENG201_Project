@@ -1,5 +1,7 @@
 package seng201.team0.models.gameplay;
 
+import seng201.team0.exceptions.NegativeAdditionException;
+
 public interface GameObserver {
     /**
      * The observe function should be implemented such that the observer class
@@ -9,7 +11,7 @@ public interface GameObserver {
      */
     public void observe(GameRunner gameRunner);
 
-    void win();
+    void win(int coins, int points) throws NegativeAdditionException;
 
     void lose();
 }
