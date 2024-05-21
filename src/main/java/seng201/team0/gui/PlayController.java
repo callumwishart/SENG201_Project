@@ -44,6 +44,8 @@ public class PlayController implements GameObserver {
     private List<Cart> carts;
     private List<Tower> towers;
     private int trackDistance;
+    private boolean isSuccess;
+
     public PlayController(GameEnv gameEnv){
         this.gameEnv = gameEnv;
         this.round = new Round(this.gameEnv.getInventoryService(), this.gameEnv.getDifficulty(), this.gameEnv.getRoundNum());
@@ -90,7 +92,8 @@ public class PlayController implements GameObserver {
     }
     @FXML
     public void startGame() throws InterruptedException {
-        this.gameRunner.run();
+        isSuccess = this.gameRunner.run();
+        gameEnv.setHasWon(isSuccess);
     }
 
     public void updateCartStats() {
@@ -119,5 +122,6 @@ public class PlayController implements GameObserver {
         this.trackDistance = gameRunner.getTrackDistance();
         this.updateCartStats();
         this.updateTowerStats();
+
     }
 }
