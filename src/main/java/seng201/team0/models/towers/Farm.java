@@ -11,6 +11,6 @@ public class Farm extends Tower{
         super(Food, inputReloadSpeed, "Farm", "Resource: " + Food.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
     public Farm() {
-        super(Food, 5, "Farm", "Resource: " + Food.getResourceType(), 1, towerImagePath, brokenImagePath);
+        super(Food, 5, "Farm", "Resource: " + Food.getResourceType(), 100, towerImagePath, brokenImagePath);
     }
 }

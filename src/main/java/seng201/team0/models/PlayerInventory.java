@@ -57,7 +57,7 @@ public class PlayerInventory {
     }
 
     public void addCoins(int amount) throws NegativeAdditionException {
-        if (amount > 0) {
+        if (amount >= 0) {
             coins += amount;
         } else {
             throw new NegativeAdditionException();
