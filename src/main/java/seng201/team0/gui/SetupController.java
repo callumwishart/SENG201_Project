@@ -8,6 +8,7 @@ import seng201.team0.exceptions.NameCharException;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.towers.Tower;
+import seng201.team0.gui.FXWrapper;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -105,19 +106,23 @@ public class SetupController {
     }
     @FXML
     public void startGame() throws InterruptedException, NameCharException {
-        ArrayList<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
-        for (Tower tower: selectedTowers) {
-            try {
-                Tower newTower = tower.getClass().getDeclaredConstructor().newInstance();
-                finalTowers.add(newTower);
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            ArrayList<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
+            for (Tower tower: selectedTowers) {
+                try {
+                    Tower newTower = tower.getClass().getDeclaredConstructor().newInstance();
+                    finalTowers.add(newTower);
+                } catch (Exception e) {
+                    this.gameEnv.openError(e);
+                }
             }
+            this.gameEnv.getPlayer().setName(nameField.getText());
+            this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
+            this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
+            this.gameEnv.setDifficulty(createDifficulty(difficultyText));
+            this.gameEnv.closeSetupScreen();
+        } catch (Exception e) {
+            this.gameEnv.openError(e);
         }
-        this.gameEnv.getPlayer().setName(nameField.getText());
-        this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
-        this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
-        this.gameEnv.setDifficulty(createDifficulty(difficultyText));
-        this.gameEnv.closeSetupScreen();
     }
 }
