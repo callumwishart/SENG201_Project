@@ -92,7 +92,7 @@ public class GameEnv {
     }
     public void backToMain() {
         clearScreen.run();
-        launchPlayScreen();
+        launchRoundSummaryScreen();
     }
     public void openRandomEvent(RandomEvent randomEvent) {
         try {

@@ -90,13 +90,11 @@ public class PlayController implements GameObserver {
     @FXML
     public void win() {
         gameEnv.setHasWon(true);
-        System.out.println("WE WON BOYS");
     }
 
     @FXML
     public void lose() {
         gameEnv.setHasWon(false);
-        System.out.println("SCREW THIS");
     }
 
     public void updateCartStats() {
