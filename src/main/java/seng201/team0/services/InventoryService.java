@@ -89,7 +89,12 @@ public class InventoryService {
     }
 
     public void applyUpgrade(Tower tower, Upgrade upgrade) throws UpgradeException {
-        upgrade.applyUpgrade(tower, this.getPoints());
+        upgrade.apply(tower, this.getPoints());
+        removeUpgrade(upgrade); // consumes from the inventory
+    }
+
+    public void removeUpgrade(Upgrade upgrade){
+        this.inventory.removeUpgrade(upgrade);
     }
 
     public void sellTower(Tower tower) throws NegativeAdditionException, TowerNotFoundException {

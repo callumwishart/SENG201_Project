@@ -20,5 +20,5 @@ public abstract class Upgrade extends Item {
         return false;
     }
 
-    public abstract void applyUpgrade(Tower tower, int playerPoints);
+    public abstract void apply(Tower tower, int playerPoints);
 }
