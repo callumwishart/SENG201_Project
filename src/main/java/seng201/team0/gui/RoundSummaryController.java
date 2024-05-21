@@ -61,4 +61,8 @@ public class RoundSummaryController {
     public void nextRound() throws InterruptedException {
         this.gameEnv.closeSetupScreen();
     }
+    @FXML
+    public void finishGame() {
+        this.gameEnv.showFinishedGame();
+    }
 }

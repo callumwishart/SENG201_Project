@@ -44,7 +44,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="c1Spped" text="Speed:" translateY="-15.0">
+                  <Label fx:id="c1Speed" text="Speed:" translateY="-15.0">
                      <font>
                         <Font size="11.0" />
                      </font>
