@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.randomevents.RandomEvent;
@@ -26,14 +27,13 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen, this::launchShopScreen, this::launchRoundSummaryScreen, this::launchRoundStyleScreen, this::launchGameOverScreen, this::openRandomEvent, this::openErrorMessage);
+        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen, this::launchShopScreen, this::launchRoundSummaryScreen, this::launchRoundStyleScreen, this::launchGameOverScreen, this::openRandomEvent);
     }
 
 
     public void launchSetupScreen(GameEnv gameEnv) {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/setup_screen.fxml"));
-            // provide a custom Controller with parameters
             setupLoader.setControllerFactory(param -> new SetupController(gameEnv));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);
@@ -135,18 +135,5 @@ public class FXWrapper {
             e.printStackTrace();
         }
     }
-    public void openErrorMessage(GameEnv gameEnv) {
-        try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/error.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ErrorController(gameEnv));
-            Parent setupParent  = mainScreenLoader.load();
-            Stage stage = new Stage();
-            pane.getChildren().add(setupParent);
-            stage.setTitle("Oh no!");
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
 
 }

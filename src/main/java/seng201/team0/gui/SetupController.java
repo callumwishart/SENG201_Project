@@ -12,6 +12,7 @@ import seng201.team0.gui.FXWrapper;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +83,8 @@ public class SetupController {
                 }
             });
         }
+        roundIndicatorLabel.setText("5 Rounds");
+        roundSlider.setValue(5.0);
         roundSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int value = newValue.intValue();
             roundIndicatorLabel.setText(String.valueOf(value) + " Rounds");
@@ -106,23 +109,39 @@ public class SetupController {
     }
     @FXML
     public void startGame() throws InterruptedException, NameCharException {
+
+        ArrayList<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
+        for (Tower tower: selectedTowers) {
+            try {
+                Tower newTower = tower.getClass().getDeclaredConstructor().newInstance();
+                finalTowers.add(newTower);
+            } catch (Exception e) {
+                this.gameEnv.showAlert("Towers not Selected", "Please ensure you have selected all towers");
+                return;
+            }
+
+        }
         try {
-            ArrayList<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
-            for (Tower tower: selectedTowers) {
-                try {
-                    Tower newTower = tower.getClass().getDeclaredConstructor().newInstance();
-                    finalTowers.add(newTower);
-                } catch (Exception e) {
-                    this.gameEnv.openError(e);
-                }
+            if (nameField.getText().isEmpty()) {
+                throw new NameCharException("You have not entered your name");
             }
             this.gameEnv.getPlayer().setName(nameField.getText());
-            this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
-            this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
-            this.gameEnv.setDifficulty(createDifficulty(difficultyText));
-            this.gameEnv.closeSetupScreen();
         } catch (Exception e) {
-            this.gameEnv.openError(e);
+            this.gameEnv.showAlert(e.getMessage(), "Please input your name");
+            return;
         }
+        try {
+            if (difficultyText == null) {
+                throw new RuntimeException("You have not selected a difficulty");
+            }
+            this.gameEnv.setDifficulty(createDifficulty(difficultyText));
+        } catch (Exception e) {
+            this.gameEnv.showAlert(e.getMessage(), "Please select a difficulty");
+            return;
+        }
+
+        this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
+        this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
+        this.gameEnv.closeSetupScreen();
     }
 }
