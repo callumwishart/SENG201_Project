@@ -90,7 +90,17 @@ public class GameRunner implements Runnable{
             tower.incrementUsed();
         }
         // Determine win or loss
-        boolean gameSuccess = this.cartsFull();
+        boolean gameSuccess = false;
+        if (round.hasShield()){
+            for (Cart cart : this.carts){
+                if (cart.isFull()){
+
+                }
+                else {
+                    if
+                }
+            }
+        }
 
         this.gameSuccess = gameSuccess;
 
