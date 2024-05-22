@@ -28,18 +28,22 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="4">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="4">
          <children>
-            <Button mnemonicParsing="false" onAction="#backBtn" prefHeight="40.0" prefWidth="50.0" text="Back">
-               <HBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </HBox.margin>
-            </Button>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="100.0">
+               <children>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#backBtn" prefHeight="30.0" prefWidth="50.0" text="Back">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
                <children>
                   <Label fx:id="coinsLabel" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Coins:">
                      <HBox.margin>
-                        <Insets left="100.0" right="100.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font size="20.0" />
@@ -47,7 +51,7 @@
                   </Label>
                   <Label minWidth="-Infinity" prefHeight="47.0" prefWidth="150.0" text="Inventory">
                      <HBox.margin>
-                        <Insets left="100.0" right="100.0" />
+                        <Insets left="200.0" right="200.0" />
                      </HBox.margin>
                      <font>
                         <Font size="32.0" />
@@ -55,15 +59,24 @@
                   </Label>
                   <Label fx:id="pointsLabel" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Points:">
                      <HBox.margin>
-                        <Insets left="100.0" right="100.0" />
+                        <Insets />
                      </HBox.margin>
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="50.0" right="50.0" />
+               </padding>
             </HBox>
          </children>
+         <GridPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </GridPane.margin>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
