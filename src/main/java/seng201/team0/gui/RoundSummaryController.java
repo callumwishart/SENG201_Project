@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team0.models.GameEnv;
-import seng201.team0.models.gameplay.Round;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -59,7 +58,7 @@ public class RoundSummaryController {
     }
     @FXML
     public void nextRound() throws InterruptedException {
-        this.gameEnv.closeSetupScreen();
+        this.gameEnv.openRoundStyle();
     }
     @FXML
     public void finishGame() {

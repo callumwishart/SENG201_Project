@@ -1,12 +1,7 @@
 package seng201.team0.models;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 import seng201.team0.exceptions.TowerNotFoundException;
-import seng201.team0.gui.FXWrapper;
-import seng201.team0.gui.RandomEventController;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
 import seng201.team0.models.consumables.SlowCartBooster;
@@ -23,10 +18,8 @@ import seng201.team0.models.upgrades.Upgrade;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.PlayerService;
 import seng201.team0.services.ShopService;
-import javafx.scene.Parent;
 import seng201.team0.utils.Utilities;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -72,6 +65,7 @@ public class GameEnv {
      * @param roundStyleScreenLauncher roundStyleScreen Launcher function to launch the round style screen.
      * @param gameOverLauncher gameOverLauncher function to launch the gameOver screen.
      * @param randomEventLauncher randomEventLauncher function to launch the random event screen.
+     * @param instructionsLauncher instructionsLauncher function to launch instructions
      */
     public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher, Consumer<GameEnv> instructionsLauncher) {
 
@@ -94,49 +88,123 @@ public class GameEnv {
         launchStartScreen();
     }
 
+    /**
+     * Closes start screen and opens setup screen
+     * <p>
+     *     First clears the screen using {@code clearScreen} runnable.
+     *     Then launches the setup screen using {@code launchSetupScreen}.
+     * </p>
+     */
     public void closeStartScreen() {
         clearScreen.run();
         launchSetupScreen();
     }
 
-    public void closeSetupScreen() {
+    /**
+     * Opens the round style screen
+     * <p>
+     *     First clears the screen using {@code clearScreen} runnable.
+     *     Then launches the round style screen using {@code launchRoundStyleScreen}
+     * </p>
+     */
+    public void openRoundStyle() {
         clearScreen.run();
         launchRoundStyleScreen();
 
     }
+
+    /**
+     * This sets the result variable
+     * <p>
+     *      This updates the {@code result} field with the provided Boolean value.
+     * </p>
+     * @param value the new Boolean value to set for {@code result}.
+     */
     public void setResult(Boolean value) {
         result = value;
     }
+
+    /**
+     * Opens the main play screen
+     * <p>
+     *     First this clears the screen using the {@code clearScreen} method.
+     *     It then launches the Play screen using {@code launchPlayScreen}.
+     * </p>
+     */
     public void startRound() {
         clearScreen.run();
         launchPlayScreen();
     }
+
+    /**
+     * Opens the inventory
+     * <p>
+     *     This method first clears the screen using the {@code clearScreen} method.
+     *     It then launches the inventory screen by calling {@code launchInventoryScreen}.
+     * </p>
+     */
     public void openInventory() {
         clearScreen.run();
         launchInventoryScreen();
     }
+
+    /**
+     * Opens the shop
+     * <p>
+     *     This method first clears the screen using the {@code clearScreen} method.
+     *     It then launches the shop screen by calling {@code launchShopScreen}.
+     * </p>
+     */
     public void openShop() {
         clearScreen.run();
         launchShopScreen();
     }
+
+    /**
+     * Opens the main playable screen
+     * <p>
+     *     This method first clears the current screen by executing this {@code clearScreen} runnable.
+     *     It then launches the round summary screen by calling the {@code launchRoundSummaryScreen} method.
+     * </p>
+     */
     public void backToMain() {
         clearScreen.run();
         launchRoundSummaryScreen();
     }
+
+    /**
+     * Opens the Finished Game Screen
+     * <p>
+     *     This method first clears the current screen by executing this {@code clearScreen} runnable.
+     *     It then launches the game over screen by calling the {@code launchGameOverScreen} method.
+     * </p>
+     */
     public void showFinishedGame() {
         clearScreen.run();
         launchGameOverScreen();
     }
+    /**
+     * Opens the instruction screen for the application.
+     * <p>
+     * This method first clears the current screen by executing
+     * the {@code clearScreen} runnable. It then launches the
+     * instructions screen by calling the {@code launchInstructionsScreen}
+     * method.
+     * </p>
+     */
     public void openInstruction() {
         clearScreen.run();
         launchInstructionsScreen();
     }
 
     /**
-     * Sets the result variable to whether the player won or lost and clears the screen
+     * Sets the result variable to whether the player won or lost.
+     * <p>
+     * Clears the screen
      * Uses weightedCoinToss to decide if a random event will be called, if so the randomEventSelector
      * is used to decide what random event will occur and will open call openRandomEvent(). If no random event then
      * the round summary screen is launched.
+     * </p>
      * @param value boolean value which is true if the user won that round and false if the user lost the round
      * @throws TowerNotFoundException exception thrown if the random event annot be applied to the tower
      */
