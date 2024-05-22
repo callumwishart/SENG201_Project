@@ -81,6 +81,7 @@ public class PlayController implements GameObserver {
             Image image = new Image(inputStream);
             towerImages.get(i).setImage(image);
             towerButtons.get(i).setDisable(false);
+            towerButtons.get(i).setText(inventoryService.getActiveTowers().get(i).getName());
         }
         for (int i = 0; i < round.getCarts().size(); i++) {
             cartButtons.get(i).setText(round.getCarts().get(i).getName());

@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -66,7 +65,7 @@
       <Label text="Buy Towers" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Label text="Tower Upgrades" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <Label text="Consumables" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="3">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -129,6 +128,14 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
+            <Label text="Current Active Towers:">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
       <GridPane prefHeight="206.0" prefWidth="394.0" GridPane.rowIndex="2">
@@ -168,11 +175,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <ImageView fx:id="selectedTowerImg" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../factory_tower.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="selectedTowerImg" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
             <VBox alignment="CENTER_LEFT">
                <children>
                   <Label fx:id="towerNameLabel" text="Tower Name:">
@@ -307,5 +310,34 @@
             </Button>
          </children>
       </VBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <ImageView fx:id="activeTower1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="activeTower2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="activeTower3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="activeTower4" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="activeTower5" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </GridPane>

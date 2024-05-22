@@ -37,7 +37,7 @@
             </Button>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="coinsLabel" text="Coins:">
+                  <Label fx:id="coinsLabel" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Coins:">
                      <HBox.margin>
                         <Insets left="100.0" right="100.0" />
                      </HBox.margin>
@@ -45,7 +45,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Inventory">
+                  <Label minWidth="-Infinity" prefHeight="47.0" prefWidth="150.0" text="Inventory">
                      <HBox.margin>
                         <Insets left="100.0" right="100.0" />
                      </HBox.margin>
@@ -53,7 +53,7 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pointsLabel" text="Points:">
+                  <Label fx:id="pointsLabel" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Points:">
                      <HBox.margin>
                         <Insets left="100.0" right="100.0" />
                      </HBox.margin>

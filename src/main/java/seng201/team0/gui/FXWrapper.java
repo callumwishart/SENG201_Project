@@ -27,7 +27,7 @@ public class FXWrapper {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen, this::launchShopScreen, this::launchRoundSummaryScreen, this::launchRoundStyleScreen, this::launchGameOverScreen, this::openRandomEvent);
+        new GameEnv(this::launchStartScreen, this::launchSetupScreen, this::clearPane, this::launchPlayScreen, this::launchInventoryScreen, this::launchShopScreen, this::launchRoundSummaryScreen, this::launchRoundStyleScreen, this::launchGameOverScreen, this::openRandomEvent, this::openInstructions);
     }
 
 
@@ -137,6 +137,17 @@ public class FXWrapper {
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Resource Rush - Random Event!");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void openInstructions(GameEnv gameEnv) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/instructions.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new InstructionsController(gameEnv));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Resource Rush - Instructions");
         } catch (IOException e){
             e.printStackTrace();
         }
