@@ -28,7 +28,7 @@ public class Round {
     /**
      * Constructs a round based on difficulty, what round number, and what towers are equipped by player
      */
-    public Round(InventoryService inventoryService, Difficulty difficulty, int roundNum) {
+    public Round(InventoryService inventoryService, Difficulty difficulty, int roundNum) throws CloneNotSupportedException {
         this.inventoryService = inventoryService;
         this.towers = (ArrayList<Tower>) this.inventoryService.getActiveTowers();
         this.difficulty = difficulty;
@@ -59,7 +59,7 @@ public class Round {
         return (int) (function * this.difficulty.roundDifficultyMultiplier());
     }
 
-    public void createCarts(int amount){
+    public void createCarts(int amount) throws CloneNotSupportedException {
         for (int i = 0; i < amount; i++){
             // check to see what number, decide on universal or not, pick a random resource from possibleResources
             if ((i < 1) || Utilities.weightedCoinToss(0.4)){
@@ -67,9 +67,11 @@ public class Round {
             }
             else {
                 this.carts.add(
-                        new Cart(this.getRandCartSize(),
-                        this.getRandCartSpeed(),
-                        new Resource(this.getRandCartResource()))
+                        new Cart(
+                                this.getRandCartSize(),
+                                this.getRandCartSpeed(),
+                                this.getRandCartResource().clone()
+                        )
                 );
             }
         }
@@ -96,6 +98,7 @@ public class Round {
         int maxSpeed = 2;
         int minSpeed = 1;
         int maxRoundBound = 8;
+
         /**
          * Generates a random int between minSpeed & maxSpeed,
          * the max speed bracket increases as the round number increases, but the min speed bracket
