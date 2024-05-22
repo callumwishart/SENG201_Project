@@ -26,6 +26,6 @@ public class WaterTower extends Tower{
      * and an input cost of 150.
      */
     public WaterTower() {
-        super(Water, 5, "Water Tower", "Resource: " + Water.getResourceType(), 150, towerImagePath, brokenImagePath);
+        super(Water, 2, "Water Tower", "Resource: " + Water.getResourceType(), 200, towerImagePath, brokenImagePath);
     }
 }

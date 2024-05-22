@@ -28,6 +28,6 @@ public class Mine extends Tower {
      * This will initialise the tower with a reload speed of 5 and a cost of 300
      */
     public Mine() {
-        super(Metal, 5, "Mine", "Resource: " + Metal.getResourceType(), 300, towerImagePath, brokenImagePath);
+        super(Metal, 4, "Mine", "Resource: " + Metal.getResourceType(), 400, towerImagePath, brokenImagePath);
     }
 }
