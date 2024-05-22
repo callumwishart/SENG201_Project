@@ -19,7 +19,7 @@ public class InventoryController {
     @FXML
     private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, towerResourceLabel, towerCoinsPerResourceLabel, pointsNeededLabel, sellCostLabel, repairCostLabel, towerCapacityLabel, towerSpeedLabel;
     @FXML
-    private Label selectedUpgradeLabel, upgradeDescLabel;
+    private Label selectedUpgradeLabel, upgradeDescLabel, resourceValueLabel;
     @FXML
     private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn;
     @FXML
@@ -28,7 +28,7 @@ public class InventoryController {
     private Button c1Btn, c2Btn, c3Btn;
     @FXML
     private ImageView selectedTowerImg;
-    private GameEnv gameEnv;
+    private final GameEnv gameEnv;
     private Tower currentActiveTower = null;
     private Tower currentReserveTower = null;
     private Tower currentTower = null;
@@ -152,6 +152,7 @@ public class InventoryController {
         towerStatusLabel.setText("Status: " + getStatus(tower));
         towerLevelLabel.setText("Level: " + tower.getLevel());
         towerResourceLabel.setText("Resource: " + tower.getResource().getResourceType());
+        resourceValueLabel.setText("Resource Value: " + tower.getResource().getResourceCoinValue());
         towerCoinsPerResourceLabel.setText("Coins per resource: " + tower.getResource().getResourceCoinValue());
         pointsNeededLabel.setText("Points needed to upgrade: " + tower.getUpgradePointLimit());
         sellCostLabel.setText("Sell cost: " + tower.getSellCost());
@@ -172,7 +173,8 @@ public class InventoryController {
         towerNameLabel.setText("Tower Name: ");
         towerStatusLabel.setText("Status: ");
         towerLevelLabel.setText("Level: ");
-        towerLevelLabel.setText("Resource: ");
+        towerResourceLabel.setText("Resource: ");
+        resourceValueLabel.setText("Resource value: ");
         towerCoinsPerResourceLabel.setText("Coins per resource: ");
         pointsNeededLabel.setText("Points needed to upgrade: ");
         sellCostLabel.setText("Sell cost: ");
