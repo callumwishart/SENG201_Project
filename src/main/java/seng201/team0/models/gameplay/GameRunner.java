@@ -82,7 +82,7 @@ public class GameRunner implements Runnable{
                 Platform.runLater(() -> this.observer.observe(this)); // passes the observer the GameRunner instance for inspection
             }
             else {
-                this.observer.observe(this);
+                this.observer.observe(this); // for testing on the backend without javafx
             }
         }
         // increment towers used variable by one, indicating it has been used for a round
@@ -90,16 +90,22 @@ public class GameRunner implements Runnable{
             tower.incrementUsed();
         }
         // Determine win or loss
-        boolean gameSuccess = false;
+        boolean gameSuccess = true; // create gameSuccess value
         if (round.hasShield()){
             for (Cart cart : this.carts){
-                if (cart.isFull()){
-
-                }
-                else {
-                    if
+                if (!cart.isFull()){
+                    if (round.hasShield()){
+                        round.setShield(false); // will do this once to simulate the shield being used
+                    }
+                    else{
+                        gameSuccess = false;
+                        break;
+                    }
                 }
             }
+        }
+        else{
+            gameSuccess = this.cartsFull();
         }
 
         this.gameSuccess = gameSuccess;
@@ -118,7 +124,7 @@ public class GameRunner implements Runnable{
             }
             else {
                 try {
-                    this.observer.win(coins, points);
+                    this.observer.win(coins, points); // for backend testing without javafx
                 } catch (NegativeAdditionException | TowerNotFoundException e) {
                     throw new RuntimeException(e);
                 }

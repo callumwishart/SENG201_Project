@@ -14,6 +14,7 @@ public class SpeedUpgrade extends Upgrade{
             throw new UpgradeException();
         }
         else{
+            tower.addUpgrade(new SpeedUpgrade());
             tower.increaseReloadSpeed(1);
         }
     }
