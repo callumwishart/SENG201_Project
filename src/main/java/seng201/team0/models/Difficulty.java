@@ -1,5 +1,8 @@
 package seng201.team0.models;
 
+/**
+ * This is used to determine how the difficulty affect the game
+ */
 public class Difficulty {
     /**
      * costMultiplier affects how much things cost in-game.
@@ -16,10 +19,18 @@ public class Difficulty {
      *  randomEventMultiplier affects how often random events are triggered.
      */
     private double randomEventMultiplier;
-
-    private double originalCostMultiplier;
-    private double originalRoundDifficultyMultiplier;
-    private double originalRandomEventMultiplier;
+    /**
+     * This is the original cost multiplier stored, so difficulties can be reset after a round
+     */
+    private final double originalCostMultiplier;
+    /**
+     * This is the original round difficulty multiplier stored, so difficulties can be reset after a round
+     */
+    private final double originalRoundDifficultyMultiplier;
+    /**
+     * This is the original random event multiplier stored, so difficulties can be reset after a round
+     */
+    private final double originalRandomEventMultiplier;
 
     /**
      *  If no values are specified for difficulty multipliers, defaults of 1 will
@@ -59,14 +70,26 @@ public class Difficulty {
         }
     }
 
+    /**
+     * Gets the cost multiplier
+     * @return the cost multiplier as a double
+     */
     public double getCostMultiplier(){
         return this.costMultiplier;
     }
 
+    /**
+     * Gets the round difficulty multiple
+     * @return the round difficulty multiplier as an integer
+     */
     public double roundDifficultyMultiplier(){
         return this.roundDifficultyMultiplier;
     }
 
+    /**
+     * Gets the random event multiplier
+     * @return the random event multiplier as an integer
+     */
     public double getRandomEventMultiplier(){
         return this.randomEventMultiplier;
     }
