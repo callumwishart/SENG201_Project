@@ -11,13 +11,15 @@ import java.util.ArrayList;
 
 public class GameRunner implements Runnable{
 
+    private boolean javaFx;
     private boolean gameSuccess;
     GameObserver observer;
     ArrayList<Cart> carts;
     Round round;
     ArrayList<Tower> towers;
 
-    public GameRunner(Round round, GameObserver observer){
+    public GameRunner(Round round, GameObserver observer, boolean javaFx){
+        this.javaFx = javaFx;
         this.observer = observer;
         this.carts = round.getCarts();
         this.round = round;
@@ -53,18 +55,17 @@ public class GameRunner implements Runnable{
                     tower.incrementReloadTimeElapsed();
                 }
                 for (Cart cart : carts){
-                    if (tower.isReloading() || cart.isFull() || cart.isFinished()){
-                        break;
-                    }
-                    else{
-                        if (cart.isUniversal() || tower.getResource().getResourceType().equals(cart.getResourceType())){
+                    if (!tower.isReloading() && !cart.isFull() && !cart.isFinished()){
+                        if (cart.isUniversal() || tower.getResource().equals(cart.getResource())){
                             for (int i = 0; i < tower.getResourceAmount(); i++){
                                 try {
-                                    cart.fillCart(new Resource(tower.getResource()));
+                                    cart.fillCart(tower.getResource().clone());
                                 } catch (FullCartException e) {
                                     tower.setReloading(true);
                                     tower.incrementReloadTimeElapsed();
                                     break; // Cart has been filled
+                                } catch (CloneNotSupportedException e) {
+                                    throw new RuntimeException(e);
                                 }
                             }
                             tower.setReloading(true);
@@ -76,8 +77,13 @@ public class GameRunner implements Runnable{
             // check if all carts have finished or if they are all filled
             finished = (this.cartsFinished() || this.cartsFull());
 
-            // Ensure observer updates are run on the JavaFX Application Thread
-            Platform.runLater(() -> this.observer.observe(this)); // passes the observer the GameRunner instance for inspection
+            if (this.javaFx){
+                // Ensure observer updates are run on the JavaFX Application Thread
+                Platform.runLater(() -> this.observer.observe(this)); // passes the observer the GameRunner instance for inspection
+            }
+            else {
+                this.observer.observe(this);
+            }
         }
         // increment towers used variable by one, indicating it has been used for a round
         for (Tower tower : towers){
@@ -91,24 +97,40 @@ public class GameRunner implements Runnable{
         if (gameSuccess) {
             int coins = earnCoins();
             int points = earnPoints();
-            Platform.runLater(() -> {
+            if (this.javaFx) {
+                Platform.runLater(() -> {
+                    try {
+                        this.observer.win(coins, points);
+                    } catch (NegativeAdditionException | TowerNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+            else {
                 try {
                     this.observer.win(coins, points);
-                } catch (NegativeAdditionException e) {
-                    throw new RuntimeException(e);
-                } catch (TowerNotFoundException e) {
+                } catch (NegativeAdditionException | TowerNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-            });
+            }
         }
         else {
-            Platform.runLater(() -> {
+            if (this.javaFx) {
+                Platform.runLater(() -> {
+                    try {
+                        this.observer.lose();
+                    } catch (TowerNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+            else {
                 try {
                     this.observer.lose();
                 } catch (TowerNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-            });
+            }
         }
 
     }
