@@ -12,15 +12,6 @@ public class Factory extends Tower{
     public static String brokenImagePath = "src/main/resources/images/towers/factory_tower_broken.png";
 
     /**
-     * Factor Constructor when params passed
-     * @param inputReloadSpeed initial reload speed of tower
-     * @param inputCost initial cost of tower
-     */
-    public Factory(int inputReloadSpeed, int inputCost) {
-        super(Goods, inputReloadSpeed, "Factory", "Resource: " + Goods.getResourceType(), inputCost, towerImagePath, brokenImagePath);
-    }
-
-    /**
      * Factory Constructor when no params passed
      * <p>
      *    Initialises the inputReloadSpeed to 5 and the cost to 500.

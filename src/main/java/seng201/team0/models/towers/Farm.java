@@ -12,15 +12,6 @@ public class Farm extends Tower{
     public static String brokenImagePath = "src/main/resources/images/towers/farm_tower_broken.png";
 
     /**
-     * Farm constructor with params
-     * @param inputReloadSpeed initial reloading speed of the tower
-     * @param inputCost initial cost of the tower
-     */
-    public Farm(int inputReloadSpeed, int inputCost) {
-        super(Food, inputReloadSpeed, "Farm", "Resource: " + Food.getResourceType(), inputCost, towerImagePath, brokenImagePath);
-    }
-
-    /**
      * Farm constructor when no params passed. Initialises it with a reload speed of 5 and a cost of 100.
      */
     public Farm() {

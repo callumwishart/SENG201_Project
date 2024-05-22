@@ -15,15 +15,6 @@ public class Mine extends Tower {
     public static String brokenImagePath = "src/main/resources/images/towers/mine_tower_broken.png";
 
     /**
-     * Mine Constructor
-     * @param inputReloadSpeed initial speed of tower reload
-     * @param inputCost cost of the tower
-     */
-    public Mine(int inputReloadSpeed, int inputCost) {
-        super(Metal, inputReloadSpeed, "Mine", "Resource: " + Metal.getResourceType(), inputCost, towerImagePath, brokenImagePath);
-    }
-
-    /**
      * Mine Constructor when no params are passed
      * This will initialise the tower with a reload speed of 5 and a cost of 300
      */

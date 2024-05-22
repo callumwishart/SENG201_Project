@@ -12,15 +12,6 @@ public class Sawmill extends Tower{
     public static String brokenImagePath = "src/main/resources/images/towers/sawmill_tower_broken.png";
 
     /**
-     * Sawmill constructor when params passed
-     * @param inputReloadSpeed initial reload speed of tower
-     * @param inputCost initial cost of tower
-     */
-    public Sawmill(int inputReloadSpeed, int inputCost) {
-        super(Wood, inputReloadSpeed, "Sawmill", "Resource: " + Wood.getResourceType(), inputCost, towerImagePath, brokenImagePath);
-    }
-
-    /**
      * Sawmill constructor when no params passed.
      * <p>
      *     Sets initial reload speed to 5 and initial cost to 80.
