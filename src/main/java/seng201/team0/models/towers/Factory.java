@@ -11,6 +11,6 @@ public class Factory extends Tower{
         super(Goods, inputReloadSpeed, "Factory", "Resource: " + Goods.getResourceType(), inputCost, towerImagePath, brokenImagePath);
     }
     public Factory() {
-        super(Goods, 5, "Factory", "Resource: " + Goods.getResourceType(), 1, towerImagePath, brokenImagePath);
+        super(Goods, 5, "Factory", "Resource: " + Goods.getResourceType(), 500, towerImagePath, brokenImagePath);
     }
 }
