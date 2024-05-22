@@ -231,6 +231,7 @@ public class GameEnv {
                 launchRoundSummaryScreen();
             }
         } else {
+            currentRoundNum += 1;
             launchRoundSummaryScreen();
 
         }

@@ -258,8 +258,10 @@ public class ShopController {
             return;
         } catch (NoUpgradeSelectedException e) {
             this.gameEnv.showAlert("No upgrade selected", "Please select an upgrade");
+            return;
         } catch (UpgradesFullException e) {
             this.gameEnv.showAlert("Upgrade inventory full", "You already have 3 upgrades in your inventory, if you want more, apply them and then come back for more");
+            return;
         }
         resetScreen();
     }
