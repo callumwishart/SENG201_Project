@@ -1,6 +1,7 @@
 package seng201.team0.models.upgrades;
 
 import seng201.team0.exceptions.UpgradeException;
+import seng201.team0.exceptions.UpgradeMaxException;
 import seng201.team0.models.towers.Tower;
 
 public class SpeedUpgrade extends Upgrade{
@@ -9,12 +10,18 @@ public class SpeedUpgrade extends Upgrade{
     }
 
     @Override
-    public void apply(Tower tower, int playerPoints) throws UpgradeException {
+    public void apply(Tower tower, int playerPoints) throws UpgradeException, UpgradeMaxException {
         if (playerPoints < tower.getUpgradePointLimit()){
             throw new UpgradeException();
         }
         else{
-            tower.increaseReloadSpeed(1);
+            if (tower.getReloadSpeed() > 1){
+                tower.addUpgrade(new SpeedUpgrade());
+                tower.decreaseReloadSpeed();
+            }
+            else{
+                throw new UpgradeMaxException();
+            }
         }
     }
 }

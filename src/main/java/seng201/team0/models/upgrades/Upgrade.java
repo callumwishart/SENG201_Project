@@ -1,6 +1,7 @@
 package seng201.team0.models.upgrades;
 
 import seng201.team0.exceptions.UpgradeException;
+import seng201.team0.exceptions.UpgradeMaxException;
 import seng201.team0.models.Item;
 import seng201.team0.models.towers.Tower;
 
@@ -36,5 +37,5 @@ public abstract class Upgrade extends Item {
      * @param tower Tower that the upgrade should be applied to
      * @param playerPoints The players current points.
      */
-    public abstract void apply(Tower tower, int playerPoints) throws UpgradeException;
+    public abstract void apply(Tower tower, int playerPoints) throws UpgradeException, UpgradeMaxException;
 }

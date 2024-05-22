@@ -13,12 +13,12 @@ public class TowerSpeedBooster extends Consumable {
 
     public void apply(Round round) {
         for (Tower tower : round.getTowers()) {
-            tower.increaseReloadSpeed(2);
+            tower.decreaseReloadSpeed();
         }
     }
     public boolean remove(Round round) {
         for (Tower tower : round.getTowers()) {
-            tower.increaseReloadSpeed(-2);
+            tower.increaseReloadSpeed();
         }
         return true;
     }

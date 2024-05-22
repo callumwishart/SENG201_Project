@@ -14,6 +14,7 @@ public class MoneyUpgrade extends Upgrade{
             throw new UpgradeException();
         }
         else{
+            tower.addUpgrade(new MoneyUpgrade());
             tower.getResource().increaseCoinValue(10);
         }
     }

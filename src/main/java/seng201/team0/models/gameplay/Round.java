@@ -3,6 +3,7 @@ package seng201.team0.models.gameplay;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.PlayerInventory;
+import seng201.team0.models.consumables.Shield;
 import seng201.team0.models.resources.Resource;
 import seng201.team0.models.towers.Tower;
 import seng201.team0.services.InventoryService;

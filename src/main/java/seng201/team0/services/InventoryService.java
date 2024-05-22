@@ -88,7 +88,7 @@ public class InventoryService {
         }
     }
 
-    public void applyUpgrade(Tower tower, Upgrade upgrade) throws UpgradeException {
+    public void applyUpgrade(Tower tower, Upgrade upgrade) throws UpgradeException, UpgradeMaxException {
         upgrade.apply(tower, this.getPoints());
         removeUpgrade(upgrade); // consumes from the inventory
     }

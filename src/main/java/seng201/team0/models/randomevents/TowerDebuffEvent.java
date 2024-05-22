@@ -16,7 +16,7 @@ public class TowerDebuffEvent extends RandomEvent{
     public void apply(InventoryService inventoryService) {
         setTowerAffected(inventoryService);
         Tower tower = getTowerAffected();
-        tower.increaseReloadSpeed(1); // increases time to reload for the tower, making it a longer wait before it can be useful in a game
+        tower.increaseReloadSpeed(); // increases time to reload for the tower, making it a longer wait before it can be useful in a game
     }
 
     public void setTowerAffected(InventoryService inventoryService) {

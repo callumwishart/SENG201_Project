@@ -21,7 +21,9 @@ public class TowerBreakEvent extends RandomEvent{
 
     public void setTowerAffected(InventoryService inventoryService) throws TowerNotFoundException {
         ArrayList<Tower> towers = inventoryService.getActiveTowers();
-        Optional<Tower> maxTower = towers.stream().max(Comparator.comparingInt(Tower::getUsed));
+        Optional<Tower> maxTower = towers.stream()
+                .filter(tower -> !tower.isBroken())
+                .max(Comparator.comparingInt(Tower::getUsed));
         Tower tower = null;
         if (maxTower.isPresent()) {
             tower = maxTower.get();
