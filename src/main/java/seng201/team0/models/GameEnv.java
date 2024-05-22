@@ -218,13 +218,20 @@ public class GameEnv {
             if (Utilities.weightedCoinToss(0.33)){
                 int eventNumber = Utilities.randomEventSelector();
                 if (eventNumber == 1) {
-                    currRandomEvent = new TowerBreakEvent();
+                    try{
+                        currRandomEvent = new TowerBreakEvent();
+                        currRandomEvent.apply(inventoryService);
+                    }
+                    catch (TowerNotFoundException e){
+                        currRandomEvent = new TowerDebuffEvent();
+                    }
                 } else if (eventNumber == 2) {
                     currRandomEvent = new TowerBuffEvent();
+                    currRandomEvent.apply(inventoryService);
                 } else {
                     currRandomEvent = new TowerDebuffEvent();
+                    currRandomEvent.apply(inventoryService);
                 }
-                currRandomEvent.apply(inventoryService);
                 openRandomEvent();
             }
             else {
