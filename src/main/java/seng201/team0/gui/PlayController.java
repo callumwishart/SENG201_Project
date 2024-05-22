@@ -54,10 +54,10 @@ public class PlayController implements GameObserver {
     private int trackDistance;
     private boolean isSuccess;
 
-    public PlayController(GameEnv gameEnv){
+    public PlayController(GameEnv gameEnv) throws CloneNotSupportedException {
         this.gameEnv = gameEnv;
         this.round = new Round(this.gameEnv.getInventoryService(), this.gameEnv.getDifficulty(), this.gameEnv.getRoundNum());
-        this.gameRunner = new GameRunner(round, this);
+        this.gameRunner = new GameRunner(round, this, true);
         this.roundNum = this.gameEnv.getRoundNum();
         this.difficulty = this.gameEnv.getDifficulty();
         this.inventoryService = this.gameEnv.getInventoryService();

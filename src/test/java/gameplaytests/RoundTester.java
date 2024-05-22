@@ -33,14 +33,14 @@ public class RoundTester {
     }
 
     @Test
-    void testBasicRoundInitialisation(){
+    void testBasicRoundInitialisation() throws CloneNotSupportedException {
         Round round = new Round(inventoryService, difficulty, 1);
         assertEquals(1, round.getRoundNum());
         assertEquals(1, round.getCarts().size());
     }
 
     @Test
-    void testCartsSortedDescending(){
+    void testCartsSortedDescending() throws CloneNotSupportedException {
         Round round = new Round(inventoryService, difficulty, 10);
         ArrayList<Cart> carts = round.getCarts();
         for (int i = 0; i < carts.size(); i++){
@@ -54,7 +54,7 @@ public class RoundTester {
 
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15})
-    void testAllConsumablesApply(int roundNum){
+    void testAllConsumablesApply(int roundNum) throws CloneNotSupportedException {
 
         inventoryService.addConsumable(new TowerSpeedBooster());
         inventoryService.addConsumable(new SlowCartBooster());
