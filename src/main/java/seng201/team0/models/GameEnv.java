@@ -199,12 +199,14 @@ public class GameEnv {
     }
 
     /**
-     * Sets the result variable to whether the player won or lost.
+     * Sets the game result and handles the game logic based on whether the player has won.
      * <p>
-     * Clears the screen
-     * Uses weightedCoinToss to decide if a random event will be called, if so the randomEventSelector
-     * is used to decide what random event will occur and will open call openRandomEvent(). If no random event then
-     * the round summary screen is launched.
+     *  This method updates the {@code result} field with the provided Boolean value, clears the screen,
+     *  and increments the round number. If the player has won (i.e., {@code value} is {@code true}),
+     *  there is a 33% chance that a random event will occur. Depending on the randomly selected event,
+     *  either a tower break, tower buff, or tower debuff event is applied. If no random event occurs,
+     *  or if the player has not won, the round summary screen is launched otherwise the random event message screen
+     *  is launched.
      * </p>
      * @param value boolean value which is true if the user won that round and false if the user lost the round
      * @throws TowerNotFoundException exception thrown if the random event annot be applied to the tower
@@ -238,72 +240,196 @@ public class GameEnv {
     }
 
     /**
-     * Calls randomEventLauncher to show the random_event.fxml
+     * Launches the random event screen
+     * <p>
+     *     This method will open the random event launcher by invoking the {@code randomEventLauncher}
+     *     consumer with the current instance of the gameEnv
+     * </p>
      */
     public void openRandomEvent() {
         randomEventLauncher.accept(this);
     }
 
+    /**
+     * Launches the start screen
+     * <p>
+     *     This method will open the start screen by invoking {@code startLauncher}
+     *     consumer with the current instance of the gameEnv
+     * </p>
+     */
     public void launchStartScreen() {
         startLauncher.accept(this);
     }
+
+    /**
+     * Launches the shop screen
+     * <p>
+     *     This method will open the shop by invoking {@code shopLauncher}
+     *     consumer with the current instance of the gameEnv
+     * </p>
+     */
     public void launchShopScreen() {shopLauncher.accept(this);}
+
+    /**
+     * Launches the setup screen
+     * <p>
+     *     This method will open the setup screen by invoking {@code setupLauncher}
+     *     consumer with the current instance of gameEnv
+     * </p>
+     */
     public void launchSetupScreen() {
         setupLauncher.accept(this);
     }
+    /**
+     * Launches the main game screen
+     * <p>
+     *     This method will open the main screen by invoking {@code playLauncher}
+     *     consumer with the current instance of gameEnv
+     * </p>
+     */
     public void launchPlayScreen() {playLauncher.accept(this);}
+
+    /**
+     * Launches the inventory screen
+     * <p>
+     *     This method will open the inventory screen by invoking {@code inventoryLauncher}
+     *     consumer with the current instance of gameEnv
+     * </p>
+     */
     public void launchInventoryScreen() {inventoryLauncher.accept(this);}
+
+    /**
+     * Launches the round summary screen
+     * <p>
+     *     This method will open the round summary screen by invoking {@code roundSummaryScreenLauncher}
+     *     consumer with the current instance of gameEnv
+     * </p>
+     */
     public void launchRoundSummaryScreen() {roundSummaryScreenLauncher.accept(this);}
+
+    /**
+     * Launches the round style screen
+     * <p>
+     *     This method will open the round style selector screen by invoking {@code roundStyleScreenLauncher}
+     *     consumer with the current instance of gameEnv
+     * </p>
+     */
     private void launchRoundStyleScreen() {
         roundStyleScreenLauncher.accept(this);
     }
+
+    /**
+     * Launches the game over screen
+     * <p>
+     *     This method will launch the game over screen by invoking {@code gameOverLauncher}
+     *     consumer with the current instance of gameEnv
+     * </p>
+     */
     private void launchGameOverScreen() {
         gameOverLauncher.accept(this);
     }
+
+    /**
+     * Launches instructions screen
+     * <p>
+     *     This method will launch the game instructions screen {@code instructionsLauncher}
+     *     consumer with the current instance of gameEnv
+     * </p>
+     */
     private void launchInstructionsScreen() {
         instructionsLauncher.accept(this);
     }
+
+    /**
+     * @hidden
+     */
     public Player getPlayer() {
         return this.player;
     }
 
+    /**
+     * @hidden
+     */
     public boolean getResult() {
         return result;
     }
 
+    /**
+     * @hidden
+     */
     public void setNumRounds(int value) {
         numRounds = value;
     }
 
+    /**
+     * @hidden
+     */
     public List<Tower> getPossibleTowers() {
         return possibleTowers;
     }
+
+    /**
+     * @hidden
+     */
     public List<Upgrade> getPossibleUpgrades() {return possibleUpgrades;}
+
+    /**
+     * @hidden
+     */
     public List<Consumable> getPossibleConsumables() {return possibleConsumables;}
+
+    /**
+     * @hidden
+     */
     public RandomEvent getCurrRandomEvent() {
         return currRandomEvent;
     }
 
+    /**
+     * @hidden
+     */
     public Difficulty getDifficulty() {
         return difficulty;
     }
+
+    /**
+     * @hidden
+     */
     public int getRoundNum() {
         return currentRoundNum;
     }
 
+    /**
+     * @hidden
+     */
     public int getNumRounds() {
         return numRounds;
     }
 
+    /**
+     * @hidden
+     */
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
+
+    /**
+     * @hidden
+     */
     public InventoryService getInventoryService() {
         return inventoryService;
     }
+
+    /**
+     * @hidden
+     */
     public ShopService getShopService() {
         return shopService;
     }
+
+    /**
+     * @hidden
+     */
     public void setCurrentRoundNum(int currentRoundNum) {
         this.currentRoundNum = currentRoundNum;
     }
