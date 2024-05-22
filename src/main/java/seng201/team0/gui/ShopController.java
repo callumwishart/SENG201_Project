@@ -27,6 +27,8 @@ public class ShopController {
     @FXML
     private ImageView selectedTowerImg;
     @FXML
+    private ImageView activeTower1, activeTower2, activeTower3, activeTower4, activeTower5;
+    @FXML
     private Label upgradeNameLabel, upgradeDescLabel, upgradeCostLabel, consumableNameLabel, consumableDescLabel, consumableCostLabel;
     @FXML
     private Label towerNameLabel, towerLevelLabel, towerResourceLabel, towerResourceAmountLabel, towerValueLabel, towerReloadLabel, towerCostLabel;
@@ -41,6 +43,7 @@ public class ShopController {
         List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
         List<Button> towerButtons = List.of(t1Btn,t2Btn,t3Btn,t4Btn,t5Btn);
         List<Button> consumableButtons = List.of(c1Btn, c2Btn, c3Btn);
+        List<ImageView> activeTowerImages = List.of(activeTower1, activeTower2, activeTower3, activeTower4, activeTower5);
 
         // Sets the actions of clicking on the towers
         for (int i = 0; i < towerButtons.size(); i++) {
@@ -115,12 +118,30 @@ public class ShopController {
         for (int i = 0; i < consumableButtons.size(); i++) {
             consumableButtons.get(i).setText(this.gameEnv.getPossibleConsumables().get(i).getName());
         }
+        // Initialises active tower images
+        for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
+            String imagePath = gameEnv.getInventoryService().getActiveTowers().get(i).getImagePath();
+            FileInputStream inputStream;
+            try {
+                inputStream = new FileInputStream(imagePath);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            Image image = new Image(inputStream);
+
+            activeTowerImages.get(i).setImage(image);
+        }
     }
 
     private void updateConsumableStats(Consumable consumable) {
         consumableNameLabel.setText("Selected Consumable: " + consumable.getName());
         consumableDescLabel.setText("Description: " + consumable.getDescription());
         consumableCostLabel.setText("Cost: " + consumable.getCost());
+    }
+    private void updateConsumableStats() {
+        consumableNameLabel.setText("Selected Consumable: ");
+        consumableDescLabel.setText("Description: ");
+        consumableCostLabel.setText("Cost: ");
     }
 
     private void updateUpgradeStats(Upgrade upgrade) {
@@ -148,6 +169,58 @@ public class ShopController {
         towerReloadLabel.setText("Reload Speed: " + tower.getReloadSpeed());
         towerCostLabel.setText("Cost: " + tower.getCost());
     }
+    public void updateTowerStats() {
+        towerNameLabel.setText("Tower Name: ");
+        towerLevelLabel.setText("Level: ");
+        towerResourceLabel.setText("Resource: ");
+        towerResourceAmountLabel.setText("Resource amount: ");
+        towerValueLabel.setText("Value per resource: ");
+        towerReloadLabel.setText("Reload Speed: ");
+        towerCostLabel.setText("Cost: ");
+    }
+    private void resetButtons() {
+        List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
+        List<Button> towerButtons = List.of(t1Btn,t2Btn,t3Btn,t4Btn,t5Btn);
+        List<Button> consumableButtons = List.of(c1Btn, c2Btn, c3Btn);
+        for (int i=0; i < upgradeButtons.size(); i++) {
+            upgradeButtons.get(i).setStyle("");
+        }
+        for (int i=0; i < towerButtons.size(); i++) {
+            towerButtons.get(i).setStyle("");
+        }
+        for (int i=0; i < consumableButtons.size(); i++) {
+            consumableButtons.get(i).setStyle("");
+        }
+    }
+
+    public void resetImages() {
+        List<ImageView> activeTowerImages = List.of(activeTower1, activeTower2, activeTower3, activeTower4, activeTower5);
+        for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
+            String imagePath = gameEnv.getInventoryService().getActiveTowers().get(i).getImagePath();
+            FileInputStream inputStream;
+            try {
+                inputStream = new FileInputStream(imagePath);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            Image image = new Image(inputStream);
+
+            activeTowerImages.get(i).setImage(image);
+        }
+    }
+
+    private void resetScreen() {
+        updateConsumableStats();
+        updateTowerStats();
+        updateUpgradeStats();
+        updatePointsAndCoins();
+        resetImages();
+        resetButtons();
+        selectedTower = null;
+        selectedConsumable = null;
+        selectedUpgrade = null;
+        selectedTowerImg.setImage(null);
+    }
     @FXML
     public void backBtn() {
         this.gameEnv.backToMain();
@@ -170,14 +243,11 @@ public class ShopController {
             this.gameEnv.showAlert("No Tower Selected", "Please select your tower and try again");
             return;
         }
-        updatePointsAndCoins();
+        resetScreen();
     }
     @FXML
     public void buyUpgrade() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException {
         try {
-            if (selectedTower == null) {
-                throw new NoTowerSelectedException();
-            }
             if (selectedUpgrade == null) {
                 throw new NoUpgradeSelectedException();
             }
@@ -186,14 +256,10 @@ public class ShopController {
         } catch (PurchaseException e) {
             this.gameEnv.showAlert("Not enough money", "You don't have enough money to buy this, please try again in the next round");
             return;
-        } catch (NoTowerSelectedException e) {
-            this.gameEnv.showAlert("No tower selected", "Please select a tower");
-            return;
         } catch (NoUpgradeSelectedException e) {
             this.gameEnv.showAlert("No upgrade selected", "Please select an upgrade");
         }
-        updateUpgradeStats();
-        updatePointsAndCoins();
+        resetScreen();
     }
     @FXML
     public void buyConsumable() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ActiveConsumableException {
@@ -210,7 +276,7 @@ public class ShopController {
             this.gameEnv.showAlert("No Consumable Selected", "Please select a consumable");
             return;
         }
-        updatePointsAndCoins();
+        resetScreen();
     }
 
 }
