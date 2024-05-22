@@ -19,7 +19,7 @@ public class InventoryController {
     @FXML
     private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, towerResourceLabel, towerCoinsPerResourceLabel, pointsNeededLabel, sellCostLabel, repairCostLabel, towerCapacityLabel, towerSpeedLabel;
     @FXML
-    private Label selectedUpgradeLabel, upgradeDescLabel;
+    private Label selectedUpgradeLabel, upgradeDescLabel, resourceValueLabel;
     @FXML
     private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn;
     @FXML
@@ -28,7 +28,7 @@ public class InventoryController {
     private Button c1Btn, c2Btn, c3Btn;
     @FXML
     private ImageView selectedTowerImg;
-    private GameEnv gameEnv;
+    private final GameEnv gameEnv;
     private Tower currentActiveTower = null;
     private Tower currentReserveTower = null;
     private Tower currentTower = null;
@@ -150,20 +150,31 @@ public class InventoryController {
     private void updateTowerStats(Tower tower) {
         towerNameLabel.setText("Tower Name: " + tower.getName());
         towerStatusLabel.setText("Status: " + getStatus(tower));
-        towerLevelLabel.setText("Level: " + String.valueOf(tower.getLevel()));
-        towerResourceLabel.setText("Resource: " + String.valueOf(tower.getResource().getResourceType()));
-        towerCoinsPerResourceLabel.setText("Coins per resource: " + String.valueOf(tower.getResource().getResourceCoinValue()));
+        towerLevelLabel.setText("Level: " + tower.getLevel());
+        towerResourceLabel.setText("Resource: " + tower.getResource().getResourceType());
+        resourceValueLabel.setText("Resource Value: " + tower.getResource().getResourceCoinValue());
+        towerCoinsPerResourceLabel.setText("Coins per resource: " + tower.getResource().getResourceCoinValue());
         pointsNeededLabel.setText("Points needed to upgrade: " + tower.getUpgradePointLimit());
-        sellCostLabel.setText("Sell cost: " + String.valueOf(tower.getSellCost()));
-        repairCostLabel.setText("Repair Cost: " + String.valueOf(tower.getRepairCost()));
+        sellCostLabel.setText("Sell cost: " + tower.getSellCost());
+        repairCostLabel.setText("Repair Cost: " + tower.getRepairCost());
         towerSpeedLabel.setText("Tower Speed: " + tower.getReloadSpeed());
         towerCapacityLabel.setText("Resource Capacity: " + tower.getResourceAmount());
+        String imagePath = tower.getImagePath();
+        FileInputStream inputStream;
+        try {
+            inputStream = new FileInputStream(imagePath);
+        } catch (FileNotFoundException e){
+            throw new RuntimeException(e);
+        }
+        Image image = new Image(inputStream);
+        selectedTowerImg.setImage(image);
     }
     private void updateTowerStats() {
         towerNameLabel.setText("Tower Name: ");
         towerStatusLabel.setText("Status: ");
         towerLevelLabel.setText("Level: ");
-        towerLevelLabel.setText("Resource: ");
+        towerResourceLabel.setText("Resource: ");
+        resourceValueLabel.setText("Resource value: ");
         towerCoinsPerResourceLabel.setText("Coins per resource: ");
         pointsNeededLabel.setText("Points needed to upgrade: ");
         sellCostLabel.setText("Sell cost: ");
@@ -189,11 +200,16 @@ public class InventoryController {
             upgradeButtons.get(i).setStyle("");
         }
     }
+    public void resetPointsAndCoins() {
+        coinsLabel.setText("Coins: " + this.gameEnv.getInventoryService().getCoins());
+        pointsLabel.setText("Points: " + this.gameEnv.getInventoryService().getPoints());
+    }
 
     public void resetScreen() {
         resetButtons();
         updateTowerStats();
         updateUpgradeStats();
+        resetPointsAndCoins();
         currentReserveTower = null;
         currentActiveTower = null;
         currentTower = null;
@@ -249,21 +265,26 @@ public class InventoryController {
     @FXML
     public void repairTower() throws Exception {
         Tower tower = currentTower;
+
         try {
             if (currentTower == null) {
                 throw new NoTowerSelectedException();
+            }
+            if (!currentTower.isBroken()) {
+                throw new IllegalArgumentException();
             }
             this.gameEnv.getInventoryService().repairTower(currentTower);
             resetScreen();
         } catch (NoTowerSelectedException e) {
             this.gameEnv.showAlert("No tower selected", "Select a tower and try again");
             return;
+        } catch (IllegalArgumentException e) {
+            this.gameEnv.showAlert("Tower not Broken", "You cannot repair this tower as it is not broken");
         } catch (Exception e) {
             this.gameEnv.showAlert("Not enough money!", "You don't have enough money to buy this!");
             return;
         }
         updateTowerStats(tower);
-
     }
     @FXML
     public void sellTower() throws NegativeAdditionException {
@@ -307,7 +328,7 @@ public class InventoryController {
     @FXML
     public void applyUpgrade() {
         List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
-
+        Tower tower = currentActiveTower;
         try {
             if (currentActiveTower == null) {
                 throw new NoTowerSelectedException();
@@ -318,7 +339,7 @@ public class InventoryController {
             this.gameEnv.getInventoryService().applyUpgrade(currentActiveTower, currentUpgrade);
             resetScreen();
         } catch (NoTowerSelectedException e) {
-            this.gameEnv.showAlert("No tower selected", "Please select an active tower and try again");
+            this.gameEnv.showAlert("No active tower selected", "Please select an active tower and try again");
             return;
         } catch (NoUpgradeSelectedException e) {
             this.gameEnv.showAlert("No Upgrade Selected", "Please select an upgrade and try again");
@@ -326,7 +347,8 @@ public class InventoryController {
         } catch (UpgradeException e) {
             this.gameEnv.showAlert("Upgrade Failed", "You don't have enough points to upgrade this tower");
         }
-
+        updateTowerStats(tower);
+        currentActiveTower = tower;
         for (int i = 0; i < upgradeButtons.size(); i++) {
             upgradeButtons.get(i).setDisable(true);
             upgradeButtons.get(i).setText("None");
