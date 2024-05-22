@@ -1,5 +1,6 @@
 package seng201.team0.models.upgrades;
 
+import seng201.team0.exceptions.UpgradeException;
 import seng201.team0.models.towers.Tower;
 
 public class MoneyUpgrade extends Upgrade{
@@ -8,13 +9,13 @@ public class MoneyUpgrade extends Upgrade{
     }
 
     @Override
-    public void apply(Tower tower, int playerPoints) {
-        // Needs to implemented
-        // Don't forget to use UpgradeExists to check if it is already there!
-        if (upgradeExists(tower, MoneyUpgrade.class)) {
-            increaseCount();
+    public void apply(Tower tower, int playerPoints) throws UpgradeException {
+        if (playerPoints < tower.getUpgradePointLimit()){
+            throw new UpgradeException();
         }
-        // tower.getResourceType().increaseCoinValue(1);
+        else{
+            tower.getResource().increaseCoinValue(10);
+        }
     }
 
 }

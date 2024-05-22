@@ -1,5 +1,6 @@
 package seng201.team0.models.upgrades;
 
+import seng201.team0.exceptions.UpgradeException;
 import seng201.team0.models.towers.Tower;
 
 public class SpeedUpgrade extends Upgrade{
@@ -8,12 +9,12 @@ public class SpeedUpgrade extends Upgrade{
     }
 
     @Override
-    public void apply(Tower tower, int playerPoints) {
-        //Needs to be implemented
-        // Don't forget to use UpgradeExists to check if it is already there!
-        if (upgradeExists(tower, SpeedUpgrade.class)) {
-            increaseCount();
+    public void apply(Tower tower, int playerPoints) throws UpgradeException {
+        if (playerPoints < tower.getUpgradePointLimit()){
+            throw new UpgradeException();
         }
-        tower.increaseReloadSpeed(1);
+        else{
+            tower.increaseReloadSpeed(1);
+        }
     }
 }

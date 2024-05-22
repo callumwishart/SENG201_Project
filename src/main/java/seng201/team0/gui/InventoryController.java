@@ -315,6 +315,8 @@ public class InventoryController {
         } catch (NoUpgradeSelectedException e) {
             this.gameEnv.showAlert("No Upgrade Selected", "Please select an upgrade and try again");
             return;
+        } catch (UpgradeException e) {
+            this.gameEnv.showAlert("Upgrade Failed", "You don't have enough points to upgrade this tower");
         }
 
         for (int i = 0; i < upgradeButtons.size(); i++) {

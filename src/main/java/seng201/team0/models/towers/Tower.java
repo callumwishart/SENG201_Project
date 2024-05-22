@@ -79,7 +79,7 @@ public class Tower extends Item implements Sellable {
     }
 
     public int getUpgradePointLimit() {
-        return level * 100;
+        return level * 200;
     }
 
     public void setToBroken () {
@@ -117,6 +117,11 @@ public class Tower extends Item implements Sellable {
         } else {
             return 0;
         }
+    }
+
+    public void addUpgrade(Upgrade upgrade){
+        this.upgrades.add(upgrade);
+        this.levelUp();
     }
 
     public void incrementUsed() {
