@@ -28,7 +28,8 @@ public class GameEnv {
     private Shop shop;
     private Difficulty difficulty;
     private int numRounds;
-    private int currentRoundNum = 0;
+
+    private int currentRoundNum = 1;
     private int difficultyMultiplier;
     private PlayerService playerService;
     private InventoryService inventoryService;
@@ -301,6 +302,9 @@ public class GameEnv {
     }
     public ShopService getShopService() {
         return shopService;
+    }
+    public void setCurrentRoundNum(int currentRoundNum) {
+        this.currentRoundNum = currentRoundNum;
     }
     /**
     * Accepts a title and a message which can then create an alert on screen where the

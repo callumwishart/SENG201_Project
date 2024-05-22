@@ -79,6 +79,10 @@ public class PlayerInventory {
             throw new Exception("You do not have enough money");
         }
     }
+    public void resetCoinsAndPoints() {
+        this.coins = 0;
+        this.points =0;
+    }
 
     public int getCoins () {
         return coins;
