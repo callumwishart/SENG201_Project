@@ -32,13 +32,11 @@ public class GameEnv {
     private int currentRoundNum = 1;
     private int difficultyMultiplier;
     private PlayerService playerService;
-    private InventoryService inventoryService;
-    private ShopService shopService;
-    private final int defaultTowerCost = 30;
-    private final int defaultTowerReload = 5;
-    private List<Tower> possibleTowers = List.of(new Factory(defaultTowerReload,defaultTowerCost), new Farm(defaultTowerReload,defaultTowerCost), new Mine(defaultTowerReload,defaultTowerCost), new Sawmill(defaultTowerReload,defaultTowerCost), new WaterTower(defaultTowerReload,defaultTowerCost));
-    private List<Upgrade> possibleUpgrades = List.of(new CapacityUpgrade(), new MoneyUpgrade(), new SpeedUpgrade());
-    private List<Consumable> possibleConsumables = List.of(new Shield(), new SlowCartBooster(), new TowerSpeedBooster());
+    private final InventoryService inventoryService;
+    private final ShopService shopService;
+    private final List<Tower> possibleTowers = List.of(new Factory(), new Farm(), new Mine(), new Sawmill(), new WaterTower());
+    private final List<Upgrade> possibleUpgrades = List.of(new CapacityUpgrade(), new MoneyUpgrade(), new SpeedUpgrade());
+    private final List<Consumable> possibleConsumables = List.of(new Shield(), new SlowCartBooster(), new TowerSpeedBooster());
     private final Consumer<GameEnv> startLauncher;
     private final Consumer<GameEnv> setupLauncher;
     private final Consumer<GameEnv> playLauncher;
