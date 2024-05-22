@@ -135,6 +135,9 @@ public class InventoryService {
             throw new Exception(String.format("Removing %d will result in negative coin balance", amount));
         }
     }
+    public void resetCoinsAndPoints() {
+        this.inventory.resetCoinsAndPoints();
+    }
 
     public void addUpgrade(Upgrade upgrade) {
         this.inventory.addUpgrade(upgrade);

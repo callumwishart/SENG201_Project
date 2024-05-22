@@ -17,7 +17,7 @@ import java.util.*;
 
 public class InventoryController {
     @FXML
-    private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, pointsNeededLabel, sellCostLabel, repairCostLabel;
+    private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, pointsNeededLabel, sellCostLabel, repairCostLabel, towerCapacityLabel, towerSpeedLabel;
     @FXML
     private Label selectedUpgradeLabel, upgradeDescLabel;
     @FXML
@@ -154,6 +154,8 @@ public class InventoryController {
         pointsNeededLabel.setText("Points needed to upgrade: " + tower.getRepairCost());
         sellCostLabel.setText("Sell cost: " + String.valueOf(tower.getSellCost()));
         repairCostLabel.setText("Repair Cost: " + String.valueOf(tower.getRepairCost()));
+        towerSpeedLabel.setText("Tower Speed: " + tower.getReloadSpeed());
+        towerCapacityLabel.setText("Resource Capacity: " + tower.getResourceAmount());
     }
     private void updateTowerStats() {
         towerNameLabel.setText("Tower Name: ");
@@ -162,6 +164,8 @@ public class InventoryController {
         pointsNeededLabel.setText("Points needed to upgrade: ");
         sellCostLabel.setText("Sell cost: ");
         repairCostLabel.setText("Repair Cost: ");
+        towerSpeedLabel.setText("Tower Speed: ");
+        towerCapacityLabel.setText("Resource Capacity: ");
     }
     private void resetButtons() {
         List<Button> activeTowerButtons = List.of(t1Btn, t2Btn, t3Btn, t4Btn, t5Btn);

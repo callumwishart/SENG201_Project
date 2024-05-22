@@ -19,7 +19,7 @@ public class GameOverController {
             loseWinLabel.setText("You lost!");
         }
         finalScoreLabel.setText("Final Score: " + gameEnv.getInventoryService().getPoints() + " points");
-        roundCountLabel.setText("Rounds: " + gameEnv.getRoundNum() + "/" + gameEnv.getNumRounds());
+        roundCountLabel.setText("Rounds: " + (gameEnv.getRoundNum() - 1) + "/" + gameEnv.getNumRounds());
         thanksLabel.setText("Thanks for playing " + gameEnv.getPlayer().getName() + "!");
     }
 
@@ -29,6 +29,8 @@ public class GameOverController {
     }
     @FXML
     private void playAgain() {
+        this.gameEnv.setCurrentRoundNum(1);
+        this.gameEnv.getInventoryService().resetCoinsAndPoints();
         gameEnv.closeStartScreen();
     }
 }
