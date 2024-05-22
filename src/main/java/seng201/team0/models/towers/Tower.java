@@ -17,7 +17,6 @@ import static java.lang.Math.round;
  * </p>
  */
 public class Tower extends Item implements Sellable {
-    double inputCost;
     int resourceAmount;
     int reloadSpeed;
     boolean isReloading;
