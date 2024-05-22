@@ -8,11 +8,9 @@ import seng201.team0.exceptions.NameCharException;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.towers.Tower;
-import seng201.team0.gui.FXWrapper;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +98,7 @@ public class SetupController {
             }
         });
     }
-    public Difficulty createDifficulty(String input) {
+    private Difficulty createDifficulty(String input) {
         if (input == "hard") {
             return new Difficulty(1.2,1.2,1.2);
         } else {
@@ -108,7 +106,7 @@ public class SetupController {
         }
     }
     @FXML
-    public void startGame() throws InterruptedException, NameCharException {
+    private void startGame() throws InterruptedException, NameCharException {
 
         ArrayList<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
         for (Tower tower: selectedTowers) {
@@ -142,6 +140,11 @@ public class SetupController {
 
         this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
         this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
-        this.gameEnv.closeSetupScreen();
+        this.gameEnv.openRoundStyle();
+    }
+    @FXML
+    private void goBack() {
+        this.gameEnv.clearScreen.run();
+        this.gameEnv.launchStartScreen();
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InstructionsController">
+   <children>
+      <Label layoutX="361.0" layoutY="41.0" text="Welcome to Resource Rush!">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="435.0" layoutY="95.0" text="Aim of the game?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="277.0" layoutY="139.0" prefHeight="65.0" prefWidth="503.0" text="The aim of the game is to strategically choose your towers and upgrade them over time so that each round you will be able to generate enough resources to fill all your carts entirely!" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="15.0" layoutY="16.0" mnemonicParsing="false" onAction="#goBack" prefHeight="49.0" prefWidth="106.0" text="Back" />
+   </children>
+</Pane>

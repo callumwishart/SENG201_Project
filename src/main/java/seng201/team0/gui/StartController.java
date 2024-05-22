@@ -31,4 +31,5 @@ public class StartController extends Application{
     private void startGame() {
         gameEnv.closeStartScreen();
     }
+    @FXML void openInstructions() {gameEnv.openInstruction();}
 }
