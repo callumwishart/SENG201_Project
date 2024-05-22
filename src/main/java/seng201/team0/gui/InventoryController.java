@@ -187,15 +187,7 @@ public class InventoryController {
         List<Button> reservedTowerButtons = List.of(reservedT1Btn, reservedT2Btn, reservedT3Btn, reservedT4Btn, reservedT5Btn);
         List<Button> consumableButtons = List.of(c1Btn, c2Btn, c3Btn);
         List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
-        for (int i = 0; i < activeTowerButtons.size(); i++) {
-            activeTowerButtons.get(i).setStyle("");
-        }
-        for (int i = 0; i < reservedTowerButtons.size(); i++) {
-            reservedTowerButtons.get(i).setStyle("");
-        }
-        for (int i = 0; i < consumableButtons.size(); i++) {
-            consumableButtons.get(i).setStyle("");
-        }
+        ShopController.resetButtonStyle(activeTowerButtons, reservedTowerButtons, consumableButtons);
         for (int i = 0; i < upgradeButtons.size(); i++) {
             upgradeButtons.get(i).setStyle("");
         }
