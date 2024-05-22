@@ -61,7 +61,13 @@ public class FXWrapper {
     public void launchPlayScreen(GameEnv gameEnv) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/play_new.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new PlayController(gameEnv));
+            mainScreenLoader.setControllerFactory(param -> {
+                try {
+                    return new PlayController(gameEnv);
+                } catch (CloneNotSupportedException e) {
+                    throw new RuntimeException(e);
+                }
+            });
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Resource Rush");

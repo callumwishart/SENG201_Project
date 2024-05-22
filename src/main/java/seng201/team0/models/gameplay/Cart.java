@@ -6,7 +6,7 @@ import seng201.team0.models.resources.Resource;
 public class Cart {
     private String name;
     private int size;
-    private String resourceType;
+    private Resource resource;
     private int speed;
     private boolean universal;
     private Resource[] cargo;
@@ -18,11 +18,11 @@ public class Cart {
         this.size = size;
         this.cargo = new Resource[this.size];
         this.cargoSlotsFilled = 0;
-        this.resourceType = resource.getResourceType();
+        this.resource = resource;
         this.speed = speed;
         this.universal = false;
         this.distance = 0;
-        this.name = String.format("%s Cart", this.resourceType);
+        this.name = String.format("%s Cart", this.resource.getResourceType());
     }
 
     Cart(int size, int speed) {
@@ -39,8 +39,8 @@ public class Cart {
         return size;
     }
 
-    public String getResourceType() {
-        return resourceType;
+    public Resource getResource() {
+        return resource;
     }
 
     public boolean isUniversal() {

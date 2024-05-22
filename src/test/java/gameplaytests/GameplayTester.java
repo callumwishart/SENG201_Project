@@ -19,22 +19,21 @@ public class GameplayTester {
     private static Round round;
 
     @BeforeAll
-    static void setupRound() throws TowerInventoryFullException {
+    static void setupRound() throws TowerInventoryFullException, CloneNotSupportedException {
         GameplayTester.inventoryService = new InventoryService(new PlayerInventory());
         inventoryService.addActiveTower(new Farm());
         GameplayTester.difficulty = new Difficulty();
-        GameplayTester.roundNum = 1;
+        GameplayTester.roundNum = 3;
         GameplayTester.round = new Round(inventoryService, difficulty, roundNum);
     }
 
     @Test
     void testGameRunnerWithObserver() throws InterruptedException {
         TestGameObserver observer = new TestGameObserver();
-        GameRunner gameRunner = new GameRunner(round, observer);
-        Thread gameThread = new Thread(gameRunner);
-        gameThread.start();
+        GameRunner gameRunner = new GameRunner(round, observer, false);
+        gameRunner.run();
         boolean gameSuccess = gameRunner.getGameSuccess();
-        assertFalse(gameSuccess);
+        assertTrue(gameSuccess);
     }
 
 }
