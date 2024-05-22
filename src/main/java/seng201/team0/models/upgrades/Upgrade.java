@@ -1,5 +1,6 @@
 package seng201.team0.models.upgrades;
 
+import seng201.team0.exceptions.UpgradeException;
 import seng201.team0.models.Item;
 import seng201.team0.models.towers.Tower;
 
@@ -31,25 +32,9 @@ public abstract class Upgrade extends Item {
     }
 
     /**
-     * Checks to see if the given tower already has the upgrade applied to it.
-     * @param tower Tower the upgrade should be checked with
-     * @param upgradeType Type of the upgrade you want to check for
-     * @return Returns boolean of true if the upgrade exists and false otherwise.
-     */
-    public static Boolean upgradeExists(Tower tower, Class<? extends Upgrade> upgradeType) {
-        for (Upgrade upgrade : tower.getUpgrades()) {
-            if (upgrade.getClass().equals(upgradeType)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Constructor of apply upgrade method
      * @param tower Tower that the upgrade should be applied to
      * @param playerPoints The players current points.
      */
-
-    public abstract void apply(Tower tower, int playerPoints);
+    public abstract void apply(Tower tower, int playerPoints) throws UpgradeException;
 }

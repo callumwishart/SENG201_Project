@@ -97,7 +97,7 @@
             </HBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="upgradeNameLabel" text="Selected Upgrade:">
+                  <Label fx:id="upgradeNameLabel" text="Selected Upgrade:" wrapText="true">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -105,7 +105,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="upgradeDescLabel" text="Description:">
+                  <Label fx:id="upgradeDescLabel" text="Description:" wrapText="true">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -277,7 +277,7 @@
             </HBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="consumableNameLabel" text="Selected Consumable:">
+                  <Label fx:id="consumableNameLabel" text="Selected Consumable:" wrapText="true">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -285,7 +285,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="consumableDescLabel" text="Description:">
+                  <Label fx:id="consumableDescLabel" text="Description:" wrapText="true">
                      <font>
                         <Font size="15.0" />
                      </font>

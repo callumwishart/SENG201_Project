@@ -1,5 +1,6 @@
 package seng201.team0.models.upgrades;
 
+import seng201.team0.exceptions.UpgradeException;
 import seng201.team0.models.towers.Tower;
 
 /**
@@ -22,12 +23,13 @@ public class CapacityUpgrade extends Upgrade{
      * @param playerPoints gets the playersPoints
      */
     @Override
-    public void apply(Tower tower, int playerPoints) {
-        // Needs to implemented
-        // Don't forget to use UpgradeExists to check if it is already there!
-        if (upgradeExists(tower, CapacityUpgrade.class)) {
-            increaseCount();
+    public void apply(Tower tower, int playerPoints) throws UpgradeException {
+        if (playerPoints < tower.getUpgradePointLimit()){
+            throw new UpgradeException();
         }
-        tower.increaseResourceAmount(1);
+        else{
+            tower.addUpgrade(new CapacityUpgrade());
+            tower.increaseResourceAmount(1);
+        }
     }
 }

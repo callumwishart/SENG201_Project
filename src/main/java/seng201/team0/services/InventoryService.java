@@ -88,7 +88,7 @@ public class InventoryService {
         }
     }
 
-    public void applyUpgrade(Tower tower, Upgrade upgrade) {
+    public void applyUpgrade(Tower tower, Upgrade upgrade) throws UpgradeException {
         upgrade.apply(tower, this.getPoints());
         removeUpgrade(upgrade); // consumes from the inventory
     }
@@ -149,5 +149,11 @@ public class InventoryService {
 
     public void removeConsumables() {
         this.inventory.removeConsumables();
+    }
+
+    public void checkUpgradeSpace() throws UpgradesFullException{
+        if (this.inventory.getUpgrades().size() >= 3){
+            throw new UpgradesFullException();
+        }
     }
 }
