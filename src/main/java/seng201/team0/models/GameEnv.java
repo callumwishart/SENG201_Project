@@ -54,6 +54,7 @@ public class GameEnv {
     private final Consumer<GameEnv> roundStyleScreenLauncher;
     private final Consumer<GameEnv> gameOverLauncher;
     private final Consumer<GameEnv> randomEventLauncher;
+    private final Consumer<GameEnv> instructionsLauncher;
     public final Runnable clearScreen;
     private boolean result;
     private RandomEvent currRandomEvent;
@@ -72,7 +73,7 @@ public class GameEnv {
      * @param gameOverLauncher gameOverLauncher function to launch the gameOver screen.
      * @param randomEventLauncher randomEventLauncher function to launch the random event screen.
      */
-    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher) {
+    public GameEnv(Consumer<GameEnv> startLauncher, Consumer<GameEnv> setupLauncher, Runnable clearScreen, Consumer<GameEnv> playLauncher, Consumer<GameEnv> inventoryLauncher, Consumer<GameEnv> shopLauncher, Consumer<GameEnv> roundSummaryLauncher, Consumer<GameEnv> roundStyleScreenLauncher, Consumer<GameEnv> gameOverLauncher, Consumer<GameEnv> randomEventLauncher, Consumer<GameEnv> instructionsLauncher) {
 
         this.player = new Player();
         this.shop = new Shop();
@@ -89,6 +90,7 @@ public class GameEnv {
         this.roundStyleScreenLauncher = roundStyleScreenLauncher;
         this.gameOverLauncher = gameOverLauncher;
         this.randomEventLauncher = randomEventLauncher;
+        this.instructionsLauncher = instructionsLauncher;
         launchStartScreen();
     }
 
@@ -124,6 +126,10 @@ public class GameEnv {
     public void showFinishedGame() {
         clearScreen.run();
         launchGameOverScreen();
+    }
+    public void openInstruction() {
+        clearScreen.run();
+        launchInstructionsScreen();
     }
 
     /**
@@ -184,7 +190,9 @@ public class GameEnv {
     private void launchGameOverScreen() {
         gameOverLauncher.accept(this);
     }
-
+    private void launchInstructionsScreen() {
+        instructionsLauncher.accept(this);
+    }
     public Player getPlayer() {
         return this.player;
     }

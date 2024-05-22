@@ -37,5 +37,6 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
       </Label>
+      <Button mnemonicParsing="false" onAction="#openInstructions" text="Instructions" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
    </children>
 </GridPane>

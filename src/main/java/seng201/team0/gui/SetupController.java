@@ -100,7 +100,7 @@ public class SetupController {
             }
         });
     }
-    public Difficulty createDifficulty(String input) {
+    private Difficulty createDifficulty(String input) {
         if (input == "hard") {
             return new Difficulty(1.2,1.2,1.2);
         } else {
@@ -108,7 +108,7 @@ public class SetupController {
         }
     }
     @FXML
-    public void startGame() throws InterruptedException, NameCharException {
+    private void startGame() throws InterruptedException, NameCharException {
 
         ArrayList<Tower> finalTowers = new ArrayList<>(); // This is so that new instances of each tower is set as active towers rather than the same one twice
         for (Tower tower: selectedTowers) {
@@ -143,5 +143,10 @@ public class SetupController {
         this.gameEnv.getPlayer().getInventory().setActiveTowers(finalTowers);
         this.gameEnv.setNumRounds(roundSlider.valueProperty().intValue());
         this.gameEnv.closeSetupScreen();
+    }
+    @FXML
+    private void goBack() {
+        this.gameEnv.clearScreen.run();
+        this.gameEnv.launchStartScreen();
     }
 }

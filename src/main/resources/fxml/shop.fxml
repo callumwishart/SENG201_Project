@@ -128,6 +128,14 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
+            <Label text="Current Active Towers:">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
       <GridPane prefHeight="206.0" prefWidth="394.0" GridPane.rowIndex="2">
