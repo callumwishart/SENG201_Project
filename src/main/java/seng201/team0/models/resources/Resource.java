@@ -1,22 +1,16 @@
 package seng201.team0.models.resources;
 
+import seng201.team0.models.towers.Tower;
+
 import java.io.Serializable;
 
-public class Resource {
+public class Resource implements Cloneable{
     private String resourceType;
     private int resourceCoinValue;
 
     public Resource(String inputResourceType, int inputResourceValue) {
         resourceType = inputResourceType;
         resourceCoinValue = inputResourceValue;
-    }
-
-    /**
-     * A copy constructor to make copies of a Resource
-     */
-    public Resource(Resource other){
-        this.resourceType = other.resourceType;
-        this.resourceCoinValue = other.resourceCoinValue;
     }
 
     public String getResourceType() {
@@ -28,5 +22,10 @@ public class Resource {
     }
     public void increaseCoinValue(int amount) {
         resourceCoinValue += amount;
+    }
+
+    @Override
+    public Resource clone() throws CloneNotSupportedException {
+        return (Resource) super.clone();
     }
 }
