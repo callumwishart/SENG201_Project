@@ -12,15 +12,8 @@ public class Difficulty {
      */
     private double roundDifficultyMultiplier;
 
-    /**
-     *  randomEventMultiplier affects how often random events are triggered.
-     */
-    private double randomEventMultiplier;
-
     private double originalCostMultiplier;
     private double originalRoundDifficultyMultiplier;
-    private double originalRandomEventMultiplier;
-
     /**
      *  If no values are specified for difficulty multipliers, defaults of 1 will
      *  be set to leave the game in a "normal" difficulty.
@@ -28,10 +21,8 @@ public class Difficulty {
     public Difficulty(){
         this.costMultiplier = 1;
         this.roundDifficultyMultiplier = 1;
-        this.randomEventMultiplier = 1;
         this.originalCostMultiplier = 1;
         this.originalRoundDifficultyMultiplier = 1;
-        this.originalRandomEventMultiplier = 1;
     }
 
     /**
@@ -42,19 +33,17 @@ public class Difficulty {
     public Difficulty(double costMultiplier, double cartAndRoundDifficultyMultiplier, double randomEventMultiplier){
         this.costMultiplier = costMultiplier;
         this.roundDifficultyMultiplier = cartAndRoundDifficultyMultiplier;
-        this.randomEventMultiplier = randomEventMultiplier;
         this.originalCostMultiplier = costMultiplier;
         this.originalRoundDifficultyMultiplier = cartAndRoundDifficultyMultiplier;
-        this.originalRandomEventMultiplier = randomEventMultiplier;
     }
 
     /**
      * This function is used to modify the round difficulty based off of what style of round the player has chosen
      */
     public void updateDifficulty(String value) {
-        if (value == "Risky") {
+        if (value.equals("Risky")) {
             this.roundDifficultyMultiplier *= 1.2;
-        } else if (value == "Safe") {
+        } else if (value.equals("Safe")) {
             this.roundDifficultyMultiplier *= 0.8;
         }
     }
@@ -67,17 +56,12 @@ public class Difficulty {
         return this.roundDifficultyMultiplier;
     }
 
-    public double getRandomEventMultiplier(){
-        return this.randomEventMultiplier;
-    }
-
     /**
      * Resets the difficulty multipliers back to "normal" state
      */
     public void reset() {
         this.costMultiplier = originalCostMultiplier;
         this.roundDifficultyMultiplier = originalRoundDifficultyMultiplier;
-        this.randomEventMultiplier = originalRandomEventMultiplier;
     }
 }
 
