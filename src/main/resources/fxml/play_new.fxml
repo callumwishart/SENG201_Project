@@ -400,7 +400,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#startGame" prefHeight="117.0" prefWidth="362.0" text="START" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Button fx:id="startButton" mnemonicParsing="false" onAction="#startGame" prefHeight="117.0" prefWidth="362.0" text="START" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font size="48.0" />
          </font>

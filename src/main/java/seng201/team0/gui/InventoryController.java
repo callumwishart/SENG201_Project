@@ -345,7 +345,7 @@ public class InventoryController {
             this.gameEnv.showAlert("No Upgrade Selected", "Please select an upgrade and try again");
             return;
         } catch (UpgradeException e) {
-            this.gameEnv.showAlert("Upgrade Failed", "You don't have enough points to upgrade this tower");
+            this.gameEnv.showAlert("Upgrade Failed", "You don't have enough points to upgrade this tower, try another tower or try again once you have more points!");
         }
         updateTowerStats(tower);
         currentActiveTower = tower;
