@@ -119,7 +119,7 @@ public class Round {
 
     /**
      * Returns a random size int between a range calculated from roundNum
-     * Generates a random int between minSize & maxSize,
+     * Generates a random int between minSize and maxSize,
      * the max size bracket increases as the round number increases,
      * but the min size bracket increases half as much.
      */

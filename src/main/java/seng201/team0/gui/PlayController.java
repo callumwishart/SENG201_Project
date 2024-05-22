@@ -43,6 +43,8 @@ public class PlayController implements GameObserver {
     private ProgressBar t1Progress, t2Progress, t3Progress, t4Progress, t5Progress;
     @FXML
     private ImageView tower1Img, tower2Img, tower3Img, tower4Img, tower5Img;
+    @FXML
+    private Button startButton;
     private GameEnv gameEnv;
     private int roundNum;
     private Round round;
@@ -54,6 +56,14 @@ public class PlayController implements GameObserver {
     private int trackDistance;
     private boolean isSuccess;
 
+    /**
+     * PlayController constructor
+     * <p>
+     *     Creates a new instance of the Round and new instance of the GameRunner
+     * </p>
+     * @param gameEnv current instance of gameEnv
+     * @throws CloneNotSupportedException
+     */
     public PlayController(GameEnv gameEnv) throws CloneNotSupportedException {
         this.gameEnv = gameEnv;
         this.round = new Round(this.gameEnv.getInventoryService(), this.gameEnv.getDifficulty(), this.gameEnv.getRoundNum());
@@ -65,6 +75,12 @@ public class PlayController implements GameObserver {
         this.towers = inventoryService.getActiveTowers();
         this.trackDistance = round.getTrackLength();
     }
+
+    /**
+     *Creates lists of buttons and tower images
+     * Firstly sets the images of the towers and text of the towers. Next it
+     * sets the carts and their respective speeds and buttons. It then sets the text of the player name and their points
+     */
     public void initialize(){
         List<Button> cartButtons = List.of(c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn, c16Btn, c17Btn, c18Btn, c19Btn, c20Btn);
         List<Button> towerButtons = List.of(t1Btn, t2Btn, t3Btn, t4Btn, t5Btn);
@@ -92,12 +108,24 @@ public class PlayController implements GameObserver {
         nameLabel.setText("Name: " + this.gameEnv.getPlayer().getName());
         pointsLabel.setText("Points: " + inventoryService.getPoints());
     }
+
+    /**
+     * Starts the game and sets the button to disabled so that you cannot click start game multiple times
+     * @throws InterruptedException
+     */
     @FXML
     public void startGame() throws InterruptedException {
+        startButton.setDisable(true);
         Thread gameThread = new Thread(gameRunner);
         gameThread.start();
     }
 
+    /**
+     * Calls {@code round.cleanup()} then adds coins and the points to the inventory and runs
+     * the {@code gameEnv.setHasWon} function with the value of true
+     * @param coins The value of coins earned from that round
+     * @param points the value of the points earned from that round
+     */
     @Override
     public void win(int coins, int points) throws NegativeAdditionException, TowerNotFoundException {
         round.cleanup(); // gets rid of consumables used, resets difficulty multipliers for next round
@@ -106,12 +134,23 @@ public class PlayController implements GameObserver {
         gameEnv.setHasWon(true);
     }
 
+    /**
+     * Calls {@code round.cleanup()} the runs the {@code gameEnv.setHasWon} with false value
+     */
     @Override
     public void lose() throws TowerNotFoundException {
         round.cleanup();
         gameEnv.setHasWon(false);
     }
 
+    /**
+     * Update Cart Stats
+     * <p>
+     *     This function is called each time there is an update and sets the progress of each the carts along the track
+     *     and the how full they are. This then also sets the colour of the cart to green if it is full and orange
+     *     if it is being filled.
+     * </p>
+     */
     public void updateCartStats() {
         List<ProgressBar> progressBars = List.of(c1Progress, c2Progress, c3Progress, c4Progress, c5Progress, c6Progress, c7Progress, c8Progress, c9Progress, c10Progress, c11Progress, c12Progress, c13Progress, c14Progress, c15Progress, c16Progress, c17Progress, c18Progress, c19Progress, c20Progress);
         List<Button> cartButtons = List.of(c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn, c16Btn, c17Btn, c18Btn, c19Btn, c20Btn);
@@ -126,6 +165,14 @@ public class PlayController implements GameObserver {
             }
         }
     }
+
+    /**
+     * Update Tower function
+     * <p>
+     *     Initialises the tower progress bars and updates them based on how far along they
+     *     are in their reload progress.
+     * </p>
+     */
     public void updateTowerStats() {
         List<ProgressBar> towerBars = List.of(t1Progress, t2Progress, t3Progress, t4Progress, t5Progress);
         for (int i = 0; i < this.towers.size(); i++) {
@@ -133,6 +180,14 @@ public class PlayController implements GameObserver {
         }
     }
 
+    /**
+     * Observe Function
+     * <p>
+     *     This is called each time there is an update in the game runner and will update the screen using
+     *     {@code updateCartStats()} and {@code updateTowerStats()}
+     * </p>
+     * @param gameRunner the current gameRunner
+     */
     @Override
     public void observe(GameRunner gameRunner) {
         this.carts = gameRunner.getCarts();

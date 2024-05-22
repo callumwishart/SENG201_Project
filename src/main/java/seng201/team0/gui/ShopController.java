@@ -51,23 +51,7 @@ public class ShopController {
             towerButtons.get(i).setOnAction(event -> {
                 updateTowerStats(gameEnv.getPossibleTowers().get(finalI));
                 selectedTower = gameEnv.getPossibleTowers().get(finalI);
-                towerButtons.forEach(button -> {
-                   if (button == towerButtons.get(finalI)) {
-                       button.setStyle("-fx-background-color: #b3b3b3; -fx-backround-radius: 5;");
-                       String imagePath = gameEnv.getPossibleTowers().get(finalI).getImagePath();
-                       FileInputStream inputStream;
-                       try {
-                           inputStream = new FileInputStream(imagePath);
-                       } catch (FileNotFoundException e) {
-                           throw new RuntimeException(e);
-                       }
-                       Image image = new Image(inputStream);
-
-                       selectedTowerImg.setImage(image);
-                   } else {
-                       button.setStyle("");
-                   }
-                });
+                setButtonStyle(towerButtons, finalI, gameEnv, selectedTowerImg);
             });
         }
         // Sets the actions of clicking on the upgrades
@@ -105,8 +89,7 @@ public class ShopController {
 
         // Initialises tower text
         for (int i = 0; i < towerButtons.size(); i++) {
-            int finalI = i;
-            towerButtons.get(finalI).setText(this.gameEnv.getPossibleTowers().get(finalI).getName());
+            towerButtons.get(i).setText(this.gameEnv.getPossibleTowers().get(i).getName());
         }
 
         // Initialises upgrade text
@@ -119,6 +102,10 @@ public class ShopController {
             consumableButtons.get(i).setText(this.gameEnv.getPossibleConsumables().get(i).getName());
         }
         // Initialises active tower images
+        initializeActiveTowers(activeTowerImages);
+    }
+
+    private void initializeActiveTowers(List<ImageView> activeTowerImages) {
         for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
             String imagePath = gameEnv.getInventoryService().getActiveTowers().get(i).getImagePath();
             FileInputStream inputStream;
@@ -131,6 +118,26 @@ public class ShopController {
 
             activeTowerImages.get(i).setImage(image);
         }
+    }
+
+    static void setButtonStyle(List<Button> towerButtons, int finalI, GameEnv gameEnv, ImageView selectedTowerImg) {
+        towerButtons.forEach(button -> {
+           if (button == towerButtons.get(finalI)) {
+               button.setStyle("-fx-background-color: #b3b3b3; -fx-backround-radius: 5;");
+               String imagePath = gameEnv.getPossibleTowers().get(finalI).getImagePath();
+               FileInputStream inputStream;
+               try {
+                   inputStream = new FileInputStream(imagePath);
+               } catch (FileNotFoundException e) {
+                   throw new RuntimeException(e);
+               }
+               Image image = new Image(inputStream);
+
+               selectedTowerImg.setImage(image);
+           } else {
+               button.setStyle("");
+           }
+        });
     }
 
     private void updateConsumableStats(Consumable consumable) {
@@ -156,15 +163,15 @@ public class ShopController {
     }
 
     private void updatePointsAndCoins() {
-        coinsLabel.setText("Coins: " + String.valueOf(this.gameEnv.getInventoryService().getCoins()));
-        pointsLabel.setText("Points: " + String.valueOf(this.gameEnv.getInventoryService().getPoints()));
+        coinsLabel.setText("Coins: " + this.gameEnv.getInventoryService().getCoins());
+        pointsLabel.setText("Points: " + this.gameEnv.getInventoryService().getPoints());
     }
 
     public void updateTowerStats(Tower tower) {
         towerNameLabel.setText("Tower Name: " + tower.getName());
-        towerLevelLabel.setText("Level: " + String.valueOf(tower.getLevel()));
+        towerLevelLabel.setText("Level: " + tower.getLevel());
         towerResourceLabel.setText("Resource: " + tower.getResource().getResourceType());
-        towerResourceAmountLabel.setText("Resource amount: " + String.valueOf(tower.getResourceAmount()));
+        towerResourceAmountLabel.setText("Resource amount: " + tower.getResourceAmount());
         towerValueLabel.setText("Value per resource: " + tower.getResource().getResourceCoinValue());
         towerReloadLabel.setText("Reload Speed: " + tower.getReloadSpeed());
         towerCostLabel.setText("Cost: " + tower.getCost());
@@ -182,31 +189,24 @@ public class ShopController {
         List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
         List<Button> towerButtons = List.of(t1Btn,t2Btn,t3Btn,t4Btn,t5Btn);
         List<Button> consumableButtons = List.of(c1Btn, c2Btn, c3Btn);
-        for (int i=0; i < upgradeButtons.size(); i++) {
-            upgradeButtons.get(i).setStyle("");
+        resetButtonStyle(upgradeButtons, towerButtons, consumableButtons);
+    }
+
+    public static void resetButtonStyle(List<Button> upgradeButtons, List<Button> towerButtons, List<Button> consumableButtons) {
+        for (Button upgradeButton : upgradeButtons) {
+            upgradeButton.setStyle("");
         }
-        for (int i=0; i < towerButtons.size(); i++) {
-            towerButtons.get(i).setStyle("");
+        for (Button towerButton : towerButtons) {
+            towerButton.setStyle("");
         }
-        for (int i=0; i < consumableButtons.size(); i++) {
-            consumableButtons.get(i).setStyle("");
+        for (Button consumableButton : consumableButtons) {
+            consumableButton.setStyle("");
         }
     }
 
     public void resetImages() {
         List<ImageView> activeTowerImages = List.of(activeTower1, activeTower2, activeTower3, activeTower4, activeTower5);
-        for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
-            String imagePath = gameEnv.getInventoryService().getActiveTowers().get(i).getImagePath();
-            FileInputStream inputStream;
-            try {
-                inputStream = new FileInputStream(imagePath);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            Image image = new Image(inputStream);
-
-            activeTowerImages.get(i).setImage(image);
-        }
+        initializeActiveTowers(activeTowerImages);
     }
 
     private void resetScreen() {
@@ -226,7 +226,7 @@ public class ShopController {
         this.gameEnv.backToMain();
     }
     @FXML
-    public void buyTower() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException, TowerInventoryFullException {
+    public void buyTower() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         try {
             if (selectedTower == null) {
                 throw new NoTowerSelectedException();
@@ -246,7 +246,7 @@ public class ShopController {
         resetScreen();
     }
     @FXML
-    public void buyUpgrade() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, PurchaseException {
+    public void buyUpgrade() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         try {
             if (selectedUpgrade == null) {
                 throw new NoUpgradeSelectedException();
@@ -266,7 +266,7 @@ public class ShopController {
         resetScreen();
     }
     @FXML
-    public void buyConsumable() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, ActiveConsumableException {
+    public void buyConsumable() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         try {
             if (selectedConsumable == null) {
                 throw new NoConsumableSelectedException();

@@ -51,24 +51,7 @@ public class SetupController {
             towerButtons.get(i).setOnAction(event -> {
                 updateStats(gameEnv.getPossibleTowers().get(finalI));
                 selectedTowerIndex = finalI;
-                towerButtons.forEach(button -> {
-                    if (button == towerButtons.get(finalI)) {
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-backround-radius: 5;");
-                        String imagePath = gameEnv.getPossibleTowers().get(finalI).getImagePath();
-                        FileInputStream inputStream;
-                        try {
-                            inputStream = new FileInputStream(imagePath);
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException(e);
-                        }
-                        Image image = new Image(inputStream);
-
-                        selectedTowerImage.setImage(image);
-
-                    } else {
-                        button.setStyle("");
-                    }
-                });
+                ShopController.setButtonStyle(towerButtons, finalI, gameEnv, selectedTowerImage);
             });
         }
         for (int i = 0; i <selectedTowerButtons.size(); i++ ) {
