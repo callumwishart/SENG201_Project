@@ -150,4 +150,10 @@ public class InventoryService {
     public void removeConsumables() {
         this.inventory.removeConsumables();
     }
+
+    public void checkUpgradeSpace() throws UpgradesFullException{
+        if (this.inventory.getUpgrades().size() >= 3){
+            throw new UpgradesFullException();
+        }
+    }
 }

@@ -3,6 +3,7 @@ package seng201.team0.services;
 import seng201.team0.exceptions.ActiveConsumableException;
 import seng201.team0.exceptions.PurchaseException;
 import seng201.team0.exceptions.TowerInventoryFullException;
+import seng201.team0.exceptions.UpgradesFullException;
 import seng201.team0.models.Shop;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.towers.Tower;
@@ -38,18 +39,20 @@ public class ShopService {
         }
     }
 
-    public void purchaseUpgrade(Upgrade upgrade) throws PurchaseException {
+    public void purchaseUpgrade(Upgrade upgrade) throws PurchaseException, UpgradesFullException {
+        inventoryService.checkUpgradeSpace();
         TransactionService.purchase(upgrade.getCost(), inventoryService);
         inventoryService.addUpgrade(upgrade);
     }
 
-    public void purchaseConsumable(Consumable consumable) throws ActiveConsumableException {
-        if (this.inventoryService.getConsumables().contains(consumable)){
-            throw new ActiveConsumableException("There is already an active consumable of this type in your inventory!");
+    public void purchaseConsumable(Consumable consumable) throws ActiveConsumableException, PurchaseException {
+        for (Consumable activeConsumable : this.inventoryService.getConsumables()){
+            if (activeConsumable.getClass() == consumable.getClass()) {
+                throw new ActiveConsumableException("There is already an active consumable of this type in your inventory!");
+            }
         }
-        else {
-            this.inventoryService.addConsumable(consumable);
-        }
+        TransactionService.purchase(consumable.getCost(), this.inventoryService);
+        this.inventoryService.addConsumable(consumable);
     }
 
 }

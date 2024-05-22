@@ -258,6 +258,8 @@ public class ShopController {
             return;
         } catch (NoUpgradeSelectedException e) {
             this.gameEnv.showAlert("No upgrade selected", "Please select an upgrade");
+        } catch (UpgradesFullException e) {
+            this.gameEnv.showAlert("Upgrade inventory full", "You already have 3 upgrades in your inventory, if you want more, apply them and then come back for more");
         }
         resetScreen();
     }
@@ -275,6 +277,8 @@ public class ShopController {
         } catch (NoConsumableSelectedException e) {
             this.gameEnv.showAlert("No Consumable Selected", "Please select a consumable");
             return;
+        } catch (PurchaseException e) {
+            this.gameEnv.showAlert("Not enough money", "You don't have enough money to buy this, please try again in the next round");
         }
         resetScreen();
     }
