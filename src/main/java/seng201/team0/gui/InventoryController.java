@@ -346,6 +346,8 @@ public class InventoryController {
             return;
         } catch (UpgradeException e) {
             this.gameEnv.showAlert("Upgrade Failed", "You don't have enough points to upgrade this tower");
+        } catch (UpgradeMaxException e){
+            this.gameEnv.showAlert("Upgrade maxed out","You've applied this upgrade the maximum amount of times, please try apply this to another tower");
         }
         updateTowerStats(tower);
         currentActiveTower = tower;
