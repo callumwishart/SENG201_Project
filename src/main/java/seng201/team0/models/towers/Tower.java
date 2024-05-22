@@ -81,10 +81,17 @@ public class Tower extends Item implements Sellable {
     }
 
     /**
-     * Increases the reload speed by the specified amount
+     * Increases the reload speed by 1
      */
-    public void increaseReloadSpeed(int amount) {
-        reloadSpeed += amount;
+    public void increaseReloadSpeed() {
+        reloadSpeed += 1;
+    }
+
+    /**
+     * Decreases the reload speed by 1
+     */
+    public void decreaseReloadSpeed() {
+        reloadSpeed -= 1;
     }
 
     /**
