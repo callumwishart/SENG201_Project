@@ -12,12 +12,26 @@ import seng201.team0.models.upgrades.Upgrade;
 
 import java.util.ArrayList;
 
+/**
+ * Shop class to handle everything in the shop
+ */
 public class Shop {
+    /**
+     * ArrayList to store towers in shop
+     */
     ArrayList<Tower> towers = new ArrayList<>();
+    /**
+     * ArrayList to store upgrades in shop
+     */
     ArrayList<Upgrade> upgrades = new ArrayList<>();
+    /**
+     * ArrayList to store consumables in shop
+     */
     ArrayList<Consumable> consumables = new ArrayList<>();
 
-
+    /**
+     * Constructor of shop to create all the available items
+     */
     public Shop(){
         // initialise all available towers for the game
         this.towers.add(new Factory());
@@ -35,14 +49,35 @@ public class Shop {
         this.consumables.add(new Shield());
     }
 
+    /**
+     * Get Towers Method
+     * <p>
+     *     This method returns the towers
+     * </p>
+     * @return towers
+     */
     public ArrayList<Tower> getTowers() {
         return towers;
     }
 
+    /**
+     * Get Consumables Method
+     * <p>
+     *     This method returns the consumables
+     * </p>
+     * @return consumables ArrayList
+     */
     public ArrayList<Consumable> getConsumables() {
         return consumables;
     }
 
+    /**
+     * Get Upgrade Method
+     * <p>
+     *     This method return the upgrades
+     * </p>
+     * @return upgrades ArrayList
+     */
     public ArrayList<Upgrade> getUpgrades() {
         return upgrades;
     }
