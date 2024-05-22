@@ -25,6 +25,7 @@ public class GameRunner implements Runnable{
         this.round = round;
         this.towers = (ArrayList<Tower>) this.round.getTowers();
         this.gameSuccess = false;
+        this.round.applyConsumables();
     }
 
     @Override
@@ -48,28 +49,30 @@ public class GameRunner implements Runnable{
                 }
             }
             for (Tower tower : round.getTowers()){
-                if (tower.getReloadTimeElapsed() % tower.getReloadSpeed() == 0){
-                    tower.setReloading(false);
-                }
-                else{
-                    tower.incrementReloadTimeElapsed();
-                }
-                for (Cart cart : carts){
-                    if (!tower.isReloading() && !cart.isFull() && !cart.isFinished()){
-                        if (cart.isUniversal() || tower.getResource().equals(cart.getResource())){
-                            for (int i = 0; i < tower.getResourceAmount(); i++){
-                                try {
-                                    cart.fillCart(tower.getResource().clone());
-                                } catch (FullCartException e) {
-                                    tower.setReloading(true);
-                                    tower.incrementReloadTimeElapsed();
-                                    break; // Cart has been filled
-                                } catch (CloneNotSupportedException e) {
-                                    throw new RuntimeException(e);
+                if (!tower.isBroken()){
+                    if (tower.getReloadTimeElapsed() % tower.getReloadSpeed() == 0){
+                        tower.setReloading(false);
+                    }
+                    else{
+                        tower.incrementReloadTimeElapsed();
+                    }
+                    for (Cart cart : carts){
+                        if (!tower.isReloading() && !cart.isFull() && !cart.isFinished()){
+                            if (cart.isUniversal() || tower.getResource().equals(cart.getResource())){
+                                for (int i = 0; i < tower.getResourceAmount(); i++){
+                                    try {
+                                        cart.fillCart(tower.getResource().clone());
+                                    } catch (FullCartException e) {
+                                        tower.setReloading(true);
+                                        tower.incrementReloadTimeElapsed();
+                                        break; // Cart has been filled
+                                    } catch (CloneNotSupportedException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
+                                tower.setReloading(true);
+                                tower.incrementReloadTimeElapsed(); // tower has unloaded, start reload
                             }
-                            tower.setReloading(true);
-                            tower.incrementReloadTimeElapsed(); // tower has unloaded, start reload
                         }
                     }
                 }
@@ -90,19 +93,9 @@ public class GameRunner implements Runnable{
             tower.incrementUsed();
         }
         // Determine win or loss
-        boolean gameSuccess = true; // create gameSuccess value
+        boolean gameSuccess; // create gameSuccess value
         if (round.hasShield()){
-            for (Cart cart : this.carts){
-                if (!cart.isFull()){
-                    if (round.hasShield()){
-                        round.setShield(false); // will do this once to simulate the shield being used
-                    }
-                    else{
-                        gameSuccess = false;
-                        break;
-                    }
-                }
-            }
+            gameSuccess = true;
         }
         else{
             gameSuccess = this.cartsFull();
@@ -155,7 +148,9 @@ public class GameRunner implements Runnable{
         int totalCoins = 0;
         for (Cart cart : carts){
             for (Resource resource : cart.getCargo()){
-                totalCoins += resource.getResourceCoinValue();
+                if (resource != null){ // only add coins if there are resources in cart
+                    totalCoins += resource.getResourceCoinValue();
+                }
             }
         }
         return totalCoins;
