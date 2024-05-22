@@ -151,7 +151,7 @@ public class InventoryController {
         towerNameLabel.setText("Tower Name: " + tower.getName());
         towerStatusLabel.setText("Status: " + getStatus(tower));
         towerLevelLabel.setText("Level: " + String.valueOf(tower.getLevel()));
-        pointsNeededLabel.setText("Points needed to upgrade: " + tower.getRepairCost());
+        pointsNeededLabel.setText("Points needed to upgrade: " + tower.getUpgradePointLimit());
         sellCostLabel.setText("Sell cost: " + String.valueOf(tower.getSellCost()));
         repairCostLabel.setText("Repair Cost: " + String.valueOf(tower.getRepairCost()));
         towerSpeedLabel.setText("Tower Speed: " + tower.getReloadSpeed());
