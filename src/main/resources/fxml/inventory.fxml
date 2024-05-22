@@ -188,7 +188,7 @@
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                   </Label>
                   <Label fx:id="towerStatusLabel" text="Status:" wrapText="true">
@@ -196,7 +196,7 @@
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                   </Label>
                   <Label fx:id="towerLevelLabel" text="Level:" wrapText="true">
@@ -204,36 +204,28 @@
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="pointsNeededLabel" text="Points needed to upgrade:" wrapText="true">
+                  <Label fx:id="towerResourceLabel" layoutX="20.0" layoutY="15.0" text="Resource:" wrapText="true">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="sellCostLabel" text="Sell Cost:" wrapText="true">
+                  <Label fx:id="towerCoinsPerResourceLabel" layoutX="20.0" layoutY="180.0" text="Coins per resource:">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="repairCostLabel" text="Repair Cost:" wrapText="true">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                   </Label>
                   <Label fx:id="towerSpeedLabel" text="Tower Speed:">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                      <font>
                         <Font size="16.0" />
@@ -241,11 +233,35 @@
                   </Label>
                   <Label fx:id="towerCapacityLabel" text="Resource Capacity:">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </VBox.margin>
                      <font>
                         <Font size="16.0" />
                      </font>
+                  </Label>
+                  <Label fx:id="pointsNeededLabel" text="Points needed to upgrade:" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="sellCostLabel" text="Sell Cost:" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="repairCostLabel" text="Repair Cost:" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
                   </Label>
                </children>
             </VBox>
