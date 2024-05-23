@@ -245,6 +245,8 @@ public class ShopController {
         } catch (NoTowerSelectedException e) {
             this.gameEnv.showAlert("No Tower Selected", "Please select your tower and try again");
             return;
+        } catch (NegativeAdditionException e) {
+            throw new RuntimeException(e);
         }
         resetScreen();
     }
