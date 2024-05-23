@@ -17,7 +17,7 @@ Run ./gradlew jar to build the game jar in build/libs
 
 ## Run Jar 
 1. Open a command line interface inside the project directory cd to /build/libs.
-2. Run the command java -jar seng201_team-1.0.SNAPSHOT.jar
+2. Run the command java -jar <jar_name>.jar
 
 The built jar of our game has been submitted via UC LEARN with the proper naming conventions.
 
