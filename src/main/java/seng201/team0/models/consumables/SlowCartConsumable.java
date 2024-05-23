@@ -4,10 +4,9 @@ package seng201.team0.models.consumables;
 import seng201.team0.models.gameplay.Cart;
 import seng201.team0.models.gameplay.Round;
 
-public class SlowCartBooster extends Consumable {
-    int cost = 20;
+public class SlowCartConsumable extends Consumable {
 
-    public SlowCartBooster() {
+    public SlowCartConsumable() {
         super("Slow Carts", "Slows all carts by 1 for 1 round", 350);
     }
 

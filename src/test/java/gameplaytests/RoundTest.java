@@ -9,7 +9,7 @@ import seng201.team0.exceptions.TowerInventoryFullException;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.PlayerInventory;
 import seng201.team0.models.consumables.Shield;
-import seng201.team0.models.consumables.SlowCartBooster;
+import seng201.team0.models.consumables.SlowCartConsumable;
 import seng201.team0.models.consumables.TowerSpeedBooster;
 import seng201.team0.models.gameplay.Cart;
 import seng201.team0.models.gameplay.Round;
@@ -56,7 +56,7 @@ public class RoundTest {
     @ValueSource(ints = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15})
     void testAllConsumablesApply(int roundNum) throws CloneNotSupportedException {
         inventoryService.addConsumable(new TowerSpeedBooster());
-        inventoryService.addConsumable(new SlowCartBooster());
+        inventoryService.addConsumable(new SlowCartConsumable());
         inventoryService.addConsumable(new Shield());
 
         Round round = new Round(inventoryService, difficulty, roundNum);
