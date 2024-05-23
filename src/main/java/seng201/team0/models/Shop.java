@@ -2,7 +2,7 @@ package seng201.team0.models;
 
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
-import seng201.team0.models.consumables.SlowCartBooster;
+import seng201.team0.models.consumables.SlowCartConsumable;
 import seng201.team0.models.consumables.TowerSpeedBooster;
 import seng201.team0.models.towers.*;
 import seng201.team0.models.upgrades.CapacityUpgrade;
@@ -44,7 +44,7 @@ public class Shop {
         this.upgrades.add(new SpeedUpgrade());
         this.upgrades.add(new CapacityUpgrade());
         // initialise available consumables
-        this.consumables.add(new SlowCartBooster());
+        this.consumables.add(new SlowCartConsumable());
         this.consumables.add(new TowerSpeedBooster());
         this.consumables.add(new Shield());
     }

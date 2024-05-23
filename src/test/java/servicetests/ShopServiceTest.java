@@ -10,7 +10,7 @@ import seng201.team0.models.PlayerInventory;
 import seng201.team0.models.Shop;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
-import seng201.team0.models.consumables.SlowCartBooster;
+import seng201.team0.models.consumables.SlowCartConsumable;
 import seng201.team0.models.consumables.TowerSpeedBooster;
 import seng201.team0.models.towers.Factory;
 import seng201.team0.models.towers.Farm;
@@ -101,7 +101,7 @@ public class ShopServiceTest {
 
         Consumable shield = new Shield();
         Consumable towerSpeed = new TowerSpeedBooster();
-        Consumable cartSlow = new SlowCartBooster();
+        Consumable cartSlow = new SlowCartConsumable();
 
         inventoryService.addCoins(shield.getCost());
         inventoryService.addCoins(towerSpeed.getCost());

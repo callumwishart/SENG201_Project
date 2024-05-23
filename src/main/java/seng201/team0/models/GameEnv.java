@@ -4,7 +4,7 @@ import javafx.scene.control.Alert;
 import seng201.team0.exceptions.TowerNotFoundException;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.consumables.Shield;
-import seng201.team0.models.consumables.SlowCartBooster;
+import seng201.team0.models.consumables.SlowCartConsumable;
 import seng201.team0.models.consumables.TowerSpeedBooster;
 import seng201.team0.models.randomevents.RandomEvent;
 import seng201.team0.models.randomevents.TowerBreakEvent;
@@ -66,7 +66,7 @@ public class GameEnv {
     /**
      * List of consumables that holds options for setup screen to use
      */
-    private final List<Consumable> possibleConsumables = List.of(new Shield(), new SlowCartBooster(), new TowerSpeedBooster());
+    private final List<Consumable> possibleConsumables = List.of(new Shield(), new SlowCartConsumable(), new TowerSpeedBooster());
     /**
      * A consumer that takes a {@link GameEnv} object and opens the start screen
      */
