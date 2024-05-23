@@ -11,23 +11,33 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StartController extends Application{
-    private GameEnv gameEnv;
-    @FXML
-    private Button startBtn;
+/**
+ * Controller of start_screen.fxml
+ */
+public class StartController{
+    /**
+     * GameEnv to hold the instance of the gameEnv
+     */
+    private final GameEnv gameEnv;
+
+    /**
+     * Constructor of the start controller
+     * @param gameEnv the instance of GameEnv that will be used
+     */
     public StartController(GameEnv gameEnv) {
         this.gameEnv = gameEnv;
     }
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        FXMLLoader baseLoader = new FXMLLoader(getClass().getResource("resources/fxml/setup_screen.fxml"));
 
-        Parent root = baseLoader.load();
-
-    }
+    /**
+     * Start button game which will close the start screen and open the setup screen
+     */
     @FXML
     private void startGame() {
         gameEnv.closeStartScreen();
     }
+
+    /**
+     * Open instruction button to show instructions
+     */
     @FXML void openInstructions() {gameEnv.openInstruction();}
 }

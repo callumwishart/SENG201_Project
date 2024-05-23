@@ -62,6 +62,11 @@ public abstract class RandomEvent {
      */
     public abstract void apply(InventoryService inventoryService) throws TowerNotFoundException;
 
+    /**
+     * Sets the tower affected using the individual random event methods
+     * @param inventoryService is the current instance of inventoryService
+     * @throws TowerNotFoundException is thrown if the tower is not found
+     */
     public abstract void setTowerAffected(InventoryService inventoryService) throws TowerNotFoundException;
 
 
