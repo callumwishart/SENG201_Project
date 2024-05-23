@@ -269,4 +269,9 @@ public class Tower extends Item implements Sellable {
     public void incrementUsed() {
         this.used += 1;
     }
+
+    /**
+     * Resets the used value to 0
+     */
+    public void resetUsed(){this.used = 0;}
 }
