@@ -32,8 +32,8 @@ public class GameEnv {
     private int currentRoundNum = 1;
     private int difficultyMultiplier;
     private PlayerService playerService;
-    private final InventoryService inventoryService;
-    private final ShopService shopService;
+    private InventoryService inventoryService;
+    private ShopService shopService;
     private final List<Tower> possibleTowers = List.of(new Factory(), new Farm(), new Mine(), new Sawmill(), new WaterTower());
     private final List<Upgrade> possibleUpgrades = List.of(new CapacityUpgrade(), new MoneyUpgrade(), new SpeedUpgrade());
     private final List<Consumable> possibleConsumables = List.of(new Shield(), new SlowCartBooster(), new TowerSpeedBooster());
@@ -440,6 +440,15 @@ public class GameEnv {
     public void setCurrentRoundNum(int currentRoundNum) {
         this.currentRoundNum = currentRoundNum;
     }
+
+    public void startNewGame() {
+        this.player = new Player();
+        this.inventoryService = new InventoryService(player);
+        this.shopService = new ShopService(this.shop, this.inventoryService);
+        setCurrentRoundNum(1);
+        closeStartScreen();
+    }
+
     /**
     * Accepts a title and a message which can then create an alert on screen where the
      * user can view and close the alert. This method will not return anything

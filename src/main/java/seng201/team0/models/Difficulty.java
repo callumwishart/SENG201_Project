@@ -17,7 +17,7 @@ public class Difficulty {
     /**
      * This is the original round difficulty multiplier stored, so difficulties can be reset after a round
      */
-    private double originalRoundDifficultyMultiplier;
+    private final double originalRoundDifficultyMultiplier;
     /**
      *  If no values are specified for difficulty multipliers, defaults of 1 will
      *  be set to leave the game in a "normal" difficulty.
@@ -56,6 +56,10 @@ public class Difficulty {
      */
     public double getCostMultiplier(){
         return this.costMultiplier;
+    }
+
+    public void incrementCostMultiplier(int roundNum) {
+        this.costMultiplier += 0.3;
     }
 
     /**

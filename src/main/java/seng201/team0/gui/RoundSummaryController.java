@@ -31,9 +31,6 @@ public class RoundSummaryController {
             result = "Lost!";
             nextButton.setDisable(true);
         }
-        if (this.gameEnv.getRoundNum() == this.gameEnv.getNumRounds()) {
-            this.gameEnv.showFinishedGame();
-        }
         winLabel.setText("Round " + (gameEnv.getRoundNum() - 1) + " " + result);
         coinsLabel.setText("Coins: " + gameEnv.getInventoryService().getCoins());
         pointsLabel.setText("Points: " + gameEnv.getInventoryService().getPoints());
@@ -49,6 +46,9 @@ public class RoundSummaryController {
             Image image = new Image(inputStream);
             towerImages.get(i).setImage(image);
         }
+        if (this.gameEnv.getRoundNum() - 1 == this.gameEnv.getNumRounds()) {
+            nextButton.setDisable(true);
+        }
     }
 
     @FXML
@@ -61,11 +61,12 @@ public class RoundSummaryController {
     }
     @FXML
     public void nextRound() throws InterruptedException {
+        this.gameEnv.getDifficulty().incrementCostMultiplier(this.gameEnv.getRoundNum());
         this.gameEnv.openRoundStyle();
     }
     @FXML
     public void finishGame() {
-        if (this.gameEnv.getRoundNum() != this.gameEnv.getNumRounds()) {
+        if (this.gameEnv.getRoundNum() - 1 != this.gameEnv.getNumRounds()) {
             this.gameEnv.setResult(false);
         }
         this.gameEnv.showFinishedGame();

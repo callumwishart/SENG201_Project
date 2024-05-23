@@ -223,14 +223,6 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="towerCoinsPerResourceLabel" layoutX="20.0" layoutY="180.0" text="Coins per resource:">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                     </VBox.margin>
-                  </Label>
                   <Label fx:id="towerSpeedLabel" text="Tower Speed:">
                      <VBox.margin>
                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
