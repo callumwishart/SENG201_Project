@@ -33,7 +33,7 @@ public class GameEnv {
     private int difficultyMultiplier;
     private PlayerService playerService;
     private InventoryService inventoryService;
-    private final ShopService shopService;
+    private ShopService shopService;
     private final List<Tower> possibleTowers = List.of(new Factory(), new Farm(), new Mine(), new Sawmill(), new WaterTower());
     private final List<Upgrade> possibleUpgrades = List.of(new CapacityUpgrade(), new MoneyUpgrade(), new SpeedUpgrade());
     private final List<Consumable> possibleConsumables = List.of(new Shield(), new SlowCartBooster(), new TowerSpeedBooster());
@@ -444,6 +444,7 @@ public class GameEnv {
     public void startNewGame() {
         this.player = new Player();
         this.inventoryService = new InventoryService(player);
+        this.shopService = new ShopService(this.shop, this.inventoryService);
         setCurrentRoundNum(1);
         closeStartScreen();
     }
