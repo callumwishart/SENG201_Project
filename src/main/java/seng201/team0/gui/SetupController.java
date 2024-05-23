@@ -74,7 +74,7 @@ public class SetupController {
         hardRadioBtn.setToggleGroup(toggleGroup);
         toggleGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
             RadioButton selectedRadioButton = (RadioButton) newToggle;
-            if (selectedRadioButton.getText() == "Hard" ) {
+            if (selectedRadioButton.getText().equals("Hard")) {
                 difficultyText = "Hard";
             } else {
                 difficultyText = "Normal";
@@ -82,10 +82,10 @@ public class SetupController {
         });
     }
     private Difficulty createDifficulty(String input) {
-        if (input == "hard") {
-            return new Difficulty(1.2,1.2,1.2);
+        if (input.equals("Hard")) {
+            return new Difficulty(1.2,1.3);
         } else {
-            return new Difficulty(1,1,1);
+            return new Difficulty();
         }
     }
     @FXML
