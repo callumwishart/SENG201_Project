@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team0.exceptions.NegativeAdditionException;
 import seng201.team0.exceptions.TowerNotFoundException;
-import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.gameplay.Cart;
 import seng201.team0.models.gameplay.GameObserver;
@@ -17,7 +16,6 @@ import seng201.team0.models.gameplay.Round;
 import seng201.team0.models.towers.Tower;
 import seng201.team0.services.InventoryService;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -45,16 +43,13 @@ public class PlayController implements GameObserver {
     private ImageView tower1Img, tower2Img, tower3Img, tower4Img, tower5Img;
     @FXML
     private Button startButton;
-    private GameEnv gameEnv;
-    private int roundNum;
-    private Round round;
-    private GameRunner gameRunner;
-    private Difficulty difficulty;
-    private InventoryService inventoryService;
+    private final GameEnv gameEnv;
+    private final Round round;
+    private final GameRunner gameRunner;
+    private final InventoryService inventoryService;
     private List<Cart> carts;
     private List<Tower> towers;
     private int trackDistance;
-    private boolean isSuccess;
 
     /**
      * PlayController constructor
@@ -62,14 +57,12 @@ public class PlayController implements GameObserver {
      *     Creates a new instance of the Round and new instance of the GameRunner
      * </p>
      * @param gameEnv current instance of gameEnv
-     * @throws CloneNotSupportedException
+     * @throws CloneNotSupportedException is thrown when Round throws errors
      */
     public PlayController(GameEnv gameEnv) throws CloneNotSupportedException {
         this.gameEnv = gameEnv;
         this.round = new Round(this.gameEnv.getInventoryService(), this.gameEnv.getDifficulty(), this.gameEnv.getRoundNum());
         this.gameRunner = new GameRunner(round, this, true);
-        this.roundNum = this.gameEnv.getRoundNum();
-        this.difficulty = this.gameEnv.getDifficulty();
         this.inventoryService = this.gameEnv.getInventoryService();
         this.carts = round.getCarts();
         this.towers = inventoryService.getActiveTowers();
@@ -111,10 +104,9 @@ public class PlayController implements GameObserver {
 
     /**
      * Starts the game and sets the button to disabled so that you cannot click start game multiple times
-     * @throws InterruptedException
      */
     @FXML
-    public void startGame() throws InterruptedException {
+    public void startGame() {
         startButton.setDisable(true);
         Thread gameThread = new Thread(gameRunner);
         gameThread.start();

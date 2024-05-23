@@ -3,12 +3,8 @@ package seng201.team0.models.towers;
 import seng201.team0.models.Item;
 import seng201.team0.models.resources.Resource;
 import seng201.team0.models.upgrades.Upgrade;
-import seng201.team0.models.gameplay.Round.*;
-import java.io.*;
-import java.io.Serializable;
-import java.util.ArrayList;
 
-import static java.lang.Math.round;
+import java.util.ArrayList;
 
 /**
  * Tower Class
@@ -25,17 +21,46 @@ public class Tower extends Item implements Sellable {
      * Integer to hold the reload speed of the towers
      */
     int reloadSpeed;
+    /**
+     * boolean that determines if the tower is reloading or not
+     */
     boolean isReloading;
+    /**
+     * integer to store how long the tower has been reloading for
+     */
     int reloadTimeElapsed;
+    /**
+     * Resource to store the towers resource type
+     */
     Resource resourceType;
-    Boolean isBroken;
+    /**
+     * boolean that store if the tower is broken or not
+     */
+    boolean isBroken;
+    /**
+     * integer that holds the level of the tower
+     */
     int level;
+    /**
+     * String which holds the current image path of the tower
+     */
     String imagePath;
+    /**
+     * String which holds the working image path of the tower
+     */
     String fixedImagePath;
+    /**
+     * String which holds the broken image path of the tower
+     */
     String brokenImagePath;
+    /**
+     * integer which holds how many times the tower has been used
+     */
     int used;
+    /**
+     * List of the towers upgrades that have been applied
+     */
     ArrayList<Upgrade> upgrades = new ArrayList<>();
-
     /**
      * Initialises the tower and sets the resourceAmount to 1;
      */
@@ -51,42 +76,46 @@ public class Tower extends Item implements Sellable {
     }
 
     /**
-     * @hidden
+     * Gets the amount of resource that can be stored
+     * @return an integer of how much of the resource the tower can hold
      */
     public int getResourceAmount() {
         return resourceAmount;
     }
 
     /**
-     * @hidden
+     * Increase the amount of resources that this tower can hold
+     * @param amount is the amount that resourceAmount will be increase by
      */
     public void increaseResourceAmount(int amount) {
         resourceAmount += amount;
     }
 
     /**
-     * @hidden
+     * Gets the resource that the tower uses
+     * @return the type of the resource that the tower generates in the form of a {@code Resource}
      */
     public Resource getResource() {
         return resourceType;
     }
 
     /**
-     * Increases the tower level by 1
+     * Levels up the tower by one
      */
     public void levelUp (){
         level += 1;
     }
 
     /**
-     * @hidden
+     * Gets the current upgrades that the tower has in place
+     * @return an ArrayList of upgrades that the tower has
      */
     public ArrayList<Upgrade> getUpgrades() {
         return upgrades;
     }
 
     /**
-     * Increases the reload speed by 1
+     * Increases the reload speed by one
      */
     public void increaseReloadSpeed() {
         reloadSpeed += 1;
@@ -100,7 +129,8 @@ public class Tower extends Item implements Sellable {
     }
 
     /**
-     * @hidden
+     * Gets if the tower is reloading or not
+     * @return boolean that tells us if the tower is reloading or not
      */
     public boolean isReloading() {
         return isReloading;
@@ -120,21 +150,26 @@ public class Tower extends Item implements Sellable {
     }
 
     /**
-     * @hidden
+     * Gets how long the tower has been reloading for
+     * @return an integer of how long the tower has been reloading for
      */
     public int getReloadTimeElapsed() {
         return reloadTimeElapsed;
     }
 
     /**
-     * @hidden
+     * Increments the reload time by one
      */
     public void incrementReloadTimeElapsed(){
         reloadTimeElapsed += 1;
     }
 
     /**
-     * The upgrade point limit is determined by the level of the tower multiplied by 200
+     * Gets the upgrade point limit
+     * <p>
+     *     It calculates the by multiplying {@code this.level} by 400
+     * </p>
+     * @return an integer of the upgradePointLimit
      */
     public int getUpgradePointLimit() {
         return level * 400;
@@ -157,7 +192,8 @@ public class Tower extends Item implements Sellable {
     }
 
     /**
-     * @hidden
+     * Gets an integer of how many times the tower has been used
+     * @return integer of how many times the tower has been used
      */
     public int getUsed() {
         return used;
@@ -167,32 +203,36 @@ public class Tower extends Item implements Sellable {
      * @hidden
      */
     public int getRepairCost() {
-        return (int) (this.getCost() / 2);
+        return this.getCost() / 2;
     }
 
     /**
-     * @hidden
+     * Gets the status of the tower and returns true if broken
+     * @return boolean of status of the tower
      */
     public Boolean isBroken() {
         return isBroken;
     }
 
     /**
-     * @hidden
+     * Gets the reload speed
+     * @return an integer of the towers reload speed
      */
     public int getReloadSpeed() {
         return reloadSpeed;
     }
 
     /**
-     * @hidden
+     * Gets the current image path of the tower
+     * @return a String representing the current image path of the tower
      */
     public String getImagePath() {
         return imagePath;
     }
 
     /**
-     * @hidden
+     * Gets the level of the tower
+     * @return an integer representing the level of the tower
      */
     public int getLevel() {
         return level;
@@ -206,7 +246,7 @@ public class Tower extends Item implements Sellable {
      */
     public int getSellCost() {
         if (!this.isBroken()) {
-            return (int) (this.getCost() / 2);
+            return this.getCost() / 2;
         } else {
             return 0;
         }
@@ -224,7 +264,7 @@ public class Tower extends Item implements Sellable {
     }
 
     /**
-     * @hidden
+     * Increments how many times the tower has been used by one (1)
      */
     public void incrementUsed() {
         this.used += 1;

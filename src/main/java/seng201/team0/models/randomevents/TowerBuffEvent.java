@@ -23,7 +23,6 @@ public class TowerBuffEvent extends RandomEvent{
         Random random = new Random();
         ArrayList<Tower> towers = inventoryService.getActiveTowers();
         int randomTowerIndex = random.nextInt(towers.size());
-        Tower tower = towers.get(randomTowerIndex);
-        this.towerAffected = tower;
+        this.towerAffected = towers.get(randomTowerIndex);
     }
 }
