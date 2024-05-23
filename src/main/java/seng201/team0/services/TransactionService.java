@@ -10,24 +10,6 @@ import seng201.team0.models.towers.Tower;
  * TransactionService handles all transactions
  */
 public class TransactionService {
-    /**
-     * Purchase Method
-     * <p>
-     *     This purchase method is used if the cost is not passed and removes the coins from the inventory using
-     *     {@code inventoryService.removeCoins()}
-     * </p>
-     * @param purchasable is the item that is purchasable
-     * @param inventoryService is the inventory service used to remove coins
-     * @throws PurchaseException is thrown if the user does not have enough money
-     */
-    public static void purchase(Purchasable purchasable, InventoryService inventoryService) throws PurchaseException {
-        int cost = purchasable.getCost();
-        try{
-            inventoryService.removeCoins(cost);
-        } catch (Exception e){
-            throw new PurchaseException("Cannot purchase");
-        }
-    }
 
     /**
      * Purchase Method
