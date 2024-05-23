@@ -3,9 +3,9 @@ package modeltests;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import seng201.team0.exceptions.NameCharException;
-import seng201.team0.models.Player;
-import seng201.team0.models.PlayerInventory;
+import seng201.team32.exceptions.NameCharException;
+import seng201.team32.models.Player;
+import seng201.team32.models.PlayerInventory;
 
 public class PlayerTest {
 

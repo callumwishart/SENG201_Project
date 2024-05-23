@@ -3,7 +3,7 @@ package modeltests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team0.models.Difficulty;
+import seng201.team32.models.Difficulty;
 
 public class DifficultyTest {
     private Difficulty difficulty;

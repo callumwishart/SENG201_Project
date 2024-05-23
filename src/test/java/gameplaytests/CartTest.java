@@ -2,10 +2,10 @@ package gameplaytests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team0.exceptions.FullCartException;
-import seng201.team0.models.gameplay.Cart;
-import seng201.team0.models.resources.Resource;
-import seng201.team0.models.resources.Wood;
+import seng201.team32.exceptions.FullCartException;
+import seng201.team32.models.gameplay.Cart;
+import seng201.team32.models.resources.Resource;
+import seng201.team32.models.resources.Wood;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -3,11 +3,11 @@ package towertests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import seng201.team0.models.resources.Goods;
-import seng201.team0.models.towers.Factory;
-import seng201.team0.models.towers.Tower;
-import seng201.team0.models.upgrades.MoneyUpgrade;
-import seng201.team0.models.upgrades.Upgrade;
+import seng201.team32.models.resources.Goods;
+import seng201.team32.models.towers.Factory;
+import seng201.team32.models.towers.Tower;
+import seng201.team32.models.upgrades.MoneyUpgrade;
+import seng201.team32.models.upgrades.Upgrade;
 
 import java.util.ArrayList;
 

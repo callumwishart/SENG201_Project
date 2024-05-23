@@ -3,10 +3,10 @@ package upgradetests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import seng201.team0.exceptions.UpgradeException;
-import seng201.team0.models.towers.Factory;
-import seng201.team0.models.towers.Tower;
-import seng201.team0.models.upgrades.MoneyUpgrade;
+import seng201.team32.exceptions.UpgradeException;
+import seng201.team32.models.towers.Factory;
+import seng201.team32.models.towers.Tower;
+import seng201.team32.models.upgrades.MoneyUpgrade;
 
 public class MoneyUpgradeTest {
     private MoneyUpgrade moneyUpgrade;

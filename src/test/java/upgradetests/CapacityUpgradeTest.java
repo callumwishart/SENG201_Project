@@ -2,10 +2,10 @@ package upgradetests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team0.exceptions.UpgradeException;
-import seng201.team0.models.towers.Factory;
-import seng201.team0.models.towers.Tower;
-import seng201.team0.models.upgrades.CapacityUpgrade;
+import seng201.team32.exceptions.UpgradeException;
+import seng201.team32.models.towers.Factory;
+import seng201.team32.models.towers.Tower;
+import seng201.team32.models.upgrades.CapacityUpgrade;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CapacityUpgradeTest {
