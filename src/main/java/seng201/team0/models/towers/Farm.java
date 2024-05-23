@@ -24,6 +24,6 @@ public class Farm extends Tower{
      * Farm constructor when no params passed. Initialises it with a reload speed of 5 and a cost of 100.
      */
     public Farm() {
-        super(Food, 5, "Farm", "Resource: " + Food.getResourceType(), 100, towerImagePath, brokenImagePath);
+        super(Food, 3, "Farm", "Resource: " + Food.getResourceType(), 300, towerImagePath, brokenImagePath);
     }
 }

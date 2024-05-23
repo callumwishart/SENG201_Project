@@ -36,7 +36,7 @@ public class PlayController implements GameObserver {
     @FXML
     private ProgressBar c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity, c16Capacity, c17Capacity, c18Capacity, c19Capacity, c20Capacity;
     @FXML
-    private Label c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed, c16Speed, c17Speed, c18Speed, c19Speed, c20Speed;
+    private Label c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed, c16Speed, c17Speed, c18Speed, c19Speed, c20Speed, c1CapacityLabel, c2CapacityLabel, c3CapacityLabel, c4CapacityLabel, c5CapacityLabel, c6CapacityLabel, c7CapacityLabel, c8CapacityLabel, c9CapacityLabel, c10CapacityLabel, c11CapacityLabel, c12CapacityLabel, c13CapacityLabel, c14CapacityLabel, c15CapacityLabel;
     @FXML
     private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn;
     @FXML
@@ -155,9 +155,11 @@ public class PlayController implements GameObserver {
         List<ProgressBar> progressBars = List.of(c1Progress, c2Progress, c3Progress, c4Progress, c5Progress, c6Progress, c7Progress, c8Progress, c9Progress, c10Progress, c11Progress, c12Progress, c13Progress, c14Progress, c15Progress, c16Progress, c17Progress, c18Progress, c19Progress, c20Progress);
         List<Button> cartButtons = List.of(c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn, c16Btn, c17Btn, c18Btn, c19Btn, c20Btn);
         List<ProgressBar> capacityBars = List.of(c1Capacity, c2Capacity, c3Capacity, c4Capacity, c5Capacity, c6Capacity, c7Capacity, c8Capacity, c9Capacity, c10Capacity, c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity, c16Capacity, c17Capacity, c18Capacity, c19Capacity, c20Capacity);
+        List<Label> capacityLabels = List.of(c1CapacityLabel, c2CapacityLabel, c3CapacityLabel, c4CapacityLabel, c5CapacityLabel, c6CapacityLabel, c7CapacityLabel, c8CapacityLabel, c9CapacityLabel, c10CapacityLabel, c11CapacityLabel, c12CapacityLabel, c13CapacityLabel, c14CapacityLabel, c15CapacityLabel);
         for (int i = 0; i < carts.size(); i++) {
             progressBars.get(i).setProgress((double) carts.get(i).getDistance() / this.trackDistance);
             capacityBars.get(i).setProgress((double) carts.get(i).getCargoSlotsFilled()/ carts.get(i).getSize());
+            capacityLabels.get(i).setText(String.format("Capacity: %d/%d", carts.get(i).getCargoSlotsFilled(), carts.get(i).getSize()));
             if (this.carts.get(i).getCargoSlotsFilled() != 0 && !(this.carts.get(i).isFull())) {
                 cartButtons.get(i).setStyle("-fx-background-color: #ffe6cc;");
             } else if (this.carts.get(i).isFull()) {
