@@ -3,13 +3,13 @@ package gameplaytests;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import seng201.team0.exceptions.TowerInventoryFullException;
-import seng201.team0.models.Difficulty;
-import seng201.team0.models.PlayerInventory;
-import seng201.team0.models.gameplay.GameRunner;
-import seng201.team0.models.gameplay.Round;
-import seng201.team0.models.towers.Farm;
-import seng201.team0.services.InventoryService;
+import seng201.team32.exceptions.TowerInventoryFullException;
+import seng201.team32.models.Difficulty;
+import seng201.team32.models.PlayerInventory;
+import seng201.team32.models.gameplay.GameRunner;
+import seng201.team32.models.gameplay.Round;
+import seng201.team32.models.towers.Farm;
+import seng201.team32.services.InventoryService;
 
 public class GameplayTest {
 
