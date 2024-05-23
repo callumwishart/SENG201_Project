@@ -18,6 +18,8 @@ import seng201.team0.services.InventoryService;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class PlayController implements GameObserver {
@@ -81,14 +83,16 @@ public class PlayController implements GameObserver {
         List<Label> speedLabels = List.of(c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed);
         for (int i = 0; i < inventoryService.getActiveTowers().size(); i ++) {
             String imagePath = inventoryService.getActiveTowers().get(i).getImagePath();
-            FileInputStream inputStream;
-            try {
-                inputStream = new FileInputStream(imagePath);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+            try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+                if (inputStream == null) {
+                    throw new RuntimeException("Resource not found: " + imagePath);
+                }
+                Image image = new Image(inputStream);
+                towerImages.get(i).setImage(image);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to load image: " + imagePath, e);
             }
-            Image image = new Image(inputStream);
-            towerImages.get(i).setImage(image);
+
             towerButtons.get(i).setDisable(false);
             towerButtons.get(i).setText(inventoryService.getActiveTowers().get(i).getName());
         }

@@ -11,6 +11,7 @@ import seng201.team0.gui.FXWrapper;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Class starts the javaFX application window
@@ -29,14 +30,17 @@ public class FXWindow extends Application {
         FXWrapper fxWrapper = baseLoader.getController();
         Scene scene = new Scene(root, 1000, 700);
 
-        String imagePath = "src/main/resources/images/logo.png";
-        FileInputStream inputStream;
-        try {
-            inputStream = new FileInputStream(imagePath);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        // Use getClass().getResourceAsStream to load the image from the classpath
+        String imagePath = "/images/logo.png";
+        try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+            if (inputStream == null) {
+                throw new RuntimeException("Resource not found: " + imagePath);
+            }
+            primaryStage.getIcons().add(new Image(inputStream));
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load image: " + imagePath, e);
         }
-        primaryStage.getIcons().add(new Image(inputStream));
+
         primaryStage.setTitle("FX Wrapper");
         primaryStage.setScene(scene);
         primaryStage.show();

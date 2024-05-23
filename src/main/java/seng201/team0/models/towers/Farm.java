@@ -14,11 +14,11 @@ public class Farm extends Tower{
     /**
      * image path for working tower
      */
-    public static String towerImagePath = "src/main/resources/images/towers/farm_tower.png";
+    public static String towerImagePath = "/images/towers/farm_tower.png";
     /**
      * image path for broken tower
      */
-    public static String brokenImagePath = "src/main/resources/images/towers/farm_tower_broken.png";
+    public static String brokenImagePath = "/images/towers/farm_tower_broken.png";
 
     /**
      * Farm constructor when no params passed. Initialises it with a reload speed of 5 and a cost of 100.

@@ -11,6 +11,8 @@ import seng201.team0.models.towers.Tower;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class RandomEventController {
     @FXML
@@ -30,15 +32,17 @@ public class RandomEventController {
         this.eventText.setText(this.gameEnv.getCurrRandomEvent().getDescription());
         tower = this.gameEnv.getCurrRandomEvent().getTowerAffected();
         String imagePath = tower.getImagePath();
-        FileInputStream inputStream;
-        try {
-            inputStream = new FileInputStream(imagePath);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+            if (inputStream == null) {
+                throw new RuntimeException("Resource not found: " + imagePath);
+            }
+            Image image = new Image(inputStream);
+            towerAffectedImg.setImage(image);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load image: " + imagePath, e);
         }
-        Image image = new Image(inputStream);
 
-        towerAffectedImg.setImage(image);
+
     }
     public void continuePressed() {
         this.gameEnv.clearScreen.run();

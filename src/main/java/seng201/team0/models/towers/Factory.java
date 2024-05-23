@@ -14,11 +14,11 @@ public class Factory extends Tower{
     /**
      * image path for working tower
      */
-    public static String towerImagePath = "src/main/resources/images/towers/factory_tower.png";
+    public static String towerImagePath = "/images/towers/factory_tower.png";
     /**
      * image path for broken tower
      */
-    public static String brokenImagePath = "src/main/resources/images/towers/factory_tower_broken.png";
+    public static String brokenImagePath = "/images/towers/factory_tower_broken.png";
 
     /**
      * Factory Constructor when no params passed
