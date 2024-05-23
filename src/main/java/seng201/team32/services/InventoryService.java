@@ -283,7 +283,7 @@ public class InventoryService {
      * if it is not found then throws TowerNotFoundException.
      * If it is found then delete out of the respective list.
      */
-    private void removeTower(Tower tower) throws TowerNotFoundException {
+    public void removeTower(Tower tower) throws TowerNotFoundException {
         if (this.getActiveTowers().contains(tower)){
             removeActiveTower(tower);
         } else if (this.getStockpiledTowers().contains(tower)) {

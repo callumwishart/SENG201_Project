@@ -4,6 +4,9 @@ package seng201.team32.exceptions;
  * Thrown if the name does not follow specifications
  */
 public class NameCharException extends Exception{
+    public NameCharException(){
+        super();
+    }
     /**
      * Constructor of the exception if a message argument is passed
      * @param message is the message of the exception

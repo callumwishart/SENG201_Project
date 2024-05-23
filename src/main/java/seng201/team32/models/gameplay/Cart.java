@@ -14,7 +14,7 @@ public class Cart {
     private int distance;
     private boolean finished;
 
-    Cart(int size, int speed, Resource resource) {
+    public Cart(int size, int speed, Resource resource) {
         this.size = size;
         this.cargo = new Resource[this.size];
         this.cargoSlotsFilled = 0;

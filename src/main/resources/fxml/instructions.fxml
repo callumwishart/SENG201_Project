@@ -12,16 +12,51 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="435.0" layoutY="95.0" text="Aim of the game?">
+      <Label layoutX="436.0" layoutY="107.0" text="Aim of the game?">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="277.0" layoutY="139.0" prefHeight="65.0" prefWidth="503.0" text="The aim of the game is to strategically choose your towers and upgrade them over time so that each round you will be able to generate enough resources to fill all your carts entirely!" textAlignment="CENTER" wrapText="true">
+      <Label layoutX="246.0" layoutY="137.0" prefHeight="65.0" prefWidth="503.0" text="The aim of the game is to strategically choose your towers and upgrade them over time so that each round you will be able to generate enough resources to fill all your carts entirely!" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <Button layoutX="15.0" layoutY="16.0" mnemonicParsing="false" onAction="#goBack" prefHeight="49.0" prefWidth="106.0" text="Back" />
+      <Label layoutX="448.0" layoutY="205.0" text="Terminology:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="219.0" prefHeight="65.0" prefWidth="503.0" text="Tower Reload speed: how long it takes for a tower to reload and then it will unload its resource amount into a cart." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="263.0" prefHeight="65.0" prefWidth="503.0" text="Tower Resource Amount: how many resource units a tower can unload each time it has reloaded. This is useful for filling up carts faster." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="431.0" prefHeight="65.0" prefWidth="503.0" text="On the play screen, the distance bar shows how far a cart is from finishing going along the track. If it reaches the end without being filled, you'll lose the game!" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="481.0" layoutY="388.0" text="Tips:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="499.0" prefHeight="65.0" prefWidth="503.0" text="Consumables such as the Shield give you a significant advantage, modifying the game for one round when you purchase them." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="318.0" prefHeight="65.0" prefWidth="503.0" text="Resource Value / Value per Resource: How many coins you will get per resource that a tower loads in a round." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

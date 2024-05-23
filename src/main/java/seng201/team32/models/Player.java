@@ -44,4 +44,12 @@ public class Player {
         return this.name;
     }
 
+    /**
+     * Checks if the supplied name meets the required standard of between 3-15 chars and no special symbols.
+     * @param name the name to be checked
+     * @return true if name meets the standard
+     */
+    public boolean checkName(String name) {
+        return (name.length() >= 3 && name.length() <= 15 && name.matches("[a-zA-Z0-9]+"));
+    }
 }

@@ -13,7 +13,7 @@ public class SlowCartConsumable extends Consumable {
      * Constructor which sets the name and description and cost of the consumable
      */
     public SlowCartConsumable() {
-        super("Slow Carts", "Slows all carts by 1 for 1 round", 350);
+        super("Slow Carts", "Slows all carts by 1 for one round.", 350);
     }
 
     /**

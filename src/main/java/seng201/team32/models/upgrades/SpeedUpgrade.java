@@ -15,7 +15,7 @@ public class SpeedUpgrade extends Upgrade{
      * Constructor of Speed upgrade to set the name, description and cost
      */
     public SpeedUpgrade() {
-        super("Speed Upgrade", "Increases the reload speed of your towers", 150);
+        super("Speed Upgrade", "Increases the reload speed of your towers.", 150);
     }
 
     /**
