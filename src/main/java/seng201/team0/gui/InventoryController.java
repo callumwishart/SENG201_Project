@@ -17,7 +17,7 @@ import java.util.*;
 
 public class InventoryController {
     @FXML
-    private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, towerResourceLabel, towerCoinsPerResourceLabel, pointsNeededLabel, sellCostLabel, repairCostLabel, towerCapacityLabel, towerSpeedLabel;
+    private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, towerResourceLabel, pointsNeededLabel, sellCostLabel, repairCostLabel, towerCapacityLabel, towerSpeedLabel;
     @FXML
     private Label selectedUpgradeLabel, upgradeDescLabel, resourceValueLabel;
     @FXML
@@ -153,7 +153,6 @@ public class InventoryController {
         towerLevelLabel.setText("Level: " + tower.getLevel());
         towerResourceLabel.setText("Resource: " + tower.getResource().getResourceType());
         resourceValueLabel.setText("Resource Value: " + tower.getResource().getResourceCoinValue());
-        towerCoinsPerResourceLabel.setText("Coins per resource: " + tower.getResource().getResourceCoinValue());
         pointsNeededLabel.setText("Points needed to upgrade: " + tower.getUpgradePointLimit());
         sellCostLabel.setText("Sell cost: " + tower.getSellCost());
         repairCostLabel.setText("Repair Cost: " + tower.getRepairCost());
@@ -175,7 +174,6 @@ public class InventoryController {
         towerLevelLabel.setText("Level: ");
         towerResourceLabel.setText("Resource: ");
         resourceValueLabel.setText("Resource value: ");
-        towerCoinsPerResourceLabel.setText("Coins per resource: ");
         pointsNeededLabel.setText("Points needed to upgrade: ");
         sellCostLabel.setText("Sell cost: ");
         repairCostLabel.setText("Repair Cost: ");

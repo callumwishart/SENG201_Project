@@ -8,7 +8,7 @@ public class SlowCartBooster extends Consumable {
     int cost = 20;
 
     public SlowCartBooster() {
-        super("Slow Carts", "Slows all carts by 1 for 1 round", 300);
+        super("Slow Carts", "Slows all carts by 1 for 1 round", 350);
     }
 
     public void apply(Round round) {

@@ -11,7 +11,7 @@ public class TowerSpeedBooster extends Consumable {
     private ArrayList<Tower> towersAffected = new ArrayList<>();
 
     public TowerSpeedBooster() {
-        super("Tower Speed Boost", "This booster makes the tower production faster.", 300);
+        super("Tower Speed Boost", "This booster makes the tower production faster.", 350);
     }
 
     public void apply(Round round) {

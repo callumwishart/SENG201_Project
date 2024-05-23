@@ -59,7 +59,7 @@ public class Difficulty {
     }
 
     public void incrementCostMultiplier(int roundNum) {
-        this.costMultiplier += 0.5;
+        this.costMultiplier += 0.3;
     }
 
     /**
