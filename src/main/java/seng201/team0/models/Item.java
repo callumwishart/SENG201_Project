@@ -46,14 +46,6 @@ public class Item implements Purchasable {
     }
 
     /**
-     * Sets the cost of items
-     * @param inputCost is the cost the item will be set to
-     */
-    public void setCost (int inputCost) {
-        cost = inputCost;
-    }
-
-    /**
      * Gets the cost of the items
      * @return the cost of the items as an integer
      */
