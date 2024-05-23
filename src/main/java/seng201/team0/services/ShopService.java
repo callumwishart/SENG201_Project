@@ -4,6 +4,7 @@ import seng201.team0.exceptions.ActiveConsumableException;
 import seng201.team0.exceptions.PurchaseException;
 import seng201.team0.exceptions.TowerInventoryFullException;
 import seng201.team0.exceptions.UpgradesFullException;
+import seng201.team0.models.Difficulty;
 import seng201.team0.models.Shop;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.towers.Tower;
@@ -13,6 +14,7 @@ public class ShopService {
 
     InventoryService inventoryService;
     Shop shop;
+    private Difficulty difficulty;
 
     public ShopService (Shop shop, InventoryService inventoryService) {
         this.shop = shop;
@@ -27,7 +29,7 @@ public class ShopService {
      */
     public void purchaseTower(Tower tower) throws TowerInventoryFullException, PurchaseException {
         try {
-            TransactionService.purchase(tower, inventoryService);
+            TransactionService.purchase((int) (tower.getCost() * this.difficulty.getCostMultiplier()), inventoryService);
             inventoryService.addActiveTower(tower);
         } catch (TowerInventoryFullException e1) {
             try {
@@ -41,7 +43,7 @@ public class ShopService {
 
     public void purchaseUpgrade(Upgrade upgrade) throws PurchaseException, UpgradesFullException {
         inventoryService.checkUpgradeSpace();
-        TransactionService.purchase(upgrade.getCost(), inventoryService);
+        TransactionService.purchase((int) (upgrade.getCost() * this.difficulty.getCostMultiplier()), inventoryService);
         inventoryService.addUpgrade(upgrade);
     }
 
@@ -51,8 +53,12 @@ public class ShopService {
                 throw new ActiveConsumableException("There is already an active consumable of this type in your inventory!");
             }
         }
-        TransactionService.purchase(consumable.getCost(), this.inventoryService);
+        TransactionService.purchase((int) (consumable.getCost() * this.difficulty.getCostMultiplier()), this.inventoryService);
         this.inventoryService.addConsumable(consumable);
+    }
+
+    public void setDifficulty(Difficulty difficulty){
+        this.difficulty = difficulty;
     }
 
 }

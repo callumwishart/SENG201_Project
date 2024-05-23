@@ -12,7 +12,6 @@ public class Difficulty {
      */
     private double roundDifficultyMultiplier;
 
-    private double originalCostMultiplier;
     private double originalRoundDifficultyMultiplier;
     /**
      *  If no values are specified for difficulty multipliers, defaults of 1 will
@@ -21,7 +20,6 @@ public class Difficulty {
     public Difficulty(){
         this.costMultiplier = 1;
         this.roundDifficultyMultiplier = 1;
-        this.originalCostMultiplier = 1;
         this.originalRoundDifficultyMultiplier = 1;
     }
 
@@ -30,10 +28,9 @@ public class Difficulty {
      *  multiplier, making it easy to adjust aspects of gameplay to make things
      *  easier or harder.
      */
-    public Difficulty(double costMultiplier, double cartAndRoundDifficultyMultiplier, double randomEventMultiplier){
+    public Difficulty(double costMultiplier, double cartAndRoundDifficultyMultiplier){
         this.costMultiplier = costMultiplier;
         this.roundDifficultyMultiplier = cartAndRoundDifficultyMultiplier;
-        this.originalCostMultiplier = costMultiplier;
         this.originalRoundDifficultyMultiplier = cartAndRoundDifficultyMultiplier;
     }
 
@@ -42,9 +39,9 @@ public class Difficulty {
      */
     public void updateDifficulty(String value) {
         if (value.equals("Risky")) {
-            this.roundDifficultyMultiplier *= 1.2;
+            this.roundDifficultyMultiplier *= 1.33;
         } else if (value.equals("Safe")) {
-            this.roundDifficultyMultiplier *= 0.8;
+            this.roundDifficultyMultiplier *= 0.66;
         }
     }
 
@@ -57,10 +54,9 @@ public class Difficulty {
     }
 
     /**
-     * Resets the difficulty multipliers back to "normal" state
+     * Resets the round difficulty multiplier back to "normal" state
      */
     public void reset() {
-        this.costMultiplier = originalCostMultiplier;
         this.roundDifficultyMultiplier = originalRoundDifficultyMultiplier;
     }
 }
