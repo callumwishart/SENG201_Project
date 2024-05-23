@@ -215,7 +215,7 @@ public class GameEnv {
         if (value) {
             currentRoundNum += 1;
             // random event logic
-            if (Utilities.weightedCoinToss(0.33)){
+            if (Utilities.weightedCoinToss(0.2)){
                 int eventNumber = Utilities.randomEventSelector();
                 if (eventNumber == 1) {
                     try{
@@ -417,6 +417,7 @@ public class GameEnv {
      */
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
+        this.shopService.setDifficulty(difficulty);
     }
 
     /**

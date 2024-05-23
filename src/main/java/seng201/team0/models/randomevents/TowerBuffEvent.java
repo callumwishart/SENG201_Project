@@ -9,7 +9,7 @@ import java.util.Random;
 public class TowerBuffEvent extends RandomEvent{
 
     public TowerBuffEvent() {
-        super("Random Tower Buff!", "A random tower in your inventory has been buffed! Check out your Active towers to see what's happened!");
+        super("Random Tower Buff!", "A random tower in your inventory has been buffed to add one more resource to it's loading capacity! Check out your Active towers to see what's happened!");
     }
 
     @Override

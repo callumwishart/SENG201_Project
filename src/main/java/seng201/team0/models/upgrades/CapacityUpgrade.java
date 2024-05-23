@@ -13,7 +13,7 @@ public class CapacityUpgrade extends Upgrade{
      * initialized for this.
      */
     public CapacityUpgrade() {
-        super("Increase Capacity", "Increases the amount of resources a tower can unload at once", 40);
+        super("Increase Capacity", "Increases the amount of resources a tower can unload at once", 150);
     }
 
     /**

@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng201.team0.exceptions.*;
+import seng201.team0.models.Difficulty;
 import seng201.team0.models.GameEnv;
 import seng201.team0.models.consumables.Consumable;
 import seng201.team0.models.towers.Tower;
@@ -17,6 +18,8 @@ import java.util.*;
 
 public class ShopController {
     GameEnv gameEnv;
+    private Difficulty difficulty;
+
     public ShopController(GameEnv gameEnv) {this.gameEnv = gameEnv;}
     @FXML
     private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn;
@@ -44,7 +47,7 @@ public class ShopController {
         List<Button> towerButtons = List.of(t1Btn,t2Btn,t3Btn,t4Btn,t5Btn);
         List<Button> consumableButtons = List.of(c1Btn, c2Btn, c3Btn);
         List<ImageView> activeTowerImages = List.of(activeTower1, activeTower2, activeTower3, activeTower4, activeTower5);
-
+        this.difficulty = gameEnv.getDifficulty();
         // Sets the actions of clicking on the towers
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i;
@@ -143,7 +146,7 @@ public class ShopController {
     private void updateConsumableStats(Consumable consumable) {
         consumableNameLabel.setText("Selected Consumable: " + consumable.getName());
         consumableDescLabel.setText("Description: " + consumable.getDescription());
-        consumableCostLabel.setText("Cost: " + consumable.getCost());
+        consumableCostLabel.setText("Cost: " + (int)(consumable.getCost() * this.difficulty.getCostMultiplier()));
     }
     private void updateConsumableStats() {
         consumableNameLabel.setText("Selected Consumable: ");
@@ -154,7 +157,7 @@ public class ShopController {
     private void updateUpgradeStats(Upgrade upgrade) {
         upgradeNameLabel.setText("Selected Upgrade: " + upgrade.getName());
         upgradeDescLabel.setText("Description: " + upgrade.getDescription());
-        upgradeCostLabel.setText("Cost: " + upgrade.getCost());
+        upgradeCostLabel.setText("Cost: " + (int)(upgrade.getCost() * this.difficulty.getCostMultiplier()));
     }
     private void updateUpgradeStats() {
         upgradeNameLabel.setText("Selected Upgrade: ");
@@ -174,7 +177,7 @@ public class ShopController {
         towerResourceAmountLabel.setText("Resource amount: " + tower.getResourceAmount());
         towerValueLabel.setText("Value per resource: " + tower.getResource().getResourceCoinValue());
         towerReloadLabel.setText("Reload Speed: " + tower.getReloadSpeed());
-        towerCostLabel.setText("Cost: " + tower.getCost());
+        towerCostLabel.setText("Cost: " + (int)(tower.getCost() * this.difficulty.getCostMultiplier()));
     }
     public void updateTowerStats() {
         towerNameLabel.setText("Tower Name: ");

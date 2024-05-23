@@ -11,7 +11,7 @@ public class MoneyUpgrade extends Upgrade{
      * MoneyUpgradeConstructor which initialises the name, description, and cost
      */
     public MoneyUpgrade() {
-        super("Money Upgrade", "Increases the value of your resource.", 50);
+        super("Money Upgrade", "Increases the value of your tower's resource.", 150);
     }
 
     /**
@@ -31,7 +31,7 @@ public class MoneyUpgrade extends Upgrade{
         }
         else{
             tower.addUpgrade(new MoneyUpgrade());
-            tower.getResource().increaseCoinValue(10);
+            tower.getResource().increaseCoinValue(2);
         }
     }
 

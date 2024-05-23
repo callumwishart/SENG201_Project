@@ -27,6 +27,6 @@ public class Sawmill extends Tower{
      * </p>
      */
     public Sawmill() {
-        super(Wood, 5, "Sawmill", "Resource: " + Wood.getResourceType(), 80, towerImagePath, brokenImagePath);
+        super(Wood, 3, "Sawmill", "Resource: " + Wood.getResourceType(), 350, towerImagePath, brokenImagePath);
     }
 }

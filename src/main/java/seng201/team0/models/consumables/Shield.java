@@ -4,7 +4,7 @@ import seng201.team0.models.gameplay.Round;
 
 public class Shield extends Consumable {
     public Shield() {
-        super("Shield", "Makes you invincible for the next round.", 50);
+        super("Shield", "Makes you invincible for the next round.", 1000);
     }
 
     public void apply(Round round) {

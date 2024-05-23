@@ -50,26 +50,27 @@ public class Round {
 
     /**
      * Calculates the number of carts.
-     * based on the quadratic function: y = 0.4*x^(1.43) + 1
-     * y (number of carts) is then multiplied by the roundDifficultyMultiplier to increase/decrease based on difficulty.
-     * type casting to (int) truncates the decimal to return a whole number.
+     * based on round number - linear relationship
      */
     public int calculateCartNum(){
-        int roundNum = this.roundNum;
-        double function = 0.4 * Math.pow(roundNum, 1.43) + 1;
-        return (int) (function * this.difficulty.roundDifficultyMultiplier());
+        return this.roundNum;
     }
 
     public void createCarts(int amount) throws CloneNotSupportedException {
         for (int i = 0; i < amount; i++){
             // check to see what number, decide on universal or not, pick a random resource from possibleResources
             if ((i < 1) || Utilities.weightedCoinToss(0.4)){
-                this.carts.add(new Cart(this.getRandCartSize(), this.getRandCartSpeed())); // create a universal cart if there is only 1
+                this.carts.add(
+                        new Cart(
+                                this.getRandCartSize(true),
+                                this.getRandCartSpeed()
+                        ) // create a universal cart if there is only 1
+                );
             }
             else {
                 this.carts.add(
                         new Cart(
-                                this.getRandCartSize(),
+                                this.getRandCartSize(false),
                                 this.getRandCartSpeed(),
                                 this.getRandCartResource().clone()
                         )
@@ -97,47 +98,39 @@ public class Round {
     public int getRandCartSpeed(){
         Random random = new Random();
         int maxSpeed = 2;
-        int minSpeed = 1;
-        int maxRoundBound = 8;
 
-        /**
-         * Generates a random int between minSpeed & maxSpeed,
-         * the max speed bracket increases as the round number increases, but the min speed bracket
-         * increases half as much.
-         */
-        if (this.roundNum > maxRoundBound){
-            int bound = (maxSpeed + maxRoundBound) - (minSpeed + maxRoundBound);
-            int result = random.nextInt((maxSpeed - minSpeed) + 1) + (minSpeed + (int)(maxRoundBound / 2));
-            return (int) (result * this.difficulty.roundDifficultyMultiplier());
+        if (this.roundNum >= 1 && this.roundNum <= 5){
+            maxSpeed += 1;
+        } else if (this.roundNum >= 5 && this.roundNum <= 10){
+            maxSpeed += 2;
+        } else if (this.roundNum >= 10 && this.roundNum <= 15){
+            maxSpeed += 3;
+        }
+
+        if (this.roundNum >= 3){
+            return random.nextInt(maxSpeed) + 2; // raise the min speed to 2 after round 3
         }
         else {
-            int bound = (maxSpeed + this.roundNum) - (minSpeed + this.roundNum);
-            int result = random.nextInt((maxSpeed - minSpeed) + 1) + (minSpeed + (int)(this.roundNum / 2));
-            return (int) (result * this.difficulty.roundDifficultyMultiplier());
+            return random.nextInt(maxSpeed) + 1;
         }
+
     }
 
     /**
-     * Returns a random size int between a range calculated from roundNum
-     * Generates a random int between minSize and maxSize,
-     * the max size bracket increases as the round number increases,
-     * but the min size bracket increases half as much.
+     *
      */
-    public int getRandCartSize(){
+    public int getRandCartSize(boolean universal){
         Random random = new Random();
-        int maxSize = 15;
-        int minSize = 5;
-        int maxRoundBound = 8;
+        int universalMax = 10;
+        int universalMin = 5;
+        int regularMax = 3;
+        int regularMin = 2;
 
-        if (this.roundNum > maxRoundBound){
-            int bound = (maxSize + maxRoundBound) - (minSize + maxRoundBound);
-            int result = random.nextInt((maxSize - minSize) + 1) + (minSize + (int)(maxRoundBound / 2));
-            return (int) (result * this.difficulty.roundDifficultyMultiplier());
+        if (universal){
+            return (int)(((random.nextInt(universalMax)) + universalMin) * this.difficulty.roundDifficultyMultiplier());
         }
         else {
-            int bound = (maxSize + this.roundNum) - (minSize + this.roundNum);
-            int result = random.nextInt((maxSize - minSize) + 1) + (minSize + (int)(this.roundNum / 2));
-            return (int) (result * this.difficulty.roundDifficultyMultiplier());
+            return (int)((random.nextInt(regularMax) + regularMin) * this.difficulty.roundDifficultyMultiplier());
         }
     }
 
