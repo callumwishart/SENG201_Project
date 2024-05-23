@@ -1,5 +1,8 @@
 package seng201.team0.models;
 
+/**
+ * This is used to determine how the difficulty affect the game
+ */
 public class Difficulty {
     /**
      * costMultiplier affects how much things cost in-game.
@@ -11,7 +14,9 @@ public class Difficulty {
      * or how long a track is.
      */
     private double roundDifficultyMultiplier;
-
+    /**
+     * This is the original round difficulty multiplier stored, so difficulties can be reset after a round
+     */
     private double originalRoundDifficultyMultiplier;
     /**
      *  If no values are specified for difficulty multipliers, defaults of 1 will
@@ -45,10 +50,18 @@ public class Difficulty {
         }
     }
 
+    /**
+     * Gets the cost multiplier
+     * @return the cost multiplier as a double
+     */
     public double getCostMultiplier(){
         return this.costMultiplier;
     }
 
+    /**
+     * Gets the round difficulty multiple
+     * @return the round difficulty multiplier as an integer
+     */
     public double roundDifficultyMultiplier(){
         return this.roundDifficultyMultiplier;
     }

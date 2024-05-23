@@ -359,8 +359,9 @@ public class GameEnv {
         return result;
     }
 
+
     /**
-     * @hidden
+     * @param value value which the number of rounds will be set to
      */
     public void setNumRounds(int value) {
         numRounds = value;

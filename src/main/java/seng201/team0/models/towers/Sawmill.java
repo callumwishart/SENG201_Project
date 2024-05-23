@@ -7,8 +7,17 @@ import seng201.team0.models.resources.Wood;
  * Sawmill Type tower, this generates wood.
  */
 public class Sawmill extends Tower{
+    /**
+     * Creates new resource for tower to use
+     */
     private static final Resource Wood = new Wood();
+    /**
+     * image path for working tower
+     */
     public static String towerImagePath = "src/main/resources/images/towers/sawmill_tower.png";
+    /**
+     * image path for broken tower
+     */
     public static String brokenImagePath = "src/main/resources/images/towers/sawmill_tower_broken.png";
 
     /**
