@@ -1,9 +1,9 @@
 package gameplaytests;
 
-import seng201.team0.models.gameplay.Cart;
-import seng201.team0.models.gameplay.GameObserver;
-import seng201.team0.models.gameplay.GameRunner;
-import seng201.team0.models.towers.Tower;
+import seng201.team32.models.gameplay.Cart;
+import seng201.team32.models.gameplay.GameObserver;
+import seng201.team32.models.gameplay.GameRunner;
+import seng201.team32.models.towers.Tower;
 
 import java.util.ArrayList;
 

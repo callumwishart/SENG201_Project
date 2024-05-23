@@ -2,16 +2,16 @@ package servicetests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seng201.team0.exceptions.NegativeAdditionException;
-import seng201.team0.exceptions.PurchaseException;
-import seng201.team0.exceptions.TowerInventoryFullException;
-import seng201.team0.exceptions.TowerNotFoundException;
-import seng201.team0.models.PlayerInventory;
-import seng201.team0.models.towers.Factory;
-import seng201.team0.models.towers.Farm;
-import seng201.team0.models.towers.Tower;
-import seng201.team0.models.towers.WaterTower;
-import seng201.team0.services.InventoryService;
+import seng201.team32.exceptions.NegativeAdditionException;
+import seng201.team32.exceptions.PurchaseException;
+import seng201.team32.exceptions.TowerInventoryFullException;
+import seng201.team32.exceptions.TowerNotFoundException;
+import seng201.team32.models.PlayerInventory;
+import seng201.team32.models.towers.Factory;
+import seng201.team32.models.towers.Farm;
+import seng201.team32.models.towers.Tower;
+import seng201.team32.models.towers.WaterTower;
+import seng201.team32.services.InventoryService;
 
 import java.util.ArrayList;
 import java.util.List;
