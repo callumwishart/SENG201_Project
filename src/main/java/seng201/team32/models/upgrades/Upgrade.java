@@ -36,6 +36,8 @@ public abstract class Upgrade extends Item {
      * Constructor of apply upgrade method
      * @param tower Tower that the upgrade should be applied to
      * @param playerPoints The players current points.
+     * @throws UpgradeException is thrown if the player doesn't have enough points to upgrade the tower
+     * @throws UpgradeMaxException is thrown if the upgrade is already at its max level
      */
     public abstract void apply(Tower tower, int playerPoints) throws UpgradeException, UpgradeMaxException;
 }

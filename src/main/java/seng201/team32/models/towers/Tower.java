@@ -63,6 +63,13 @@ public class Tower extends Item implements Sellable {
     ArrayList<Upgrade> upgrades = new ArrayList<>();
     /**
      * Initialises the tower and sets the resourceAmount to 1;
+     * @param brokenImage is the broken image path
+     * @param initialImagePath is the working image path
+     * @param inputCost is the cost of the tower
+     * @param inputDescription is the description of the tower
+     * @param inputName is the name of the tower
+     * @param inputReloadSpeed is the reload speed of the tower
+     * @param inputResourceType is the resource type of the tower
      */
     public Tower (Resource inputResourceType, int inputReloadSpeed, String inputName, String inputDescription, int inputCost, String initialImagePath, String brokenImage) {
         super(inputName, inputDescription, inputCost);
@@ -200,7 +207,11 @@ public class Tower extends Item implements Sellable {
     }
 
     /**
-     * @hidden
+     * Gets the repair cost
+     * <p>
+     *     This is calculated by getting the cost and dividing by two
+     * </p>
+     * @return integer of the repair cost
      */
     public int getRepairCost() {
         return this.getCost() / 2;
@@ -257,6 +268,7 @@ public class Tower extends Item implements Sellable {
      * <p>
      *     Adds the upgrade to the tower and also levels up the tower.
      * </p>
+     * @param upgrade is the upgrade that is being added
      */
     public void addUpgrade(Upgrade upgrade){
         this.upgrades.add(upgrade);

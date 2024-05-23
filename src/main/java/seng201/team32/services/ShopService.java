@@ -42,6 +42,9 @@ public class ShopService {
      * checks in activeTowers, then in stockpiledTowers, if all are full then
      * throws TowerInventoryFullException. Throws PurchaseException if player
      * doesn't have enough coins.
+     * @throws TowerInventoryFullException if the tower inventory is full
+     * @throws PurchaseException if the item cannot be purchased
+     * @throws NegativeAdditionException if the value trying to be added is negative
      */
     public void purchaseTower(Tower tower) throws TowerInventoryFullException, PurchaseException, NegativeAdditionException {
         try {
@@ -96,6 +99,10 @@ public class ShopService {
         this.inventoryService.addConsumable(consumable);
     }
 
+    /**
+     * Sets the difficulty to the provided difficulty
+     * @param difficulty is the difficulty the shop service will be set to
+     */
     public void setDifficulty(Difficulty difficulty){
         this.difficulty = difficulty;
     }

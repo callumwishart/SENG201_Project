@@ -9,31 +9,54 @@ import seng201.team32.exceptions.*;
 import seng201.team32.models.GameEnv;
 import seng201.team32.models.towers.Tower;
 import seng201.team32.models.upgrades.Upgrade;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-
+/**
+ * Controller for inventory.fxml file
+ */
 public class InventoryController {
+    /**
+     * These labels are used to keep the user informed of what is happening in game
+     */
     @FXML
-    private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, towerResourceLabel, pointsNeededLabel, sellCostLabel, repairCostLabel, towerCapacityLabel, towerSpeedLabel;
+    private Label coinsLabel, pointsLabel, towerNameLabel, towerStatusLabel, towerLevelLabel, towerResourceLabel,
+            pointsNeededLabel, sellCostLabel, repairCostLabel, towerCapacityLabel, towerSpeedLabel,
+            selectedUpgradeLabel, upgradeDescLabel, resourceValueLabel;
+    /**
+     * These buttons allow the user to interact with the game
+     */
     @FXML
-    private Label selectedUpgradeLabel, upgradeDescLabel, resourceValueLabel;
-    @FXML
-    private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn;
-    @FXML
-    private Button reservedT1Btn, reservedT2Btn, reservedT3Btn, reservedT4Btn, reservedT5Btn, upgrade1Btn, upgrade2Btn, upgrade3Btn;
-    @FXML
-    private Button c1Btn, c2Btn, c3Btn;
+    private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn, reservedT1Btn, reservedT2Btn,
+            reservedT3Btn, reservedT4Btn, reservedT5Btn, upgrade1Btn, upgrade2Btn, upgrade3Btn, c1Btn, c2Btn, c3Btn;
+    /**
+     * Image to show which tower is currently selected
+     */
     @FXML
     private ImageView selectedTowerImg;
+    /**
+     * instance of GameEnv that the controller can use
+     */
     private final GameEnv gameEnv;
-    private Tower currentActiveTower = null;
-    private Tower currentReserveTower = null;
-    private Tower currentTower = null;
+    /**
+     * Sets the selected towers to null
+     */
+    private Tower currentActiveTower, currentReserveTower, currentTower = null;
+    /**
+     * Sets the selected upgrade to null
+     */
     private Upgrade currentUpgrade = null;
+
+    /**
+     * constructor of inventory controller
+     * @param gameEnv instance of gameEnv that inventory controller will use
+     */
     public InventoryController(GameEnv gameEnv) {this.gameEnv = gameEnv;}
+
+    /**
+     * Initialises the controller with the buttons and their actions and the text so it is up-to-date.
+     */
     public void initialize() {
         List<Button> activeTowerButtons = List.of(t1Btn, t2Btn, t3Btn, t4Btn, t5Btn);
         List<Button> reservedTowerButtons = List.of(reservedT1Btn, reservedT2Btn, reservedT3Btn, reservedT4Btn, reservedT5Btn);
@@ -110,15 +133,13 @@ public class InventoryController {
         }
         // Set the text of the activeTower Buttons to be correct
         for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
-            int finalI = i;
-            activeTowerButtons.get(finalI).setText(this.gameEnv.getInventoryService().getActiveTowers().get(finalI).getName());
-            activeTowerButtons.get(finalI).setDisable(false);
+            activeTowerButtons.get(i).setText(this.gameEnv.getInventoryService().getActiveTowers().get(i).getName());
+            activeTowerButtons.get(i).setDisable(false);
         }
         // Set the text of the reserve towers to be correct
         for (int i = 0; i < this.gameEnv.getInventoryService().getStockpiledTowers().size(); i++) {
-            int finalI = i;
-            reservedTowerButtons.get(finalI).setText(this.gameEnv.getInventoryService().getStockpiledTowers().get(finalI).getName());
-            reservedTowerButtons.get(finalI).setDisable(false);
+            reservedTowerButtons.get(i).setText(this.gameEnv.getInventoryService().getStockpiledTowers().get(i).getName());
+            reservedTowerButtons.get(i).setDisable(false);
         }
         // Set the text of the upgrades
                 for (int i = 0; i < this.gameEnv.getInventoryService().getUpgrades().size(); i++) {
@@ -134,15 +155,28 @@ public class InventoryController {
         pointsLabel.setText("Points: " + this.gameEnv.getInventoryService().getPoints());
     }
 
+    /**
+     * updates the upgrade stats to be what has been selected
+     * @param upgrade the upgrade which will have its stats displayed
+     */
     private void updateUpgradeStats(Upgrade upgrade) {
         selectedUpgradeLabel.setText("Selected Upgrade: " + upgrade.getName());
         upgradeDescLabel.setText("Description: " + upgrade.getDescription());
     }
+
+    /**
+     * updates the upgrades stats to show that no upgrade has been selected
+     */
     private void updateUpgradeStats() {
         selectedUpgradeLabel.setText("Selected Upgrade: ");
         upgradeDescLabel.setText("Description: ");
     }
 
+    /**
+     * Gets the status of the tower and returns its status
+     * @param tower the tower that will have its status checked
+     * @return the status of the tower
+     */
     public String getStatus(Tower tower) {
         if (tower.isBroken()) {
             return "Broken";
@@ -150,6 +184,11 @@ public class InventoryController {
             return "OK";
         }
     }
+
+    /**
+     * Updates the tower stat labels with the values of the selected tower
+     * @param tower the tower which will have its stats displayed
+     */
     private void updateTowerStats(Tower tower) {
         towerNameLabel.setText("Tower Name: " + tower.getName());
         towerStatusLabel.setText("Status: " + getStatus(tower));
@@ -172,6 +211,10 @@ public class InventoryController {
             throw new RuntimeException("Failed to load image: " + imagePath, e);
         }
     }
+
+    /**
+     * Updates the tower stats to show that no tower is selected by resetting labels
+     */
     private void updateTowerStats() {
         towerNameLabel.setText("Tower Name: ");
         towerStatusLabel.setText("Status: ");
@@ -184,6 +227,10 @@ public class InventoryController {
         towerSpeedLabel.setText("Tower Speed: ");
         towerCapacityLabel.setText("Resource Capacity: ");
     }
+
+    /**
+     * resets all the buttons so that they do not look like they are active
+     */
     private void resetButtons() {
         List<Button> activeTowerButtons = List.of(t1Btn, t2Btn, t3Btn, t4Btn, t5Btn);
         List<Button> reservedTowerButtons = List.of(reservedT1Btn, reservedT2Btn, reservedT3Btn, reservedT4Btn, reservedT5Btn);
@@ -194,11 +241,19 @@ public class InventoryController {
             upgradeButtons.get(i).setStyle("");
         }
     }
+
+    /**
+     * Resets the coins to show that they are up-to-date
+     */
     public void resetPointsAndCoins() {
         coinsLabel.setText("Coins: " + this.gameEnv.getInventoryService().getCoins());
         pointsLabel.setText("Points: " + this.gameEnv.getInventoryService().getPoints());
     }
 
+    /**
+     * Resets the screen after something has happened so that nothing is selected and the user can tell
+     * that their action took place
+     */
     public void resetScreen() {
         resetButtons();
         updateTowerStats();
@@ -211,6 +266,14 @@ public class InventoryController {
         selectedTowerImg.setImage(null);
     }
 
+    /**
+     * This is called when the swap button is called when the swap button is clicked
+     * <p>
+     *     This will try all the different types of swapping the towers and will create an alert if nothing is selected
+     *     It will then reset the screen so that everything is up to date
+     * </p>
+     * @throws TowerInventoryFullException is thrown if the tower inventory is full
+     */
     @FXML
     public void swapTowers() throws TowerInventoryFullException {
         try {
@@ -244,20 +307,26 @@ public class InventoryController {
         }
 
         for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
-            int finalI = i;
-            activeTowerButtons.get(finalI).setText(this.gameEnv.getInventoryService().getActiveTowers().get(finalI).getName());
-            activeTowerButtons.get(finalI).setDisable(false);
+            activeTowerButtons.get(i).setText(this.gameEnv.getInventoryService().getActiveTowers().get(i).getName());
+            activeTowerButtons.get(i).setDisable(false);
         }
         // Set the text of the reserve towers to be correct
         for (int i = 0; i < this.gameEnv.getInventoryService().getStockpiledTowers().size(); i++) {
-            int finalI = i;
-            reservedTowerButtons.get(finalI).setText(this.gameEnv.getInventoryService().getStockpiledTowers().get(finalI).getName());
-            reservedTowerButtons.get(finalI).setDisable(false);
+            reservedTowerButtons.get(i).setText(this.gameEnv.getInventoryService().getStockpiledTowers().get(i).getName());
+            reservedTowerButtons.get(i).setDisable(false);
         }
     }
 
+    /**
+     * Repairs the selected tower
+     * <p>
+     *     Checks if the tower is broken or if there is no tower selected and if so alerts the user. It then tries to
+     *     repair the tower, if the player does not have enough coins then an alert will be created. It will then update
+     *     the tower stats so that the user can tell that it has been repaired
+     * </p>
+     */
     @FXML
-    public void repairTower() throws Exception {
+    public void repairTower() {
         Tower tower = currentTower;
 
         try {
@@ -279,8 +348,18 @@ public class InventoryController {
             this.gameEnv.showAlert("Not enough money!", "You don't have enough money to buy this!");
             return;
         }
+        assert tower != null;
         updateTowerStats(tower);
     }
+
+    /**
+     * Sells the selected tower
+     * <p>
+     *     Checks if a tower is found and creates alerts then sells the tower and resets the screen so that all
+     *     info is correct
+     * </p>
+     * @throws NegativeAdditionException if the sell value is negative
+     */
     @FXML
     public void sellTower() throws NegativeAdditionException {
         try {
@@ -320,6 +399,14 @@ public class InventoryController {
             reservedTowerButtons.get(finalI).setDisable(false);
         }
     }
+
+    /**
+     * Applies the upgrade to the selected tower
+     * <p>
+     *     Checks that tower and upgrade is selected then applies the upgrade and resets the screen to show that the
+     *     upgrade has been applied
+     * </p>
+     */
     @FXML
     public void applyUpgrade() {
         List<Button> upgradeButtons = List.of(upgrade1Btn, upgrade2Btn, upgrade3Btn);
@@ -356,6 +443,10 @@ public class InventoryController {
             upgradeButtons.get(i).setDisable(false);
         }
     }
+
+    /**
+     * Back button to take you back to round summary screen
+     */
     @FXML
     public void backBtn() {
         this.gameEnv.backToMain();

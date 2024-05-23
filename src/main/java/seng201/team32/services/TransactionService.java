@@ -8,6 +8,10 @@ import seng201.team32.models.towers.Sellable;
  * TransactionService handles all transactions
  */
 public class TransactionService {
+    /**
+     * Default constructor of TransactionService which does not initialise anything
+     */
+    public TransactionService(){}
 
     /**
      * Purchase Method

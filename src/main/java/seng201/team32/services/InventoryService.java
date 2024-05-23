@@ -297,6 +297,8 @@ public class InventoryService {
     /**
      * Attempts to purchase the repair cost, then changes broken attribute
      * of given tower.
+     * @throws Exception if the tower cannot be repaired
+     * @param tower is the tower that is trying to be repaired
      */
     public void repairTower(Tower tower) throws Exception {
         TransactionService.purchase(tower.getRepairCost(), this);
