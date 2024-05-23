@@ -4,7 +4,7 @@ package seng201.team32.exceptions;
  * Thrown if the name does not follow specifications
  */
 public class NameCharException extends Exception{
-    NameCharException(){
+    public NameCharException(){
         super();
     }
     /**
