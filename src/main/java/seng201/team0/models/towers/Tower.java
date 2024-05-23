@@ -131,7 +131,7 @@ public class Tower extends Item implements Sellable {
      * The upgrade point limit is determined by the level of the tower multiplied by 200
      */
     public int getUpgradePointLimit() {
-        return level * 200;
+        return level * 400;
     }
 
     /**
