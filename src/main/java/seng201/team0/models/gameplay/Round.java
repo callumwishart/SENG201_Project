@@ -127,10 +127,22 @@ public class Round {
         int regularMin = 2;
 
         if (universal){
-            return (int)(((random.nextInt(universalMax)) + universalMin) * this.difficulty.roundDifficultyMultiplier());
+            int result = (int)(((random.nextInt(universalMax)) + universalMin) * this.difficulty.roundDifficultyMultiplier());
+            if (result < 1){
+                return 1;
+            }
+            else {
+                return result;
+            }
         }
         else {
-            return (int)((random.nextInt(regularMax) + regularMin) * this.difficulty.roundDifficultyMultiplier());
+            int result = (int)((random.nextInt(regularMax) + regularMin) * this.difficulty.roundDifficultyMultiplier());
+            if (result < 1){
+                return 1;
+            }
+            else {
+                return result;
+            }
         }
     }
 

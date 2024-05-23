@@ -12,6 +12,8 @@ import seng201.team0.models.upgrades.Upgrade;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 
@@ -69,14 +71,16 @@ public class InventoryController {
                         currentActiveTower = gameEnv.getInventoryService().getActiveTowers().get(finalI);
                         currentTower = currentActiveTower;
                         String imagePath = gameEnv.getInventoryService().getActiveTowers().get(finalI).getImagePath();
-                        FileInputStream inputStream;
-                        try {
-                            inputStream = new FileInputStream(imagePath);
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException(e);
+                        try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+                            if (inputStream == null) {
+                                throw new RuntimeException("Resource not found: " + imagePath);
+                            }
+                            Image image = new Image(inputStream);
+                            selectedTowerImg.setImage(image);
+                        } catch (IOException e) {
+                            throw new RuntimeException("Failed to load image: " + imagePath, e);
                         }
-                        Image image = new Image(inputStream);
-                        selectedTowerImg.setImage(image);
+
                     } else {
                         button.setStyle("");
                     }
@@ -90,14 +94,15 @@ public class InventoryController {
                         currentReserveTower = gameEnv.getInventoryService().getStockpiledTowers().get(finalI);
                         currentTower = currentReserveTower;
                         String imagePath = gameEnv.getInventoryService().getStockpiledTowers().get(finalI).getImagePath();
-                        FileInputStream inputStream;
-                        try {
-                            inputStream = new FileInputStream(imagePath);
-                        } catch (FileNotFoundException e){
-                            throw new RuntimeException(e);
+                        try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+                            if (inputStream == null) {
+                                throw new RuntimeException("Resource not found: " + imagePath);
+                            }
+                            Image image = new Image(inputStream);
+                            selectedTowerImg.setImage(image);
+                        } catch (IOException e) {
+                            throw new RuntimeException("Failed to load image: " + imagePath, e);
                         }
-                        Image image = new Image(inputStream);
-                        selectedTowerImg.setImage(image);
                     } else {
                         button.setStyle("");
                     }
@@ -159,14 +164,15 @@ public class InventoryController {
         towerSpeedLabel.setText("Tower Speed: " + tower.getReloadSpeed());
         towerCapacityLabel.setText("Resource Capacity: " + tower.getResourceAmount());
         String imagePath = tower.getImagePath();
-        FileInputStream inputStream;
-        try {
-            inputStream = new FileInputStream(imagePath);
-        } catch (FileNotFoundException e){
-            throw new RuntimeException(e);
+        try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+            if (inputStream == null) {
+                throw new RuntimeException("Resource not found: " + imagePath);
+            }
+            Image image = new Image(inputStream);
+            selectedTowerImg.setImage(image);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load image: " + imagePath, e);
         }
-        Image image = new Image(inputStream);
-        selectedTowerImg.setImage(image);
     }
     private void updateTowerStats() {
         towerNameLabel.setText("Tower Name: ");

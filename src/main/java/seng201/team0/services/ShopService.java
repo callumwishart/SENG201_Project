@@ -1,9 +1,6 @@
 package seng201.team0.services;
 
-import seng201.team0.exceptions.ActiveConsumableException;
-import seng201.team0.exceptions.PurchaseException;
-import seng201.team0.exceptions.TowerInventoryFullException;
-import seng201.team0.exceptions.UpgradesFullException;
+import seng201.team0.exceptions.*;
 import seng201.team0.models.Difficulty;
 import seng201.team0.models.Shop;
 import seng201.team0.models.consumables.Consumable;
@@ -46,15 +43,15 @@ public class ShopService {
      * throws TowerInventoryFullException. Throws PurchaseException if player
      * doesn't have enough coins.
      */
-    public void purchaseTower(Tower tower) throws TowerInventoryFullException, PurchaseException {
+    public void purchaseTower(Tower tower) throws TowerInventoryFullException, PurchaseException, NegativeAdditionException {
         try {
             TransactionService.purchase((int) (tower.getCost() * this.difficulty.getCostMultiplier()), inventoryService);
             inventoryService.addActiveTower(tower);
         } catch (TowerInventoryFullException e1) {
             try {
-                TransactionService.purchase(tower, inventoryService);
                 inventoryService.addStockpiledTower(tower);
             } catch (TowerInventoryFullException e2) {
+                this.inventoryService.addCoins((int) (tower.getCost() * this.difficulty.getCostMultiplier())); // re-add coins taken away by purchase
                 throw new TowerInventoryFullException("You have no more available tower slots");
             }
         }

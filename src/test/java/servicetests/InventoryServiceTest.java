@@ -114,6 +114,20 @@ public class InventoryServiceTest {
     }
 
     @Test
+    public void testSwapSingleTower() throws TowerInventoryFullException {
+        Tower testTower = new Farm();
+        inventoryService.addActiveTower(testTower);
+        inventoryService.swapTowers(testTower, true);
+        assertTrue(inventoryService.getStockpiledTowers().contains(testTower));
+        inventoryService.swapTowers(testTower, false);
+        assertTrue(inventoryService.getActiveTowers().contains(testTower));
+        for (int i = 0; i < 5; i++){
+            inventoryService.addStockpiledTower(new Farm());
+        }
+        assertThrows(TowerInventoryFullException.class, () -> inventoryService.swapTowers(testTower, true));
+    }
+
+    @Test
     public void testSellTower() throws NegativeAdditionException, TowerNotFoundException, TowerInventoryFullException {
         Tower tower = new Farm();
         inventoryService.addActiveTower(tower);

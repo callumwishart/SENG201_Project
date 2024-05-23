@@ -17,11 +17,11 @@ public class Mine extends Tower {
     /**
      * image path for working tower
      */
-    public static String towerImagePath = "src/main/resources/images/towers/mine_tower.png";
+    public static String towerImagePath = "/images/towers/mine_tower.png";
     /**
      * image path for broken tower
      */
-    public static String brokenImagePath = "src/main/resources/images/towers/mine_tower_broken.png";
+    public static String brokenImagePath = "/images/towers/mine_tower_broken.png";
 
     /**
      * Mine Constructor when no params are passed

@@ -13,6 +13,8 @@ import seng201.team0.models.upgrades.Upgrade;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -111,15 +113,16 @@ public class ShopController {
     private void initializeActiveTowers(List<ImageView> activeTowerImages) {
         for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i++) {
             String imagePath = gameEnv.getInventoryService().getActiveTowers().get(i).getImagePath();
-            FileInputStream inputStream;
-            try {
-                inputStream = new FileInputStream(imagePath);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+            try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+                if (inputStream == null) {
+                    throw new RuntimeException("Resource not found: " + imagePath);
+                }
+                Image image = new Image(inputStream);
+                activeTowerImages.get(i).setImage(image);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to load image: " + imagePath, e);
             }
-            Image image = new Image(inputStream);
 
-            activeTowerImages.get(i).setImage(image);
         }
     }
 
@@ -128,15 +131,16 @@ public class ShopController {
            if (button == towerButtons.get(finalI)) {
                button.setStyle("-fx-background-color: #b3b3b3; -fx-backround-radius: 5;");
                String imagePath = gameEnv.getPossibleTowers().get(finalI).getImagePath();
-               FileInputStream inputStream;
-               try {
-                   inputStream = new FileInputStream(imagePath);
-               } catch (FileNotFoundException e) {
-                   throw new RuntimeException(e);
+               try (InputStream inputStream = ShopController.class.getResourceAsStream(imagePath)) {
+                   if (inputStream == null) {
+                       throw new RuntimeException("Resource not found: " + imagePath);
+                   }
+                   Image image = new Image(inputStream);
+                   selectedTowerImg.setImage(image);
+               } catch (IOException e) {
+                   throw new RuntimeException("Failed to load image: " + imagePath, e);
                }
-               Image image = new Image(inputStream);
 
-               selectedTowerImg.setImage(image);
            } else {
                button.setStyle("");
            }
@@ -245,6 +249,8 @@ public class ShopController {
         } catch (NoTowerSelectedException e) {
             this.gameEnv.showAlert("No Tower Selected", "Please select your tower and try again");
             return;
+        } catch (NegativeAdditionException e) {
+            throw new RuntimeException(e);
         }
         resetScreen();
     }

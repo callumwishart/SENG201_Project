@@ -15,11 +15,11 @@ public class WaterTower extends Tower{
     /**
      * image path for working tower
      */
-    public static String towerImagePath = "src/main/resources/images/towers/water_tower.png";
+    public static String towerImagePath = "/images/towers/water_tower.png";
     /**
      * image path for broken tower
      */
-    public static String brokenImagePath = "src/main/resources/images/towers/water_tower_broken.png";
+    public static String brokenImagePath = "/images/towers/water_tower_broken.png";
 
     /**
      * Water tower constructor when no params passed. Will initialise tower with a reload speed of 5

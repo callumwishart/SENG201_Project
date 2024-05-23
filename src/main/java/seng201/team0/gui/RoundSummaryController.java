@@ -9,6 +9,8 @@ import seng201.team0.models.GameEnv;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class RoundSummaryController {
@@ -38,14 +40,16 @@ public class RoundSummaryController {
         roundLabel.setText("Round: " + (this.gameEnv.getRoundNum() - 1) + "/" + this.gameEnv.getNumRounds());
         for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i ++) {
             String imagePath = this.gameEnv.getInventoryService().getActiveTowers().get(i).getImagePath();
-            FileInputStream inputStream;
-            try {
-                inputStream = new FileInputStream(imagePath);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+            try (InputStream inputStream = getClass().getResourceAsStream(imagePath)) {
+                if (inputStream == null) {
+                    throw new RuntimeException("Resource not found: " + imagePath);
+                }
+                Image image = new Image(inputStream);
+                towerImages.get(i).setImage(image);  // replace 'i' with appropriate index
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to load image: " + imagePath, e);
             }
-            Image image = new Image(inputStream);
-            towerImages.get(i).setImage(image);
+
         }
         if (this.gameEnv.getRoundNum() - 1 == this.gameEnv.getNumRounds()) {
             nextButton.setDisable(true);
