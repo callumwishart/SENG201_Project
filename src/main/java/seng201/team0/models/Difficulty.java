@@ -18,19 +18,11 @@ public class Difficulty {
     /**
      *  randomEventMultiplier affects how often random events are triggered.
      */
-    private double randomEventMultiplier;
-    /**
-     * This is the original cost multiplier stored, so difficulties can be reset after a round
-     */
     private final double originalCostMultiplier;
     /**
      * This is the original round difficulty multiplier stored, so difficulties can be reset after a round
      */
     private final double originalRoundDifficultyMultiplier;
-    /**
-     * This is the original random event multiplier stored, so difficulties can be reset after a round
-     */
-    private final double originalRandomEventMultiplier;
 
     /**
      *  If no values are specified for difficulty multipliers, defaults of 1 will
