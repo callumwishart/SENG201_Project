@@ -6,8 +6,8 @@ import seng201.team0.services.InventoryService;
 
 public abstract class RandomEvent {
     protected Tower towerAffected;
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
     public RandomEvent (String inputName, String inputDescription) {
         name = inputName;

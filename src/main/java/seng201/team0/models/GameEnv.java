@@ -16,39 +16,108 @@ import seng201.team0.models.upgrades.MoneyUpgrade;
 import seng201.team0.models.upgrades.SpeedUpgrade;
 import seng201.team0.models.upgrades.Upgrade;
 import seng201.team0.services.InventoryService;
-import seng201.team0.services.PlayerService;
 import seng201.team0.services.ShopService;
 import seng201.team0.utils.Utilities;
 
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * This class is used to hold all of the information of the game and can be thought of as the over
+ * arching controller
+ */
 public class GameEnv {
+    /**
+     * Player Attribute used to store the player
+     */
     private Player player;
-    private Shop shop;
+    /**
+     * Shop attribute used to store instance of the shop
+     */
+    private final Shop shop;
+    /**
+     * Difficulty attribute used to hold instance of the Difficulty class
+     */
     private Difficulty difficulty;
+    /**
+     * Integer to store the number of rounds that have been selected
+     */
     private int numRounds;
-
+    /**
+     * Integer to store the current round number
+     */
     private int currentRoundNum = 1;
-    private int difficultyMultiplier;
-    private PlayerService playerService;
+    /**
+     * Inventory service to store instance of the InventoryService Class and is initialised in the GameEnv constructor
+     */
     private InventoryService inventoryService;
+    /**
+     * Shop service to store instance of the ShopService class which is initialized in the GameEnv constructor
+     */
     private ShopService shopService;
+    /**
+     * List of towers that holds the list of possible towers for setup screen to use
+     */
     private final List<Tower> possibleTowers = List.of(new Factory(), new Farm(), new Mine(), new Sawmill(), new WaterTower());
+    /**
+     * List of upgrades that holds options for setup screen to use
+     */
     private final List<Upgrade> possibleUpgrades = List.of(new CapacityUpgrade(), new MoneyUpgrade(), new SpeedUpgrade());
+    /**
+     * List of consumables that holds options for setup screen to use
+     */
     private final List<Consumable> possibleConsumables = List.of(new Shield(), new SlowCartBooster(), new TowerSpeedBooster());
+    /**
+     * A consumer that takes a {@link GameEnv} object and opens the start screen
+     */
     private final Consumer<GameEnv> startLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the setup screen
+     */
     private final Consumer<GameEnv> setupLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the main play screen
+     */
     private final Consumer<GameEnv> playLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the inventory screen.
+     */
     private final Consumer<GameEnv> inventoryLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the shop screen
+     */
     private final Consumer<GameEnv> shopLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the round summary screen.
+     */
     private final Consumer<GameEnv> roundSummaryScreenLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the round style screen
+     */
     private final Consumer<GameEnv> roundStyleScreenLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the game over screen
+     */
     private final Consumer<GameEnv> gameOverLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the game over screen
+     */
     private final Consumer<GameEnv> randomEventLauncher;
+    /**
+     * A consumer that takes a GameEnv object and opens the instructions screen
+     */
     private final Consumer<GameEnv> instructionsLauncher;
+    /**
+     * A runnable method that will clear the screen
+     */
     public final Runnable clearScreen;
+    /**
+     * A boolean that stores the current result of the game
+     */
     private boolean result;
+    /**
+     * A RandomEvent that holds which randomEvent is currently being used
+     */
     private RandomEvent currRandomEvent;
 
     /**
@@ -70,7 +139,6 @@ public class GameEnv {
 
         this.player = new Player();
         this.shop = new Shop();
-        this.playerService = new PlayerService(player);
         this.inventoryService = new InventoryService(player.getInventory());
         this.shopService = new ShopService(shop, this.inventoryService);
         this.startLauncher = startLauncher;
@@ -346,20 +414,20 @@ public class GameEnv {
     }
 
     /**
-     * @hidden
+     * Gets the current Player instance
+     * @return the {@code this.player} as a Player
      */
     public Player getPlayer() {
         return this.player;
     }
 
     /**
-     * @hidden
+     * Gets the result
+     * @return the result as a boolean
      */
     public boolean getResult() {
         return result;
     }
-
-
     /**
      * @param value value which the number of rounds will be set to
      */
@@ -368,52 +436,64 @@ public class GameEnv {
     }
 
     /**
-     * @hidden
+     * Gets the possible towers
+     * @return a list of towers that are possible options
      */
     public List<Tower> getPossibleTowers() {
         return possibleTowers;
     }
 
     /**
-     * @hidden
+     * Gets the possible upgrades
+     * @return a list of possible upgrades
      */
     public List<Upgrade> getPossibleUpgrades() {return possibleUpgrades;}
 
     /**
-     * @hidden
+     * Gets possible consumables
+     * @return a list of possible consumables
      */
     public List<Consumable> getPossibleConsumables() {return possibleConsumables;}
 
     /**
-     * @hidden
+     * Gets the current random event
+     * @return a RandomEvent which will is going to be used
      */
     public RandomEvent getCurrRandomEvent() {
         return currRandomEvent;
     }
 
     /**
-     * @hidden
+     * Gets the current instance of the difficulty
+     * @return a Difficulty class which holds current difficulty attributes
      */
     public Difficulty getDifficulty() {
         return difficulty;
     }
 
     /**
-     * @hidden
+     * Gets the current round number
+     * @return an integer representing the current round number
      */
     public int getRoundNum() {
         return currentRoundNum;
     }
 
     /**
-     * @hidden
+     * Gets the number of rounds to be played
+     * @return the number of rounds to be played as an integer
      */
     public int getNumRounds() {
         return numRounds;
     }
 
     /**
-     * @hidden
+     * Sets the difficulty
+     * <p>
+     *     First this sets the current difficulty instance to the provided difficulty
+     *     Then sets the shop services difficulty
+     * </p>
+     * @param difficulty is the difficulty that everything will be set to
      */
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
@@ -421,26 +501,38 @@ public class GameEnv {
     }
 
     /**
-     * @hidden
+     * Gets the inventory service
+     * @return the inventory service in the gameEnv
      */
     public InventoryService getInventoryService() {
         return inventoryService;
     }
 
     /**
-     * @hidden
+     * Gets the shop service
+     * @return the shop service in this gameEnv
      */
     public ShopService getShopService() {
         return shopService;
     }
 
     /**
-     * @hidden
+     * Sets the current round number
+     * @param currentRoundNum the value that the round number will be set to as an integer
      */
     public void setCurrentRoundNum(int currentRoundNum) {
         this.currentRoundNum = currentRoundNum;
     }
 
+    /**
+     * Create a new game
+     * <p>
+     *     This is actioned when the user wants to play again. It first
+     *     creates a new instance of the player, inventoryService and shopService
+     *     then resets the current round to 1 and calls {@code closeStartScreen()} to open the setup
+     *     screen
+     * </p>
+     */
     public void startNewGame() {
         this.player = new Player();
         this.inventoryService = new InventoryService(player);
