@@ -6,7 +6,7 @@ import seng201.team0.models.towers.Tower;
 
 public class SpeedUpgrade extends Upgrade{
     public SpeedUpgrade() {
-        super("Speed Upgrade", "Increases the speed of your towers", 30);
+        super("Speed Upgrade", "Increases the reload speed of your towers", 150);
     }
 
     @Override

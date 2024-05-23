@@ -5,7 +5,7 @@ import seng201.team0.models.towers.Tower;
 
 public class MoneyUpgrade extends Upgrade{
     public MoneyUpgrade() {
-        super("Money Upgrade", "Increases the value of your resource.", 50);
+        super("Money Upgrade", "Increases the value of your tower's resource.", 150);
     }
 
     @Override
@@ -15,7 +15,7 @@ public class MoneyUpgrade extends Upgrade{
         }
         else{
             tower.addUpgrade(new MoneyUpgrade());
-            tower.getResource().increaseCoinValue(10);
+            tower.getResource().increaseCoinValue(2);
         }
     }
 
