@@ -107,7 +107,12 @@ public class Round {
             maxSpeed += 3;
         }
 
-        return random.nextInt(maxSpeed) + 1;
+        if (this.roundNum >= 3){
+            return random.nextInt(maxSpeed) + 2; // raise the min speed to 2 after round 3
+        }
+        else {
+            return random.nextInt(maxSpeed) + 1;
+        }
 
     }
 
@@ -116,17 +121,15 @@ public class Round {
      */
     public int getRandCartSize(boolean universal){
         Random random = new Random();
-        int universalMax = 15;
+        int universalMax = 10;
         int universalMin = 5;
-        int regularMax = 8;
-        int regularMin = 4;
+        int regularMax = 3;
+        int regularMin = 2;
 
         if (universal){
-            System.out.println(String.format("multiplying by difficulty %f", this.difficulty.roundDifficultyMultiplier()));
-            return (int)((random.nextInt(universalMax) + universalMin) * this.difficulty.roundDifficultyMultiplier());
+            return (int)(((random.nextInt(universalMax)) + universalMin) * this.difficulty.roundDifficultyMultiplier());
         }
         else {
-            System.out.println(String.format("multiplying by difficulty %f", this.difficulty.roundDifficultyMultiplier()));
             return (int)((random.nextInt(regularMax) + regularMin) * this.difficulty.roundDifficultyMultiplier());
         }
     }
