@@ -26,17 +26,17 @@ public class PlayController implements GameObserver {
     @FXML
     private Label nameLabel, pointsLabel;
     @FXML
-    private Button c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn, c16Btn, c17Btn, c18Btn, c19Btn, c20Btn;
+    private Button c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn;
     @FXML
     private ProgressBar c1Progress, c2Progress, c3Progress, c4Progress, c5Progress, c6Progress, c7Progress, c8Progress, c9Progress, c10Progress;
     @FXML
-    private ProgressBar c11Progress, c12Progress, c13Progress, c14Progress, c15Progress, c16Progress, c17Progress, c18Progress, c19Progress, c20Progress;
+    private ProgressBar c11Progress, c12Progress, c13Progress, c14Progress, c15Progress;
     @FXML
     private ProgressBar c1Capacity, c2Capacity, c3Capacity, c4Capacity, c5Capacity, c6Capacity, c7Capacity, c8Capacity, c9Capacity, c10Capacity;
     @FXML
-    private ProgressBar c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity, c16Capacity, c17Capacity, c18Capacity, c19Capacity, c20Capacity;
+    private ProgressBar c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity;
     @FXML
-    private Label c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed, c16Speed, c17Speed, c18Speed, c19Speed, c20Speed, c1CapacityLabel, c2CapacityLabel, c3CapacityLabel, c4CapacityLabel, c5CapacityLabel, c6CapacityLabel, c7CapacityLabel, c8CapacityLabel, c9CapacityLabel, c10CapacityLabel, c11CapacityLabel, c12CapacityLabel, c13CapacityLabel, c14CapacityLabel, c15CapacityLabel;
+    private Label c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed, c1CapacityLabel, c2CapacityLabel, c3CapacityLabel, c4CapacityLabel, c5CapacityLabel, c6CapacityLabel, c7CapacityLabel, c8CapacityLabel, c9CapacityLabel, c10CapacityLabel, c11CapacityLabel, c12CapacityLabel, c13CapacityLabel, c14CapacityLabel, c15CapacityLabel;
     @FXML
     private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn;
     @FXML
@@ -82,10 +82,10 @@ public class PlayController implements GameObserver {
      * sets the carts and their respective speeds and buttons. It then sets the text of the player name and their points
      */
     public void initialize(){
-        List<Button> cartButtons = List.of(c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn, c16Btn, c17Btn, c18Btn, c19Btn, c20Btn);
+        List<Button> cartButtons = List.of(c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn);
         List<Button> towerButtons = List.of(t1Btn, t2Btn, t3Btn, t4Btn, t5Btn);
         List<ImageView> towerImages = List.of(tower1Img, tower2Img, tower3Img, tower4Img, tower5Img);
-        List<Label> speedLabels = List.of(c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed, c16Speed, c17Speed, c18Speed, c19Speed, c20Speed);
+        List<Label> speedLabels = List.of(c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed);
         for (int i = 0; i < inventoryService.getActiveTowers().size(); i ++) {
             String imagePath = inventoryService.getActiveTowers().get(i).getImagePath();
             FileInputStream inputStream;
@@ -152,9 +152,9 @@ public class PlayController implements GameObserver {
      * </p>
      */
     public void updateCartStats() {
-        List<ProgressBar> progressBars = List.of(c1Progress, c2Progress, c3Progress, c4Progress, c5Progress, c6Progress, c7Progress, c8Progress, c9Progress, c10Progress, c11Progress, c12Progress, c13Progress, c14Progress, c15Progress, c16Progress, c17Progress, c18Progress, c19Progress, c20Progress);
-        List<Button> cartButtons = List.of(c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn, c16Btn, c17Btn, c18Btn, c19Btn, c20Btn);
-        List<ProgressBar> capacityBars = List.of(c1Capacity, c2Capacity, c3Capacity, c4Capacity, c5Capacity, c6Capacity, c7Capacity, c8Capacity, c9Capacity, c10Capacity, c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity, c16Capacity, c17Capacity, c18Capacity, c19Capacity, c20Capacity);
+        List<ProgressBar> progressBars = List.of(c1Progress, c2Progress, c3Progress, c4Progress, c5Progress, c6Progress, c7Progress, c8Progress, c9Progress, c10Progress, c11Progress, c12Progress, c13Progress, c14Progress, c15Progress);
+        List<Button> cartButtons = List.of(c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn);
+        List<ProgressBar> capacityBars = List.of(c1Capacity, c2Capacity, c3Capacity, c4Capacity, c5Capacity, c6Capacity, c7Capacity, c8Capacity, c9Capacity, c10Capacity, c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity);
         List<Label> capacityLabels = List.of(c1CapacityLabel, c2CapacityLabel, c3CapacityLabel, c4CapacityLabel, c5CapacityLabel, c6CapacityLabel, c7CapacityLabel, c8CapacityLabel, c9CapacityLabel, c10CapacityLabel, c11CapacityLabel, c12CapacityLabel, c13CapacityLabel, c14CapacityLabel, c15CapacityLabel);
         for (int i = 0; i < carts.size(); i++) {
             progressBars.get(i).setProgress((double) carts.get(i).getDistance() / this.trackDistance);

@@ -61,6 +61,7 @@ public class RoundSummaryController {
     }
     @FXML
     public void nextRound() throws InterruptedException {
+        this.gameEnv.getDifficulty().incrementCostMultiplier(this.gameEnv.getRoundNum());
         this.gameEnv.openRoundStyle();
     }
     @FXML
