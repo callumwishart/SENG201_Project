@@ -270,6 +270,7 @@ public class InventoryController {
                 throw new IllegalArgumentException();
             }
             this.gameEnv.getInventoryService().repairTower(currentTower);
+            tower.resetUsed();
             resetScreen();
         } catch (NoTowerSelectedException e) {
             this.gameEnv.showAlert("No tower selected", "Select a tower and try again");
