@@ -103,12 +103,12 @@ public class SetupController {
 
         }
         try {
-            if (nameField.getText().isEmpty()) {
-                throw new NameCharException("You have not entered your name");
+            if (nameField.getText().isEmpty() || !this.gameEnv.getPlayer().checkName(nameField.getText())) {
+                throw new NameCharException();
             }
             this.gameEnv.getPlayer().setName(nameField.getText());
         } catch (Exception e) {
-            this.gameEnv.showAlert(e.getMessage(), "Please input your name");
+            this.gameEnv.showAlert("Incorrect name", "Your name must be between 3-15 letters, and must not include special characters.");
             return;
         }
         try {
