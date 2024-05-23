@@ -29,8 +29,6 @@ public class GameOverController {
     }
     @FXML
     private void playAgain() {
-        this.gameEnv.setCurrentRoundNum(1);
-        this.gameEnv.getInventoryService().resetCoinsAndPoints();
-        gameEnv.closeStartScreen();
+        this.gameEnv.startNewGame();
     }
 }
