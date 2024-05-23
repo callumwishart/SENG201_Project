@@ -28,7 +28,7 @@ public class GameplayTest {
     }
 
     @Test
-    void testGameRunnerWithObserver() throws InterruptedException {
+    void testGameRunnerWithObserver() {
         TestGameObserver observer = new TestGameObserver();
         GameRunner gameRunner = new GameRunner(round, observer, false);
         boolean gameSuccess = gameRunner.getGameSuccess();

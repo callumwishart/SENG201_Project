@@ -1,7 +1,7 @@
 package seng201.team0.exceptions;
 
 public class NameCharException extends Exception{
-    NameCharException(){
+    public NameCharException(){
         super();
     }
     public NameCharException(String message){
