@@ -39,6 +39,9 @@ public class Round {
         Collections.reverse(this.carts); // sort descending so towers select the fastest to fill first
     }
 
+    /**
+     * Applies the consumables by getting them first then using the {@code apply()} method of consumable
+     */
     public void applyConsumables() {
         for (Consumable consumable : this.inventoryService.getConsumables()){
             consumable.apply(this);
@@ -54,6 +57,16 @@ public class Round {
         return this.roundNum;
     }
 
+    /**
+     * Method to create the carts
+     * <p>
+     *     This method will check how many carts it should create and then decide whether or not to make a universal
+     *     cart by using a random int, if not it will create a cart that will match at least one of the towers in
+     *     the players inventory
+     * </p>
+     * @param amount is the amount of carts that will be created
+     * @throws CloneNotSupportedException is thrown when a resource cannot be cloned
+     */
     public void createCarts(int amount) throws CloneNotSupportedException {
         for (int i = 0; i < amount; i++){
             // check to see what number, decide on universal or not, pick a random resource from possibleResources
@@ -77,6 +90,14 @@ public class Round {
         }
     }
 
+    /**
+     * Gets a resource to set the type of cart
+     * <p>
+     *     This will get the list of active towers and add their resource to a list of possible resources
+     *     It will then create a random resource based on the possible towers and return it
+     * </p>
+     * @return a resource which corresponds to a current active tower in inventory
+     */
     private Resource getRandCartResource() {
         // get types of towers
         ArrayList<Resource> possibleResources = new ArrayList<>();
@@ -104,7 +125,6 @@ public class Round {
         } else if (this.roundNum >= 10 && this.roundNum <= 15){
             maxSpeed += 3;
         }
-
         if (this.roundNum >= 3){
             return random.nextInt(maxSpeed) + 2; // raise the min speed to 2 after round 3
         }
@@ -113,9 +133,13 @@ public class Round {
         }
 
     }
-
     /**
-     *
+     * This method will set the carts size based on if it is a universal cart or a regular carts
+     * <p>
+     *     This is done by using Random to generate a random int and bounding it by
+     *     the max of the type of carts
+     * </p>
+     * @return an integer of what the generated cart size will be
      */
     public int getRandCartSize(boolean universal){
         Random random = new Random();
@@ -144,6 +168,14 @@ public class Round {
         }
     }
 
+    /**
+     * This method is used to calculate the track length
+     * <p>
+     *     Uses a random integer generator to create variation in track length and then scales it based on what round you
+     *     are on
+     * </p>
+     * @return an integer representation of the track length
+     */
     public int calculateTrackLength(){
         int defaultLength = 50;
         int growthRate = 10;
@@ -153,11 +185,18 @@ public class Round {
         return defaultLength + (int)((this.roundNum / 2)*growthRate) + variation;
     }
 
+    /**
+     * This will reset the difficulty after a round is done using the {@code difficulty.reset()} method.
+     */
     public void cleanup() {
         this.removeConsumables();
         this.difficulty.reset();
     }
 
+    /**
+     * This will remove the consumable and be applied after the round is done, this will also remove it from
+     * the players inventory
+     */
     private void removeConsumables() {
         for (Consumable consumable : this.inventoryService.getConsumables()){
             consumable.remove(this);
@@ -165,34 +204,66 @@ public class Round {
         this.inventoryService.removeConsumables();
     }
 
+    /**
+     * Gets the current difficulty object
+     * @return a Difficulty object to calculate various stats for the game
+     */
     public Difficulty getDifficulty() {
         return this.difficulty;
     }
 
+    /**
+     * Checks if the user has a shield
+     * @return a boolean to show if the user has a shield or not
+     */
     public boolean hasShield(){
         return this.hasShield;
     }
 
+    /**
+     * Gets the current round number
+     * @return an integer rep of the current round number
+     */
     public int getRoundNum() {
         return this.roundNum;
     }
 
+    /**
+     * Gets the current carts
+     * @return an ArrayList of the carts
+     */
     public ArrayList<Cart> getCarts() {
         return this.carts;
     }
 
+    /**
+     * Gets the current consumables
+     * @return an ArrayList of the consumable in use
+     */
     public ArrayList<Consumable> getConsumables() {
         return this.consumables;
     }
 
+    /**
+     * Sets the shield
+     * @param b boolean that this shield will be set to
+     */
     public void setShield(boolean b) {
         this.hasShield = b;
     }
 
+    /**
+     * Gets the towers from the inventory
+     * @return an ArrayList of towers
+     */
     public ArrayList<Tower> getTowers() {
         return this.inventoryService.getActiveTowers();
     }
 
+    /**
+     * Gets the track length
+     * @return an integer representing the track length
+     */
     public int getTrackLength() {
         return this.trackLength;
     }
