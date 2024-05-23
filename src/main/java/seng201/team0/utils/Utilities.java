@@ -2,6 +2,12 @@ package seng201.team0.utils;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Utilities class
+ * <p>
+ *     Holds functions to create random events for random event in game
+ * </p>
+ */
 public class Utilities {
 
     /**
@@ -18,10 +24,16 @@ public class Utilities {
         }
         return random.nextDouble() < probability;
     }
+
+    /**
+     * Generate number to determine random event
+     * <p>
+     *     Creates a random number between 1 and 3 and returns it
+     * </p>
+     * @return a random integer between 1 and 3
+     */
     public static int randomEventSelector() {
-        Random random = new Random();
-        int randomNumber = ThreadLocalRandom.current().nextInt(1,4);
-        return randomNumber;
+        return ThreadLocalRandom.current().nextInt(1,4);
     }
 
 }

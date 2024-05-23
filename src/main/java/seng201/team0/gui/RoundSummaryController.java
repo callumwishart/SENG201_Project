@@ -31,10 +31,13 @@ public class RoundSummaryController {
             result = "Lost!";
             nextButton.setDisable(true);
         }
-        winLabel.setText("Round " + String.valueOf(gameEnv.getRoundNum() - 1) + " " + result);
+        if (this.gameEnv.getRoundNum() == this.gameEnv.getNumRounds()) {
+            this.gameEnv.showFinishedGame();
+        }
+        winLabel.setText("Round " + (gameEnv.getRoundNum() - 1) + " " + result);
         coinsLabel.setText("Coins: " + gameEnv.getInventoryService().getCoins());
         pointsLabel.setText("Points: " + gameEnv.getInventoryService().getPoints());
-        roundLabel.setText("Round: " + String.valueOf(this.gameEnv.getRoundNum() - 1) + "/" + String.valueOf(this.gameEnv.getNumRounds()));
+        roundLabel.setText("Round: " + (this.gameEnv.getRoundNum() - 1) + "/" + String.valueOf(this.gameEnv.getNumRounds()));
         for (int i = 0; i < this.gameEnv.getInventoryService().getActiveTowers().size(); i ++) {
             String imagePath = this.gameEnv.getInventoryService().getActiveTowers().get(i).getImagePath();
             FileInputStream inputStream;

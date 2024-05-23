@@ -7,8 +7,17 @@ import seng201.team0.models.resources.Resource;
  * Factor Tower type which generates Goods
  */
 public class Factory extends Tower{
+    /**
+     * Creates new resource for the tower to use
+     */
     private static final Resource Goods = new Goods();
+    /**
+     * image path for working tower
+     */
     public static String towerImagePath = "src/main/resources/images/towers/factory_tower.png";
+    /**
+     * image path for broken tower
+     */
     public static String brokenImagePath = "src/main/resources/images/towers/factory_tower_broken.png";
 
     /**
