@@ -13,7 +13,7 @@ public class InstructionsController {
 
     /**
      * Constructor to assign this gameEnv to the current instance of the gameEnv
-     * @param gameEnv
+     * @param gameEnv is the current instance of gameEnv
      */
     public InstructionsController (GameEnv gameEnv) {this.gameEnv = gameEnv;}
 

@@ -358,7 +358,7 @@ public class InventoryController {
      *     Checks if a tower is found and creates alerts then sells the tower and resets the screen so that all
      *     info is correct
      * </p>
-     * @throws NegativeAdditionException
+     * @throws NegativeAdditionException if the sell value is negative
      */
     @FXML
     public void sellTower() throws NegativeAdditionException {

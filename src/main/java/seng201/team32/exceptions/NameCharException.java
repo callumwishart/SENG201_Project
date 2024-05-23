@@ -6,6 +6,7 @@ package seng201.team32.exceptions;
 public class NameCharException extends Exception{
     /**
      * Constructor of the exception if a message argument is passed
+     * @param message is the message of the exception
      */
     public NameCharException(String message){
         super(message);

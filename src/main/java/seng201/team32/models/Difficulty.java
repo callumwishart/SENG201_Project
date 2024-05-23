@@ -43,6 +43,7 @@ public class Difficulty {
 
     /**
      * This function is used to modify the round difficulty based off of what style of round the player has chosen
+     * @param value is the value of the update to the difficulty
      */
     public void updateDifficulty(String value) {
         if (value.equals("Risky")) {
@@ -60,6 +61,9 @@ public class Difficulty {
         return this.costMultiplier;
     }
 
+    /**
+     * Increments the cost multiplier by 0.3, can be changed to help balance the game
+     */
     public void incrementCostMultiplier() {
         this.costMultiplier += 0.3;
     }

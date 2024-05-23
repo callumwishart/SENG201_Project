@@ -9,6 +9,10 @@ import java.util.concurrent.ThreadLocalRandom;
  * </p>
  */
 public class Utilities {
+    /**
+     * Default constructor for Utilities
+     */
+    public Utilities() {}
 
     /**
      * Performs a weighted coin toss.
