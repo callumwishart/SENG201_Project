@@ -32,6 +32,8 @@ public class Difficulty {
      *  This constructor can specify what values are set for each difficulty
      *  multiplier, making it easy to adjust aspects of gameplay to make things
      *  easier or harder.
+     * @param cartAndRoundDifficultyMultiplier the multiplier for carts
+     * @param costMultiplier the cost multiplier
      */
     public Difficulty(double costMultiplier, double cartAndRoundDifficultyMultiplier){
         this.costMultiplier = costMultiplier;

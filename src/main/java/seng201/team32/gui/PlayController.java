@@ -20,35 +20,66 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * Controller for play_new.fxml
+ */
 public class PlayController implements GameObserver {
+    /**
+     * Initialising all the labels so they can display info
+     */
     @FXML
-    private Label nameLabel, pointsLabel;
+    private Label nameLabel, pointsLabel, c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed,
+            c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed, c1CapacityLabel, c2CapacityLabel,
+            c3CapacityLabel, c4CapacityLabel, c5CapacityLabel, c6CapacityLabel, c7CapacityLabel, c8CapacityLabel,
+            c9CapacityLabel, c10CapacityLabel, c11CapacityLabel, c12CapacityLabel, c13CapacityLabel, c14CapacityLabel,
+            c15CapacityLabel;
+    /**
+     * Initialising all the buttons so they can be used.
+     */
     @FXML
-    private Button c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn, c13Btn, c14Btn, c15Btn;
+    private Button c1Btn, c2Btn, c3Btn, c4Btn, c5Btn, c6Btn, c7Btn, c8Btn, c9Btn, c10Btn, c11Btn, c12Btn,
+            c13Btn, c14Btn, c15Btn, t1Btn, t2Btn, t3Btn, t4Btn, t5Btn, startButton;
+    /**
+     * Initialising all the progress bars so they can be updated
+     */
     @FXML
-    private ProgressBar c1Progress, c2Progress, c3Progress, c4Progress, c5Progress, c6Progress, c7Progress, c8Progress, c9Progress, c10Progress;
-    @FXML
-    private ProgressBar c11Progress, c12Progress, c13Progress, c14Progress, c15Progress;
-    @FXML
-    private ProgressBar c1Capacity, c2Capacity, c3Capacity, c4Capacity, c5Capacity, c6Capacity, c7Capacity, c8Capacity, c9Capacity, c10Capacity;
-    @FXML
-    private ProgressBar c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity;
-    @FXML
-    private Label c1Speed, c2Speed, c3Speed, c4Speed, c5Speed, c6Speed, c7Speed, c8Speed, c9Speed, c10Speed, c11Speed, c12Speed, c13Speed, c14Speed, c15Speed, c1CapacityLabel, c2CapacityLabel, c3CapacityLabel, c4CapacityLabel, c5CapacityLabel, c6CapacityLabel, c7CapacityLabel, c8CapacityLabel, c9CapacityLabel, c10CapacityLabel, c11CapacityLabel, c12CapacityLabel, c13CapacityLabel, c14CapacityLabel, c15CapacityLabel;
-    @FXML
-    private Button t1Btn, t2Btn, t3Btn, t4Btn, t5Btn;
-    @FXML
-    private ProgressBar t1Progress, t2Progress, t3Progress, t4Progress, t5Progress;
+    private ProgressBar c1Progress, c2Progress, c3Progress, c4Progress, c5Progress, c6Progress, c7Progress,
+            c8Progress, c9Progress, c10Progress, c11Progress, c12Progress, c13Progress, c14Progress,
+            c15Progress, c1Capacity, c2Capacity, c3Capacity, c4Capacity, c5Capacity, c6Capacity, c7Capacity,
+            c8Capacity, c9Capacity, c10Capacity, c11Capacity, c12Capacity, c13Capacity, c14Capacity, c15Capacity,
+            t1Progress, t2Progress, t3Progress, t4Progress, t5Progress;
+    /**
+     * Initialising all the tower images so they can be set to display the right images
+     */
     @FXML
     private ImageView tower1Img, tower2Img, tower3Img, tower4Img, tower5Img;
-    @FXML
-    private Button startButton;
+    /**
+     * Instance of the GameEnv
+     */
     private final GameEnv gameEnv;
+    /**
+     * Current round object
+     */
     private final Round round;
+    /**
+     * Instance of the game runner
+     */
     private final GameRunner gameRunner;
+    /**
+     * Instance of the inventory service
+     */
     private final InventoryService inventoryService;
+    /**
+     * List of the carts that are being used
+     */
     private List<Cart> carts;
+    /**
+     * List of the towers being used
+     */
     private List<Tower> towers;
+    /**
+     * Integer of the track distance
+     */
     private int trackDistance;
 
     /**
