@@ -31,6 +31,7 @@ public class GameplayTest {
     void testGameRunnerWithObserver() {
         TestGameObserver observer = new TestGameObserver();
         GameRunner gameRunner = new GameRunner(round, observer, false);
+        // for testing using print statements, gameRunner.run();
         boolean gameSuccess = gameRunner.getGameSuccess();
         assertFalse(gameSuccess);
     }
