@@ -23,7 +23,7 @@ For example: `java -jar seng201_team32-1.0-SNAPSHOT.jar`
 
 The built jar of our game has been submitted via UC LEARN with the proper naming conventions.
 
-**Note:** *This Jar is **NOT** cross-platform, so you **must** run this on Linux.* 
+**Note:** *The Jar submitted is **NOT** cross-platform, so you **must** run this jar on Linux.* 
 
 ## Notes:
 
