@@ -38,22 +38,32 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="246.0" layoutY="431.0" prefHeight="65.0" prefWidth="503.0" text="On the play screen, the distance bar shows how far a cart is from finishing going along the track. If it reaches the end without being filled, you'll lose the game!" wrapText="true">
+      <Label layoutX="246.0" layoutY="452.0" prefHeight="65.0" prefWidth="503.0" text="On the play screen, the distance bar shows how far a cart is from finishing going along the track. If it reaches the end without being filled, you'll lose the game!" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="481.0" layoutY="388.0" text="Tips:">
+      <Label layoutX="481.0" layoutY="425.0" text="Tips:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="246.0" layoutY="499.0" prefHeight="65.0" prefWidth="503.0" text="Consumables such as the Shield give you a significant advantage, modifying the game for one round when you purchase them." wrapText="true">
+      <Label layoutX="246.0" layoutY="517.0" prefHeight="65.0" prefWidth="503.0" text="Consumables such as the Shield give you a significant advantage, modifying the game for one round when you purchase them." wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <Label layoutX="246.0" layoutY="318.0" prefHeight="65.0" prefWidth="503.0" text="Resource Value / Value per Resource: How many coins you will get per resource that a tower loads in a round." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="242.0" layoutY="376.0" prefHeight="55.0" prefWidth="507.0" text="Universal Cart type: This cart will accept any type of resource and is not specific to a certain type of tower." translateX="4.0" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="251.0" layoutY="585.0" prefHeight="49.0" prefWidth="497.0" text="The tower speed stat represents how quickly it takes for a tower to fill in seconds. This means a lower number is better and the max is one." translateX="-5.0" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
