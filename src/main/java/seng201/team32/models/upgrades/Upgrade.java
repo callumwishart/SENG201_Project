@@ -11,11 +11,6 @@ import seng201.team32.models.towers.Tower;
  */
 public abstract class Upgrade extends Item {
     /**
-     * How many times this upgrade has been applied on a tower
-     */
-    int upgradeCount;
-
-    /**
      * Constructor of Upgrade class.
      * @param inputName Name of Upgrade
      * @param inputDescription Description of Upgrade
@@ -23,13 +18,6 @@ public abstract class Upgrade extends Item {
      */
     public Upgrade(String inputName, String inputDescription, int inputCost) {
         super(inputName, inputDescription, inputCost);
-    }
-
-    /**
-     * Increases the upgradeCount variable
-     */
-    public void increaseCount() {
-        upgradeCount += 1;
     }
 
     /**
