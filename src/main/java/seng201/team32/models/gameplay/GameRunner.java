@@ -9,6 +9,12 @@ import seng201.team32.models.towers.Tower;
 
 import java.util.ArrayList;
 
+/**
+ * The GameRunner class holds all the logic to link with the GUI
+ * or testing observer, extract data from the Round class, apply consumables for the round,
+ * and then run the game in real-time, updating the observer everytime the gameplay state changes.
+ * The GameRunner is able to run on a separate thread as to not interrupt javaFX processes and freeze the game window.
+ */
 public class GameRunner implements Runnable{
 
     private boolean javaFx;
@@ -18,20 +24,39 @@ public class GameRunner implements Runnable{
     Round round;
     ArrayList<Tower> towers;
 
+    /**
+     * The GameRunner constructor that takes an instance of the Round class
+     * which is used to get carts and other information about the current round, and
+     * a GameObserver observer class that will observe the changes as the game runs.
+     * @param round the Round class set with properties of the round
+     * @param observer the observer that will update the GUI/process the game state every second
+     * @param javaFx a boolean specifying whether to trigger observer functions using the javaFX thread, or to trigger on a normal thread for testing without a javaFX GUI
+     */
     public GameRunner(Round round, GameObserver observer, boolean javaFx){
         this.javaFx = javaFx;
         this.observer = observer;
         this.carts = round.getCarts();
         this.round = round;
-        this.towers = (ArrayList<Tower>) this.round.getTowers();
+        this.towers = this.round.getTowers();
         this.gameSuccess = false;
         this.round.applyConsumables();
     }
 
+    /**
+     * The run function handles the real-time gameplay logic.
+     * First, the carts specified in the Round class are checked to determine whether they have reached the end of the track and are updated accordingly,
+     * then for each tower that is in the Round (fetched from the players activeTower list) and is not broken, it checks whether it is reloading or not and then acts accordingly. For each non-reloading, non-broken tower
+     * It checks through the carts which are sorted by speed and determines whether they need to be filled, then fills them either until they are full or until it has unloaded it's ResourceAmount.
+     * There is then a check to determine if all carts are finished or if they are all filled, which would trigger the end of the round.
+     * The observer is then notified via {@code observer.observe()} using either javaFX's {@code Platform.runLater()} which ensures updates to the GUI are executed via the javaFX thread, or via a regular method call.
+     * If the round is not finished, the process then sleeps for one second and then repeats until the game finishing criteria is met.
+     * When the round end event is triggered then all tower's {@code Used} attributes are incremented to show that they have been used for a round, this is then used if a random event is triggered to determine what tower should break first.
+     * Then the game success value is determined to be true or false, and the respective {@code win()} or {@code lose()} function is executed by the observer to continue with the flow of the game.
+     * If the round is won then the number of coins earned from resources in carts is calculated, along with the number of points the player shall receive for finishing a round. This is passed over to the observer to continue with the game flow.
+     */
     @Override
     public void run() {
         boolean finished = false;
-        int roundTimeElapsed = 0; // may be useful for testing?
 
         while (!finished){
             try {
@@ -39,7 +64,6 @@ public class GameRunner implements Runnable{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            roundTimeElapsed += 1;
             for (Cart cart : carts){
                 if(cart.getDistance() < round.getTrackLength()){
                     cart.incrementDistance();
@@ -144,6 +168,10 @@ public class GameRunner implements Runnable{
 
     }
 
+    /**
+     * Calculates the number of coins earned from resources that have been loaded by towers during the {@code run()} process.
+     * @return the number of coins earned from resources that are in carts
+     */
     private int earnCoins() {
         int totalCoins = 0;
         for (Cart cart : carts){
@@ -156,10 +184,18 @@ public class GameRunner implements Runnable{
         return totalCoins;
     }
 
+    /**
+     * Returns the number of points that is earned from completing the round
+     * @return number of points earned from the round
+     */
     private int earnPoints() {
         return 200;
     }
 
+    /**
+     * Loops through and checks whether each cart in the round has finished going the distance of the track.
+     * @return boolean determining whether all carts are finished
+     */
     public boolean cartsFinished() {
         boolean finished = true;
         for (Cart cart : this.carts) {
@@ -171,6 +207,10 @@ public class GameRunner implements Runnable{
         return finished;
     }
 
+    /**
+     * Loops through and checks whether each cart in the round is full.
+     * @return boolean determining if all carts are full
+     */
     public boolean cartsFull(){
         boolean cartsFull = true;
         for (Cart cart : this.carts) {
@@ -182,18 +222,34 @@ public class GameRunner implements Runnable{
         return cartsFull;
     }
 
+    /**
+     * Method for getting the carts in the current game state, used by the observers when updating GUI or other functions
+     * @return active carts in the round being run
+     */
     public ArrayList<Cart> getCarts() {
         return this.carts;
     }
 
+    /**
+     * Method for getting the active towers in the current game state, used by the observers when updating GUI or other functions
+     * @return active towers in the round being run
+     */
     public ArrayList<Tower> getTowers() {
         return this.towers;
     }
 
+    /**
+     * Method for getting the track distance used for the current round being played, used by observers for updating cart distance status etc
+     * @return track distance of the round
+     */
     public int getTrackDistance() {
         return round.getTrackLength();
     }
 
+    /**
+     * Gets the gameSuccess boolean value
+     * @return boolean indicating whether the round succeeded or not
+     */
     public boolean getGameSuccess() {
         return this.gameSuccess;
     }

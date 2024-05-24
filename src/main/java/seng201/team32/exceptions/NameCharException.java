@@ -4,6 +4,9 @@ package seng201.team32.exceptions;
  * Thrown if the name does not follow specifications
  */
 public class NameCharException extends Exception{
+    /**
+     * Calls {@code Exception()} super constructor
+     */
     public NameCharException(){
         super();
     }

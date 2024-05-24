@@ -429,6 +429,7 @@ public class GameEnv {
         return result;
     }
     /**
+     * Sets the number of rounds for the game
      * @param value value which the number of rounds will be set to
      */
     public void setNumRounds(int value) {

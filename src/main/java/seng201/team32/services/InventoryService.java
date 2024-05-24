@@ -279,9 +279,9 @@ public class InventoryService {
     }
 
     /**
-     * Checks for tower in both Active and Stockpiled lists,
-     * if it is not found then throws TowerNotFoundException.
-     * If it is found then delete out of the respective list.
+     * Checks for tower in both Active and Stockpiled lists and removes the tower
+     * @param tower tower to remove from inventory
+     * @throws TowerNotFoundException if tower is not found in active or stockpile lists
      */
     public void removeTower(Tower tower) throws TowerNotFoundException {
         if (this.getActiveTowers().contains(tower)){

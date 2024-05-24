@@ -1,5 +1,5 @@
 # SENG201 Resource Rush - Team 32
-Welcome to Resource Rush. A resource management game with towers and carts
+Welcome to Resource Rush! A resource management game with towers and carts.
 
 
 ## Authors
@@ -17,8 +17,14 @@ Run ./gradlew jar to build the game jar in build/libs
 
 ## Run Jar 
 1. Open a command line interface inside the project directory cd to /build/libs.
-2. Run the command java -jar <jar_name>.jar
+2. Run the command java -jar <jar_name>.jar 
+
+For example: `java -jar seng201_team32-1.0-SNAPSHOT.jar`
 
 The built jar of our game has been submitted via UC LEARN with the proper naming conventions.
 
 **Note:** *This Jar is **NOT** cross-platform, so you **must** run this on Linux.* 
+
+## Notes:
+
+The tower images were sourced via https://midjourney.com, as per their licencing (https://docs.midjourney.com/docs/terms-of-service) we have commercial licence for using these images.

@@ -42,6 +42,7 @@ public class ShopService {
      * checks in activeTowers, then in stockpiledTowers, if all are full then
      * throws TowerInventoryFullException. Throws PurchaseException if player
      * doesn't have enough coins.
+     * @param tower the tower to be purchased from the shop
      * @throws TowerInventoryFullException if the tower inventory is full
      * @throws PurchaseException if the item cannot be purchased
      * @throws NegativeAdditionException if the value trying to be added is negative
