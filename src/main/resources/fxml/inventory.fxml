@@ -119,7 +119,7 @@
                   </Button>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#swapTowers" text="&lt;-&gt;" />
+            <Button mnemonicParsing="false" onAction="#swapTowers" prefWidth="50.0" text="&lt;-&gt;" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="480.0">
                <children>
                   <Button fx:id="reservedT1Btn" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button" textAlignment="CENTER" wrapText="true">
